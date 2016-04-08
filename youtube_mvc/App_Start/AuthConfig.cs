@@ -22,9 +22,9 @@ namespace youtube_mvc
             //    consumerKey: "",
             //    consumerSecret: "");
 
-            //OAuthWebSecurity.RegisterFacebookClient(
-            //    appId: "",
-            //    appSecret: "");
+            OAuthWebSecurity.RegisterFacebookClient(
+                appId: "545492162289488",
+                appSecret: "349f7d7ca9b9387fa459ae10f2c9f60e");
 
             //OAuthWebSecurity.RegisterGoogleClient();
         }
