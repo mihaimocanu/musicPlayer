@@ -331,7 +331,6 @@
     <Content Include="Scripts\my_uploads.js" />
     <Content Include="Scripts\playlist_upload.js" />
     <Content Include="Scripts\recorderJs\recorder.js" />
-    <Content Include="Scripts\recorderJs\recorder1.js" />
     <Content Include="Scripts\recorderJs\recorderWorker.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
