@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "SearchVideos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SearchVideos</h2>
+
+<div id="searchVideoForm">
+    <label>Search Text: <input id="searchText" value='' type="text" disabled/></label>
+</div>
+
+<ul id="resultDisplay">
+    @*<div id="video_id">
+        <h3>
+            <a href="https://www.youtube.com/watch?v=@item.ContentDetails.VideoId" target="_blank">@item.Snippet.Title</a> 
+        </h3>
+        <button id="addButton_videoId" onclick="AddToPlaylist('@item.Id')">Add To Playlist</button>
+        <div id="addForm_videoId" style="display:none">
+            <select id="playlistName_videoId\"></select>
+            <button onclick="saveAdd('playlistId','videoId')">Save</button>";
+            <button onclick="cancelAdd('videoId')">Cancel</button>
+        </div>
+    </div>
+
+    <div id="video_id"><h3><a href="https://www.youtube.com/watch?v=@item.ContentDetails.VideoId" target="_blank">@item.Snippet.Title</a></h3><button id="addButton_videoId" onclick="AddToPlaylist('@item.Id')">Add To Playlist</button><div id="addForm_videoId" style="display:none"><select id="playlistName_videoId\"></select><button onclick="saveAdd('playlistId','videoId')">Save</button>"<button onclick="cancelAdd('videoId')">Cancel</button></div></div>*@
+
+</ul>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="~/Scripts/auth.js"></script>
+<script src="~/Scripts/playlist_upload.js"></script>
+<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        getPlaylists("Search");
+    });
+    $('#searchText').keyup(function (e) {
+        if (e.keyCode == 13) {
+            searchVideo($('#searchText').val());
+        }
+    });
+    
+</script>
