@@ -33,7 +33,782 @@
         margin: 0;
     }
 </style>
-<header name="Access-Control-Allow-Origin" value="*" />
+
+<div class="section-players clearfix">
+    <div class="box-mix" style="display:none;">
+        <div class="slider">
+            <input type="range" name="value_range" value="270">
+        </div>
+    </div>
+    <div class="componentBox box-mix2">
+        <!-- Range slider -->
+        <div class="range-slider">
+            <div class="middlePoint"></div>
+            <input id="price_range" type="text" name="price_range" value="270;800">
+        </div>
+        <script type="text/javascript">
+            jQuery(document).ready(function ($) {
+                // Price Range Input
+                $("#price_range").rangeslider({
+                    from: 50,
+                    to: 1000,
+                    limits: false,
+                    scale: ['$50', '$1000'],
+                    heterogeneity: ['50/500'],
+                    step: 10,
+                    smooth: true,
+                    dimension: '$'
+                });
+            });
+        </script>
+        <!-- Range slider -->
+    </div>
+    <div class="componentBox box-player playerLeft">
+        <!-- Widget Audio Player -->
+        <div class="widget-container widget-audio">
+            <div class="inner">
+                <!-- jplayer-->
+                <div id="jquery_jplayer_0" class="jp-jplayer"></div>
+                <div id="jp_container_0" class="jp-audio">
+                    <div class="jp-type-playlist">
+                        <div class="jp-playlist">
+                            <ul class="jp-playlist-inner">
+                                <li></li>
+                            </ul>
+                        </div>
+                        <div class="jp-gui jp-interface">
+                            <div class="song_title_wrap">
+                                <div class="song_title" id="songTitle0"></div>
+                            </div>
+                            <div class="jp-controls-wrap">
+                                <div class="jp-progress">
+                                    <div class="jp-seek-bar">
+                                        <div class="jp-play-bar"></div>
+                                    </div>
+                                </div>
+                                <ul class="jp-controls">
+                                    <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+                                    <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+                                    <li><a href="javascript:;" class="jp-previous disabled" tabindex="1">previous</a></li>
+                                    <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+                                    <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+                                    <li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
+                                    <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+                                    @*<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+                                    <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>*@
+                                    <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+                                    <li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li>
+                                    <li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li>
+                                </ul>
+                                <div class="jp-volume-bar">
+                                    <div class="jp-volume-bar-value"></div>
+                                </div>
+                                <div class="jp-current-time"></div>
+                                <div class="jp-duration"></div>
+                            </div>
+                        </div>
+                        <div class="jp-no-solution">
+                            <span>Update Required</span>
+                            To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+                        </div>
+                    </div>
+                </div>
+                <!--/ jplayer-->
+            </div>
+        </div>
+        <!-- Widget Audio Player -->
+    </div>
+    <div class="componentBox box-player playerRight">
+        <!-- Widget Audio Player -->
+        <div class="widget-container widget-audio">
+            <div class="inner">
+                <!-- jplayer-->
+                <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+                <div id="jp_container_1" class="jp-audio">
+                    <div class="jp-type-playlist">
+                        <div class="jp-playlist">
+                            <ul class="jp-playlist-inner">
+                                <li></li>
+                            </ul>
+                        </div>
+                        <div class="jp-gui jp-interface">
+                            <div class="song_title_wrap">
+                                <div class="song_title" id="songTitle1"></div>
+                            </div>
+                            <div class="jp-controls-wrap">
+                                <div class="jp-progress">
+                                    <div class="jp-seek-bar">
+                                        <div class="jp-play-bar"></div>
+                                    </div>
+                                </div>
+                                <ul class="jp-controls">
+                                    <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-previous disabled" tabindex="1">previous</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li>
+                                </ul>
+                                <div class="jp-volume-bar">
+                                    <div class="jp-volume-bar-value"></div>
+                                </div>
+                                <div class="jp-current-time"></div>
+                                <div class="jp-duration"></div>
+                            </div>
+                        </div>
+                        <div class="jp-no-solution">
+                            <span>Update Required</span>
+                            To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+                        </div>
+                    </div>
+                </div>
+                <!--/ jplayer-->
+            </div>
+        </div>
+        <!-- Widget Audio Player -->
+    </div>
+
+</div>
+<div class="section-eq clearfix">
+    <div class="componentBox box-recording">
+        <div class="box-recordingLeft">
+            <h2>
+                Recording</h2>
+                <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1;"><span>RECORD</span></a>
+        </div>
+        <div class="box-recordingRight">
+            <h2>
+                Download</h2>
+                <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1;"><span>SAVE</span></a>
+        </div>
+    </div>
+    <div class="componentBox box-eq eqLeft">
+        <div class="controlEq">
+            <div class="input_styled checklist foo-1"><div class="rowCheckbox checkbox-large"><input name="invoice" type="checkbox" checked id="invoice" value="invoice"><label for="invoice"></label></div></div>
+        </div>
+        <div class="widget-knob posTL widget-volume">
+            <input type="text" value="77" autocomplete="off" id="volume1" />
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#volume1').knobRot({
+                        'classes': ['volume'],
+                        'dragVertical': false,
+                        'frameCount': 49,
+                        'frameWidth': 149,
+                        'frameHeight': 149,
+                        'detent': true,
+                        'detentThreshold': 5,
+                        'minimumValue': 0,
+                        'maximumValue': 100,
+                        'hideInput': true
+                    });
+                });
+            </script>
+        </div>
+        <div class="widget-knob posTR widget-volume">
+            <input type="text" value="77" autocomplete="off" id="volume2" />
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#volume2').knobRot({
+                        'classes': ['volume'],
+                        'dragVertical': false,
+                        'frameCount': 49,
+                        'frameWidth': 149,
+                        'frameHeight': 149,
+                        'detent': true,
+                        'detentThreshold': 5,
+                        'minimumValue': 0,
+                        'maximumValue': 100,
+                        'hideInput': true
+                    });
+                });
+            </script>
+        </div>
+        <div class="widget-knob posBL widget-volume">
+            <input type="text" value="77" autocomplete="off" id="volume3" />
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#volume3').knobRot({
+                        'classes': ['volume'],
+                        'dragVertical': false,
+                        'frameCount': 49,
+                        'frameWidth': 149,
+                        'frameHeight': 149,
+                        'detent': true,
+                        'detentThreshold': 5,
+                        'minimumValue': 0,
+                        'maximumValue': 100,
+                        'hideInput': true
+                    });
+                });
+            </script>
+        </div>
+        <div class="widget-knob posBR widget-volume">
+            <input type="text" value="77" autocomplete="off" id="volume4" />
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#volume4').knobRot({
+                        'classes': ['volume'],
+                        'dragVertical': false,
+                        'frameCount': 49,
+                        'frameWidth': 149,
+                        'frameHeight': 149,
+                        'detent': true,
+                        'detentThreshold': 5,
+                        'minimumValue': 0,
+                        'maximumValue': 100,
+                        'hideInput': true
+                    });
+                });
+            </script>
+        </div>
+    </div>
+    <div class="componentBox box-eq eqRight">
+        <div class="controlEq">
+            <div class="input_styled checklist foo-1"><div class="rowCheckbox checkbox-large"><input name="invoice2" type="checkbox" id="invoice2" value="invoice"><label for="invoice2"></label></div></div>
+        </div>
+        <div class="widget-knob posTL widget-volume">
+            <input type="text" value="77" autocomplete="off" id="volume5" />
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#volume5').knobRot({
+                        'classes': ['volume'],
+                        'dragVertical': false,
+                        'frameCount': 49,
+                        'frameWidth': 149,
+                        'frameHeight': 149,
+                        'detent': true,
+                        'detentThreshold': 5,
+                        'minimumValue': 0,
+                        'maximumValue': 100,
+                        'hideInput': true
+                    });
+                });
+            </script>
+        </div>
+        <div class="widget-knob posTR widget-volume">
+            <input type="text" value="77" autocomplete="off" id="volume6" />
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#volume6').knobRot({
+                        'classes': ['volume'],
+                        'dragVertical': false,
+                        'frameCount': 49,
+                        'frameWidth': 149,
+                        'frameHeight': 149,
+                        'detent': true,
+                        'detentThreshold': 5,
+                        'minimumValue': 0,
+                        'maximumValue': 100,
+                        'hideInput': true
+                    });
+                });
+            </script>
+        </div>
+        <div class="widget-knob posBL widget-volume">
+            <input type="text" value="77" autocomplete="off" id="volume7" />
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#volume7').knobRot({
+                        'classes': ['volume'],
+                        'dragVertical': false,
+                        'frameCount': 49,
+                        'frameWidth': 149,
+                        'frameHeight': 149,
+                        'detent': true,
+                        'detentThreshold': 5,
+                        'minimumValue': 0,
+                        'maximumValue': 100,
+                        'hideInput': true
+                    });
+                });
+            </script>
+        </div>
+        <div class="widget-knob posBR widget-volume">
+            <input type="text" value="77" autocomplete="off" id="volume8" />
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#volume8').knobRot({
+                        'classes': ['volume'],
+                        'dragVertical': false,
+                        'frameCount': 49,
+                        'frameWidth': 149,
+                        'frameHeight': 149,
+                        'detent': true,
+                        'detentThreshold': 5,
+                        'minimumValue': 0,
+                        'maximumValue': 100,
+                        'hideInput': true
+                    });
+                });
+            </script>
+        </div>
+    </div>
+
+</div>
+<div class="section-playlists clearfix">
+    <div class="componentBox box-playlist playlistLeft">
+        <div class="componentHead">
+            <h3>Playlist name here </h3>
+        </div> <!-- end .componentHead -->
+        <div class="componentBody">
+            <table class="list-playlist " id="musicList_player0">
+            </table>
+            <!-- List version
+            <ul class="list-playlist">
+                <li class="playlist-item clearfix">
+                    <p class="item-nr">1.</p>
+                    <p class="item-song">
+                        <span class="item-artistName">Artist Name</span> - <span class="item-songName">Song Name</span>
+                    </p>
+                    <p class="item-songDuration">3:55</p>
+                </li>
+            </ul>
+            -->
+        </div> <!-- end .componentBody -->
+        <div class="componentFooter">
+            <div class="fakeFileBtn btn-chooseFile btnD btnD-acute">
+                <span>Add song</span>
+                <input id="audio_file_player0" type="file" accept="audio/*" multiple />
+            </div>
+        </div> <!-- end .componentFooter -->
+    </div> <!-- end .componentBox .box-playlist-->
+    <div class="componentBox box-playlist playlistRight">
+        <div class="componentHead">
+            <h3>Playlist name here </h3>
+        </div> <!-- end .componentHead -->
+        <div class="componentBody">
+            <table class="list-playlist " id="musicList_player1"></table>
+        </div> <!-- end .componentBody -->
+        <div class="componentFooter">
+            <div class="fakeFileBtn btn-chooseFile btnD btnD-acute">
+                <span>Add song</span>
+                @*<input type="file">*@
+                <input id="audio_file_player1" type="file" accept="audio/*" multiple />
+            </div>
+        </div> <!-- end .componentFooter -->
+    </div> <!-- end .componentBox .box-playlist-->
+
+</div> <!-- end section-playlists  -->
+<script>
+
+    //general
+    var lGain_player = [];
+    var hGain_player = [];
+    var mGain_player = [];
+    var sum_player = [];
+    var lPass_player = [];
+    var volumeNodes = [];
+    var freqFilter_player = [];
+
+    var context_player = null;
+    var audioRecordNode = null;
+    var mediaElement_player = [];
+    var source_player = [];
+    var sourceNode_player = [];
+    var files_player = [];
+    var player_playlist = [];
+
+
+    var audioRecorder;
+
+    $(document).ready(function () {
+
+        //define first player Playlist
+        player_playlist.push(null);
+        player_playlist[0] = new jPlayerPlaylist({
+            jPlayer: "#jquery_jplayer_0",
+            cssSelectorAncestor: "#jp_container_0"
+        }, [
+            //{
+            //    title: "<ul><li class='item-artist'><span>01.</span>Rudimental</li><li class='item-song'>Waiting All Night (feat. Ella Eyre)</li><li class='item-album'>Folllow Your Heart | 2013</li></ul>",
+            //    mp3: "http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3"
+            //},
+            //{
+            //    title: "<ul><li class='item-artist'><span>02.</span>Daft Punk</li><li class='item-song'>Get Lucky (ft. Pharell Williams)</li><li class='item-album'>Tron Legacy | 2013</li></ul>",
+            //    mp3: "http://www.jplayer.org/audio/mp3/TSP-07-Cybersonnet.mp3"
+            //},
+            //{
+            //    title: "<ul><li class='item-artist'><span>03.</span>Justin Timberlake</li><li class='item-song'>Mirrors</li><li class='item-album'>20/20 Experience | 2013</li></ul>",
+            //    mp3: "http://www.jplayer.org/audio/mp3/Miaow-07-Bubble.mp3"
+            //}
+        ], {
+            swfPath: "js",
+            supplied: "mp3",
+            wmode: "window",
+            smoothPlayBar: false,
+            keyEnabled: false,
+            audioFullScreen: true // Allows the audio poster to go full screen via keyboard
+        });
+
+        //define second player Playlist
+        player_playlist.push(null);
+        player_playlist[1] = new jPlayerPlaylist({
+            jPlayer: "#jquery_jplayer_1",
+            cssSelectorAncestor: "#jp_container_1"
+        }, [
+            //{
+            //    title: "<ul><li class='item-song'>Waiting All Night (feat. Ella Eyre)</li></ul>",
+            //    mp3: "http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3"
+            //},
+            //{
+            //    title: "<ul><li class='item-artist'><span>02.</span>Daft Punk</li><li class='item-song'>Get Lucky (ft. Pharell Williams)</li><li class='item-album'>Tron Legacy | 2013</li></ul>",
+            //    mp3: "http://www.jplayer.org/audio/mp3/TSP-07-Cybersonnet.mp3"
+            //},
+            //{
+            //    title: "<ul><li class='item-artist'><span>03.</span>Justin Timberlake</li><li class='item-song'>Mirrors</li><li class='item-album'>20/20 Experience | 2013</li></ul>",
+            //    mp3: "http://www.jplayer.org/audio/mp3/Miaow-07-Bubble.mp3"
+            //}
+        ], {
+            playlistOptions: {
+                enableRemoveControls: true
+            },
+            swfPath: "js",
+            supplied: "mp3",
+            wmode: "window",
+            smoothPlayBar: false,
+            keyEnabled: false,
+            audioFullScreen: true // Allows the audio poster to go full screen via keyboard
+        });
+        files_player.push([]);
+        addEqualiser();
+    });
+
+    
+
+    //addEqualiser();
+
+    $("#audio_file_player0").on("change", function () { uploadFile("0"); });
+    $("#audio_file_player1").on("change", function () { uploadFile("1"); });
+    function uploadFile(player) {
+        var files;
+        var uploadedFiles=$("#audio_file_player" + player).prop('files');;
+        //files = files_player[player];
+
+        //var file = URL.createObjectURL(files[0]);
+        //var audio = $("#player" + player);
+        //$("#player" + player).attr("src", file);
+
+        //audio[0].play();
+        //$("#liveSong_player" + player).html("Playing file: " + files[0].name);
+        player_playlist[player].remove();
+        createPlaylist(player, uploadedFiles);
+        player_playlist[player].select(0);
+        player_playlist[player].play(0);
+        $("#songTitle" + player).html(player_playlist[player].playlist[0].title);
+
+    };
+
+    function createPlaylist(player, files) {
+        //var files;
+
+        //files = files_player[player];
+
+        var html = "";
+        $("#musicList_player" + player).empty();
+        var playlistItems = [];
+        for (var i = 0; i < files.length; i++) {
+            files_player[player].push(files[i]);
+            //add files to the player playlist
+            
+            playlistItems.push({
+                title: "<ul><li class='item-song'>" + (files[i].name.length > 50 ? (files[i].name.substring(0, 50) + "...") : files[i].name) + "</li></ul>",
+                mp3: URL.createObjectURL(files[i]),
+            });
+            
+            //add visual into the playlist container
+            var playlistItemHtml =
+                            "<tr class=\"item\">" +
+                                "<td class=\"item-nr\">" + i + ".</td>" +
+                                "<td class=\"item-song\"> " +
+                                    "<a onclick=\"changeFile(" + i + ",'" + player + "')\" style=\"cursor: pointer;\"><span class=\"item-artistName\">" +(files[i].name.length>50?(files[i].name.substring(0, 50)+"..."):files[i].name) + "</span></a>" +
+                                "</td>" +
+                                //"<td class=\"item-songDuration\"><a onclick=\"removeFile(" + i + "," + player + ")\" style=\"cursor: pointer;\"><span class=\"item-artistName\">Remove</span></a></td>" +
+                            "</tr>";
+            $("#musicList_player" + player).append(playlistItemHtml);
+        }
+        player_playlist[player].setPlaylist(playlistItems);
+
+    }
+
+    function changeFile(index, player) {
+        
+        player_playlist[player].select(index);
+        player_playlist[player].play(index);
+        $("#songTitle" + player).html(player_playlist[player].playlist[index].title);
+
+
+    }
+    //function removeFile(index, player) {
+    //    files_player[player].splice(index, 1);
+    //    //var playlistItems = files_player[player];
+    //    //files_player[player] = [];
+    //    player_playlist[player].pause();
+    //    player_playlist[player].remove();
+    //    //createPlaylist(player, playlistItems);
+        
+    //    var files = files_player[player];
+        
+
+    //    $("#musicList_player" + player).empty();
+    //    var playlistItems = [];
+    //    for (var i = 0; i < files.length; i++) {
+    //        //files_player[player].push(files[i]);
+    //        //add files to the player playlist
+
+    //        playlistItems.push({
+    //            title: "<ul><li class='item-song'>" + (files[i].name.length > 50 ? (files[i].name.substring(0, 50) + "...") : files[i].name) + "</li></ul>",
+    //            mp3: URL.createObjectURL(files[i]),
+    //        });
+
+    //        //add visual into the playlist container
+    //        var playlistItemHtml =
+    //                        "<tr class=\"item\">" +
+    //                            "<td class=\"item-nr\">" + i + ".</td>" +
+    //                            "<td class=\"item-song\"> " +
+    //                                "<a onclick=\"changeFile(" + i + ",'" + player + "')\" style=\"cursor: pointer;\"><span class=\"item-artistName\">" + (files[i].name.length > 50 ? (files[i].name.substring(0, 50) + "...") : files[i].name) + "</span></a>" +
+    //                            "</td>" +
+    //                            "<td class=\"item-songDuration\"><a onclick=\"removeFile(" + i + ",'" + player + "')\" style=\"cursor: pointer;\"><span class=\"item-artistName\">Remove</span></a></td>" +
+    //                        "</tr>";
+    //        $("#musicList_player" + player).append(playlistItemHtml);
+    //    }
+    //    //$("#jquery_jplayer_0").jPlayer("clearMedia");
+    //    player_playlist[player].setPlaylist(playlistItems);
+        
+    //    changeFile(0, player);
+    //}
+
+    function addEqualiser() {
+
+        var gainDb = -40.0;
+        var bandSplit = [360, 3600];
+        context_player = new AudioContext();
+
+        for (var i = 0; i < 2; i++) {
+
+            mediaElement_player.push(null);
+            sourceNode_player.push(null);
+            source_player.push(null);
+            lGain_player.push(null);
+            mGain_player.push(null);
+            hGain_player.push(null);
+            sum_player.push(null);
+            volumeNodes.push(null);
+
+
+
+            mediaElement_player[i] = document.getElementById('jp_audio_' + i);
+            source_player[i] = context_player.createMediaElementSource(mediaElement_player[i]);
+
+            initFrequencyQuality(i);
+
+            var hBand_player = context_player.createBiquadFilter();
+            hBand_player.type = "lowshelf";
+            hBand_player.frequency.value = bandSplit[0];
+            hBand_player.gain.value = gainDb;
+
+            var hInvert_player = context_player.createGain();
+            hInvert_player.gain.value = -1.0;
+
+            var mBand_player = context_player.createGain();
+
+            var lBand_player = context_player.createBiquadFilter();
+            lBand_player.type = "highshelf";
+            lBand_player.frequency.value = bandSplit[1];
+            lBand_player.gain.value = gainDb;
+
+            var lInvert_player = context_player.createGain();
+            lInvert_player.gain.value = -1.0;
+
+            sourceNode_player[i].connect(lBand_player);
+            sourceNode_player[i].connect(mBand_player);
+            sourceNode_player[i].connect(hBand_player);
+
+            hBand_player.connect(hInvert_player);
+            lBand_player.connect(lInvert_player);
+
+            hInvert_player.connect(mBand_player);
+            lInvert_player.connect(mBand_player);
+
+
+            lGain_player[i] = context_player.createGain();
+            mGain_player[i] = context_player.createGain();
+            hGain_player[i] = context_player.createGain();
+
+            lBand_player.connect(lGain_player[i]);
+            mBand_player.connect(mGain_player[i]);
+            hBand_player.connect(hGain_player[i]);
+
+            sum_player[i] = context_player.createGain();
+            lGain_player[i].connect(sum_player[i]);
+            mGain_player[i].connect(sum_player[i]);
+            hGain_player[i].connect(sum_player[i]);
+
+            volumeNodes[i] = context_player.createGain();
+            sum_player[i].connect(volumeNodes[i]);
+            volumeNodes[i].connect(context_player.destination);
+
+        }
+
+        //set volume
+        var x = 50 / 100;
+        // Use an equal-power crossfading curve:
+        var gain1 = Math.cos(x * 0.5 * Math.PI);
+        var gain2 = Math.cos((1.0 - x) * 0.5 * Math.PI);
+        volumeNodes[0].gain.value = gain1;
+        volumeNodes[1].gain.value = gain2;
+
+        //create audio Recording node
+
+        audioRecordNode = context_player.createGain();
+        volumeNodes[0].connect(audioRecordNode);
+        volumeNodes[1].connect(audioRecordNode);
+        audioRecorder = new Recorder(audioRecordNode);
+
+    }
+
+    // Input
+    //
+    function changeGain(string, type, player) {
+        var value = parseFloat(string) / 100.0;
+        switch (type) {
+            case 'lowGain': lGain_player[player].gain.value = value; break;
+            case 'midGain': mGain_player[player].gain.value = value; break;
+            case 'highGain': hGain_player[player].gain.value = value; break;
+        }
+    }
+
+    function addLowPassFilter(player) {
+        if ($("#lPassBtn_player" + player).val() == "Connect") {
+            lPass_player[player] = context_player.createBiquadFilter();
+            sum_player[player].connect(lPass_player[player]);
+            lPass_player[player].connect(volumeNodes[player]);
+            sum_player[player].disconnect(volumeNodes[player]);
+
+            //lPass_player[player].connect(context_player[player].destination);
+            //sum_player[player].disconnect(context_player[player].destination);
+
+
+            lPass_player[player].type = "lowpass";
+            lPass_player[player].frequency.value = 640;
+
+            $("#lPassBtn_player" + player).val("Disconnect");
+        }
+        else {
+            sum_player[player].connect(volumeNodes[player])
+            sum_player[player].disconnect(lPass_player[player]);
+
+            $("#lPassBtn_player" + player).val("Connect");
+        }
+    }
+
+    function initFrequencyQuality(player) {
+
+        // Create the filter.
+        freqFilter_player[player] = context_player.createBiquadFilter();
+        //filter.type is defined as string type in the latest API. But this is defined as number type in old API.
+        freqFilter_player[player].type = (typeof freqFilter_player[player].type === 'string') ? 'lowpass' : 0; // LOWPASS
+        freqFilter_player[player].frequency.value = 5000;
+        // Connect source to filter, filter to destination.
+        sourceNode_player[player] = context_player.createGain();
+        source_player[player].connect(freqFilter_player[player]);
+        freqFilter_player[player].connect(sourceNode_player[player]);
+
+    }
+
+    function changeFrequency(element, player) {
+
+        // Clamp the frequency between the minimum value (40 Hz) and half of the
+        // sampling rate.
+        var minValue = 40;
+        var maxValue = context_player.sampleRate / 2;
+        // Logarithm (base 2) to compute how many octaves fall in the range.
+        var numberOfOctaves = Math.log(maxValue / minValue) / Math.LN2;
+        // Compute a multiplier from 0 to 1 based on an exponential scale.
+        var multiplier = Math.pow(2, numberOfOctaves * (element.value - 1.0));
+        // Get back to the frequency value between min and max.
+        freqFilter_player[player].frequency.value = maxValue * multiplier;
+
+    };
+
+    function changeQuality(element, player) {
+        var QUAL_MUL = 30;
+        freqFilter_player[player].Q.value = element.value * QUAL_MUL;
+    };
+
+
+    function record() {
+        //
+        $("#recordBtn").prop("disabled", true);
+        $("#saveLink").css("display", "none");
+        $("#stopBtn").prop("disabled", false);
+
+        audioRecorder.clear();
+        audioRecorder.record();
+    };
+
+    function stopRecording() {
+        $("#recordBtn").prop("disabled", false);
+        $("#saveLink").css("display", "block");
+        $("#stopBtn").prop("disabled", true);
+        audioRecorder.stop();
+        audioRecorder.getBuffers(gotBuffers);
+    };
+    function saveAudio() {
+        audioRecorder.exportWAV(doneEncoding);
+        // could get mono instead by saying
+        // audioRecorder.exportMonoWAV( doneEncoding );
+    };
+    function gotBuffers(buffers) {
+
+        // the ONLY time gotBuffers is called is right after a new recording is completed -
+        // so here's where we should set up the download.
+        audioRecorder.exportWAV(doneEncoding);
+    };
+    function doneEncoding(blob) {
+        Recorder.setupDownload(blob, "myRecording" + ".wav");
+    };
+
+    function crossFade(element) {
+        var x = parseInt(element.value) / parseInt(element.max);
+        // Use an equal-power crossfading curve:
+        var gain1 = Math.cos(x * 0.5 * Math.PI);
+        var gain2 = Math.cos((1.0 - x) * 0.5 * Math.PI);
+        volumeNodes[0].gain.value = gain1;
+        volumeNodes[1].gain.value = gain2;
+    }
+
+</script>
+
+@*<header name="Access-Control-Allow-Origin" value="*" />
 <h2>Web Audio Api Equalizer</h2>
 <div>
     <input type="range" min="0" max="100" value="50" oninput="crossFade(this);">
@@ -135,16 +910,16 @@
 
 <input type="button" onclick="record()" value="Record" id="recordBtn" />
 <input type="button" onclick="stopRecording()" value="Stop" id="stopBtn" disabled />
-<a id="saveLink" href="#" style="display:none">Save</a>
+<a id="saveLink" href="#" style="display:none">Save</a>*@
 
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+@*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>*@
 <script src="~/Scripts/recorderJs/recorder.js"></script>
 @*<script src="~/Scripts/auth.js"></script>
     <script src="~/Scripts/playlist_upload.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>*@
 
-<script>
+@*<script>
 
         //general
         var lGain_player = [];
@@ -415,4 +1190,4 @@
             volumeNodes[1].gain.value = gain2;
         }
 
-</script>
+</script>*@
