@@ -267,6 +267,7 @@
     <Content Include="Libraries\dark-velvet\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Libraries\dark-velvet\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Libraries\dark-velvet\fonts\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="Libraries\dark-velvet\js\jplayer.playlist.js" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\img\bgImg.png" />
     <Content Include="Images\img\componentBg.png" />
@@ -353,12 +354,14 @@
     <Content Include="Libraries\dark-velvet\js\custom.js" />
     <Content Include="Libraries\dark-velvet\js\general.js" />
     <Content Include="Libraries\dark-velvet\js\jplayer.playlist.min.js" />
+    <Content Include="Libraries\dark-velvet\js\jplayer.playlist.min1.js" />
     <Content Include="Libraries\dark-velvet\js\jquery-ui.multidatespicker.js" />
     <Content Include="Libraries\dark-velvet\js\jquery.chosen.min.js" />
     <Content Include="Libraries\dark-velvet\js\jquery.customInput.js" />
     <Content Include="Libraries\dark-velvet\js\jquery.flot.js" />
     <Content Include="Libraries\dark-velvet\js\jquery.flot.resize.js" />
     <Content Include="Libraries\dark-velvet\js\jquery.jplayer.min.js" />
+    <Content Include="Libraries\dark-velvet\js\jquery.jplayer.min1.js" />
     <Content Include="Libraries\dark-velvet\js\jquery.jscrollpane.min.js" />
     <Content Include="Libraries\dark-velvet\js\jquery.mousewheel.js" />
     <Content Include="Libraries\dark-velvet\js\jquery.powerful-placeholder.min.js" />

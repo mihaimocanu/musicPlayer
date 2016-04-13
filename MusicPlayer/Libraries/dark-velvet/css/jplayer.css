@@ -192,13 +192,18 @@ div.jp-duration {
 
 .jp-playlist .jp-playlist-inner {
     background: url("../images/jp-playlist-divider.png") repeat-x;
-
+    list-style-type: none;
+    width: 100%;
+    height: 312px;
+    overflow: auto;
 }
 .jp-playlist .jp-playlist-inner > li {
-    padding: 15px 0 15px 3px;
+    padding: 5px 0 5px 15px;
     background: url("../images/jp-playlist-divider.png") left bottom repeat-x;
     line-height: 25px;
+    list-style: none;
 }
+.jp-playlist .jp-playlist-inner > li:hover{background:rgba(0,0,0,0.5);}
 .jp-playlist .item-artist span{
     display: inline-block;
     width: 30px;

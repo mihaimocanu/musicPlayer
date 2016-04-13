@@ -34,180 +34,19 @@
     }
 </style>
 
-<div class="section-players clearfix">
-    <div class="box-mix" style="display:none;">
-        <div class="slider">
-            <input type="range" name="value_range" value="270">
-        </div>
-    </div>
-    <div class="componentBox box-mix2">
-        <!-- Range slider -->
-        <div class="range-slider">
-            <div class="middlePoint"></div>
-            <input id="price_range" type="text" name="price_range" value="270;800">
-        </div>
-        <script type="text/javascript">
-            jQuery(document).ready(function ($) {
-                // Price Range Input
-                $("#price_range").rangeslider({
-                    from: 50,
-                    to: 1000,
-                    limits: false,
-                    scale: ['$50', '$1000'],
-                    heterogeneity: ['50/500'],
-                    step: 10,
-                    smooth: true,
-                    dimension: '$'
-                });
-            });
-        </script>
-        <!-- Range slider -->
-    </div>
-    <div class="componentBox box-player playerLeft">
-        <!-- Widget Audio Player -->
-        <div class="widget-container widget-audio">
-            <div class="inner">
-                <!-- jplayer-->
-                <div id="jquery_jplayer_0" class="jp-jplayer"></div>
-                <div id="jp_container_0" class="jp-audio">
-                    <div class="jp-type-playlist">
-                        <div class="jp-playlist">
-                            <ul class="jp-playlist-inner">
-                                <li></li>
-                            </ul>
-                        </div>
-                        <div class="jp-gui jp-interface">
-                            <div class="song_title_wrap">
-                                <div class="song_title" id="songTitle0"></div>
-                            </div>
-                            <div class="jp-controls-wrap">
-                                <div class="jp-progress">
-                                    <div class="jp-seek-bar">
-                                        <div class="jp-play-bar"></div>
-                                    </div>
-                                </div>
-                                <ul class="jp-controls">
-                                    <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
-                                    <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
-                                    <li><a href="javascript:;" class="jp-previous disabled" tabindex="1">previous</a></li>
-                                    <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
-                                    <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
-                                    <li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
-                                    <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
-                                    @*<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
-                                    <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>*@
-                                    <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
-                                    <li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li>
-                                    <li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li>
-                                </ul>
-                                <div class="jp-volume-bar">
-                                    <div class="jp-volume-bar-value"></div>
-                                </div>
-                                <div class="jp-current-time"></div>
-                                <div class="jp-duration"></div>
-                            </div>
-                        </div>
-                        <div class="jp-no-solution">
-                            <span>Update Required</span>
-                            To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
-                        </div>
-                    </div>
-                </div>
-                <!--/ jplayer-->
-            </div>
-        </div>
-        <!-- Widget Audio Player -->
-    </div>
-    <div class="componentBox box-player playerRight">
-        <!-- Widget Audio Player -->
-        <div class="widget-container widget-audio">
-            <div class="inner">
-                <!-- jplayer-->
-                <div id="jquery_jplayer_1" class="jp-jplayer"></div>
-                <div id="jp_container_1" class="jp-audio">
-                    <div class="jp-type-playlist">
-                        <div class="jp-playlist">
-                            <ul class="jp-playlist-inner">
-                                <li></li>
-                            </ul>
-                        </div>
-                        <div class="jp-gui jp-interface">
-                            <div class="song_title_wrap">
-                                <div class="song_title" id="songTitle1"></div>
-                            </div>
-                            <div class="jp-controls-wrap">
-                                <div class="jp-progress">
-                                    <div class="jp-seek-bar">
-                                        <div class="jp-play-bar"></div>
-                                    </div>
-                                </div>
-                                <ul class="jp-controls">
-                                    <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
-                                    <!--
-                                    -->
-                                    <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
-                                    <!--
-                                    -->
-                                    <li><a href="javascript:;" class="jp-previous disabled" tabindex="1">previous</a></li>
-                                    <!--
-                                    -->
-                                    <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
-                                    <!--
-                                    -->
-                                    <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
-                                    <!--
-                                    -->
-                                    <li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
-                                    <!--
-                                    -->
-                                    <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
-                                    <!--
-                                    -->
-                                    <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
-                                    <!--
-                                    -->
-                                    <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
-                                    <!--
-                                    -->
-                                    <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
-                                    <!--
-                                    -->
-                                    <li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li>
-                                    <!--
-                                    -->
-                                    <li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li>
-                                </ul>
-                                <div class="jp-volume-bar">
-                                    <div class="jp-volume-bar-value"></div>
-                                </div>
-                                <div class="jp-current-time"></div>
-                                <div class="jp-duration"></div>
-                            </div>
-                        </div>
-                        <div class="jp-no-solution">
-                            <span>Update Required</span>
-                            To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
-                        </div>
-                    </div>
-                </div>
-                <!--/ jplayer-->
-            </div>
-        </div>
-        <!-- Widget Audio Player -->
-    </div>
-
-</div>
 <div class="section-eq clearfix">
     <div class="componentBox box-recording">
         <div class="box-recordingLeft">
             <h2>
-                Recording</h2>
-                <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1;"><span>RECORD</span></a>
+                Recording
+            </h2>
+            <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1;"><span>RECORD</span></a>
         </div>
         <div class="box-recordingRight">
             <h2>
-                Download</h2>
-                <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1;"><span>SAVE</span></a>
+                Download
+            </h2>
+            <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1;"><span>SAVE</span></a>
         </div>
     </div>
     <div class="componentBox box-eq eqLeft">
@@ -374,50 +213,181 @@
     </div>
 
 </div>
-<div class="section-playlists clearfix">
-    <div class="componentBox box-playlist playlistLeft">
-        <div class="componentHead">
-            <h3>Playlist name here </h3>
-        </div> <!-- end .componentHead -->
-        <div class="componentBody">
-            <table class="list-playlist " id="musicList_player0">
-            </table>
-            <!-- List version
-            <ul class="list-playlist">
-                <li class="playlist-item clearfix">
-                    <p class="item-nr">1.</p>
-                    <p class="item-song">
-                        <span class="item-artistName">Artist Name</span> - <span class="item-songName">Song Name</span>
-                    </p>
-                    <p class="item-songDuration">3:55</p>
-                </li>
-            </ul>
-            -->
-        </div> <!-- end .componentBody -->
-        <div class="componentFooter">
-            <div class="fakeFileBtn btn-chooseFile btnD btnD-acute">
-                <span>Add song</span>
-                <input id="audio_file_player0" type="file" accept="audio/*" multiple />
-            </div>
-        </div> <!-- end .componentFooter -->
-    </div> <!-- end .componentBox .box-playlist-->
-    <div class="componentBox box-playlist playlistRight">
-        <div class="componentHead">
-            <h3>Playlist name here </h3>
-        </div> <!-- end .componentHead -->
-        <div class="componentBody">
-            <table class="list-playlist " id="musicList_player1"></table>
-        </div> <!-- end .componentBody -->
-        <div class="componentFooter">
-            <div class="fakeFileBtn btn-chooseFile btnD btnD-acute">
-                <span>Add song</span>
-                @*<input type="file">*@
-                <input id="audio_file_player1" type="file" accept="audio/*" multiple />
-            </div>
-        </div> <!-- end .componentFooter -->
-    </div> <!-- end .componentBox .box-playlist-->
 
-</div> <!-- end section-playlists  -->
+<div class="section-players clearfix">
+    <div class="box-mix" style="display:none;">
+        <div class="slider">
+            <input type="range" name="value_range" value="270">
+        </div>
+    </div>
+    <div class="componentBox box-mix2">
+        <!-- Range slider -->
+        <div class="range-slider">
+            <div class="middlePoint"></div>
+            <input id="price_range" type="text" name="price_range" value="270;800">
+        </div>
+        <script type="text/javascript">
+            jQuery(document).ready(function ($) {
+                // Price Range Input
+                $("#price_range").rangeslider({
+                    from: 50,
+                    to: 1000,
+                    limits: false,
+                    scale: ['$50', '$1000'],
+                    heterogeneity: ['50/500'],
+                    step: 10,
+                    smooth: true,
+                    dimension: '$'
+                });
+            });
+        </script>
+        <!-- Range slider -->
+    </div>
+    <div class="componentBox box-player playerLeft">
+        <!-- Widget Audio Player -->
+        <div class="widget-container widget-audio">
+            <div class="inner">
+                <!-- jplayer-->
+                <div id="jquery_jplayer_0" class="jp-jplayer"></div>
+                <div id="jp_container_0" class="jp-audio">
+                    <div class="jp-type-playlist">
+                        
+                        <div class="jp-gui jp-interface">
+                            <div class="song_title_wrap">
+                                <div class="song_title" id="songTitle0"></div>
+                            </div>
+                            <div class="jp-controls-wrap">
+                                <div class="jp-progress">
+                                    <div class="jp-seek-bar">
+                                        <div class="jp-play-bar"></div>
+                                    </div>
+                                </div>
+                                <ul class="jp-controls">
+                                    <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+                                    <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+                                    <li><a href="javascript:;" class="jp-previous disabled" tabindex="1">previous</a></li>
+                                    <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+                                    <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+                                    <li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
+                                    <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+                                    @*<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+                                    <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>*@
+                                    <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+                                    <li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li>
+                                    <li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li>
+                                </ul>
+                                <div class="jp-volume-bar">
+                                    <div class="jp-volume-bar-value"></div>
+                                </div>
+                                <div class="jp-current-time"></div>
+                                <div class="jp-duration"></div>
+                            </div>
+                        </div>
+                        <div class="jp-no-solution">
+                            <span>Update Required</span>
+                            To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+                        </div>
+                        <div class="jp-playlist" style="display: block !important;float: initial;width: 100%;">
+                            <ul class="jp-playlist-inner">
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--/ jplayer-->
+            </div>
+            <div class="fakeFileBtn btn-chooseFile btnD btnD-acute" style="margin-top: 10px;">
+                <span>Add song</span>
+                <input id="audio_file_player0" type="file" accept="audio/*" multiple="" hidefocus="true" class="gradient" style="outline: none;">
+            </div>
+        </div>
+        <!-- Widget Audio Player -->
+    </div>
+    <div class="componentBox box-player playerRight">
+        <!-- Widget Audio Player -->
+        <div class="widget-container widget-audio">
+            <div class="inner">
+                <!-- jplayer-->
+                <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+                <div id="jp_container_1" class="jp-audio">
+                    <div class="jp-type-playlist">
+                        
+                        <div class="jp-gui jp-interface">
+                            <div class="song_title_wrap">
+                                <div class="song_title" id="songTitle1"></div>
+                            </div>
+                            <div class="jp-controls-wrap">
+                                <div class="jp-progress">
+                                    <div class="jp-seek-bar">
+                                        <div class="jp-play-bar"></div>
+                                    </div>
+                                </div>
+                                <ul class="jp-controls">
+                                    <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-previous disabled" tabindex="1">previous</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li>
+                                    <!--
+                                    -->
+                                    <li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li>
+                                </ul>
+                                <div class="jp-volume-bar">
+                                    <div class="jp-volume-bar-value"></div>
+                                </div>
+                                <div class="jp-current-time"></div>
+                                <div class="jp-duration"></div>
+                            </div>
+                        </div>
+                        <div class="jp-no-solution">
+                            <span>Update Required</span>
+                            To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+                        </div>
+                        <div class="jp-playlist" style="display: block !important;float: initial;width: 100%;">
+                            <ul class="jp-playlist-inner">
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--/ jplayer-->
+            </div>
+            <div class="fakeFileBtn btn-chooseFile btnD btnD-acute" style="margin-top: 10px;">
+                <span>Add song</span>
+                <input id="audio_file_player1" type="file" accept="audio/*" multiple="" hidefocus="true" class="gradient" style="outline: none;">
+            </div>
+        </div>
+        <!-- Widget Audio Player -->
+    </div>
+
+</div>
+
 <script>
 
     //general
@@ -449,23 +419,18 @@
             cssSelectorAncestor: "#jp_container_0"
         }, [
             //{
-            //    title: "<ul><li class='item-artist'><span>01.</span>Rudimental</li><li class='item-song'>Waiting All Night (feat. Ella Eyre)</li><li class='item-album'>Folllow Your Heart | 2013</li></ul>",
+            //    title: "Waiting All Night (feat. Ella Eyre)",
             //    mp3: "http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3"
-            //},
-            //{
-            //    title: "<ul><li class='item-artist'><span>02.</span>Daft Punk</li><li class='item-song'>Get Lucky (ft. Pharell Williams)</li><li class='item-album'>Tron Legacy | 2013</li></ul>",
-            //    mp3: "http://www.jplayer.org/audio/mp3/TSP-07-Cybersonnet.mp3"
-            //},
-            //{
-            //    title: "<ul><li class='item-artist'><span>03.</span>Justin Timberlake</li><li class='item-song'>Mirrors</li><li class='item-album'>20/20 Experience | 2013</li></ul>",
-            //    mp3: "http://www.jplayer.org/audio/mp3/Miaow-07-Bubble.mp3"
             //}
         ], {
+            playlistOptions: {
+                enableRemoveControls: true
+            },
             swfPath: "js",
             supplied: "mp3",
             wmode: "window",
             smoothPlayBar: false,
-            keyEnabled: false,
+            keyEnabled: true,
             audioFullScreen: true // Allows the audio poster to go full screen via keyboard
         });
 
@@ -476,16 +441,8 @@
             cssSelectorAncestor: "#jp_container_1"
         }, [
             //{
-            //    title: "<ul><li class='item-song'>Waiting All Night (feat. Ella Eyre)</li></ul>",
+            //    title: "Waiting All Night (feat. Ella Eyre)",
             //    mp3: "http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3"
-            //},
-            //{
-            //    title: "<ul><li class='item-artist'><span>02.</span>Daft Punk</li><li class='item-song'>Get Lucky (ft. Pharell Williams)</li><li class='item-album'>Tron Legacy | 2013</li></ul>",
-            //    mp3: "http://www.jplayer.org/audio/mp3/TSP-07-Cybersonnet.mp3"
-            //},
-            //{
-            //    title: "<ul><li class='item-artist'><span>03.</span>Justin Timberlake</li><li class='item-song'>Mirrors</li><li class='item-album'>20/20 Experience | 2013</li></ul>",
-            //    mp3: "http://www.jplayer.org/audio/mp3/Miaow-07-Bubble.mp3"
             //}
         ], {
             playlistOptions: {
@@ -511,100 +468,22 @@
     function uploadFile(player) {
         var files;
         var uploadedFiles=$("#audio_file_player" + player).prop('files');;
-        //files = files_player[player];
-
-        //var file = URL.createObjectURL(files[0]);
-        //var audio = $("#player" + player);
-        //$("#player" + player).attr("src", file);
-
-        //audio[0].play();
-        //$("#liveSong_player" + player).html("Playing file: " + files[0].name);
         player_playlist[player].remove();
-        createPlaylist(player, uploadedFiles);
+
+        var playlistItems = [];
+        for (var i = 0; i < uploadedFiles.length; i++) {
+            playlistItems.push({
+                title: (uploadedFiles[i].name.length > 50 ? (uploadedFiles[i].name.substring(0, 50) + "...") : uploadedFiles[i].name),
+                mp3: URL.createObjectURL(uploadedFiles[i]),
+            });
+        }
+        player_playlist[player].setPlaylist(playlistItems);
+
         player_playlist[player].select(0);
         player_playlist[player].play(0);
         $("#songTitle" + player).html(player_playlist[player].playlist[0].title);
 
     };
-
-    function createPlaylist(player, files) {
-        //var files;
-
-        //files = files_player[player];
-
-        var html = "";
-        $("#musicList_player" + player).empty();
-        var playlistItems = [];
-        for (var i = 0; i < files.length; i++) {
-            files_player[player].push(files[i]);
-            //add files to the player playlist
-            
-            playlistItems.push({
-                title: "<ul><li class='item-song'>" + (files[i].name.length > 50 ? (files[i].name.substring(0, 50) + "...") : files[i].name) + "</li></ul>",
-                mp3: URL.createObjectURL(files[i]),
-            });
-            
-            //add visual into the playlist container
-            var playlistItemHtml =
-                            "<tr class=\"item\">" +
-                                "<td class=\"item-nr\">" + i + ".</td>" +
-                                "<td class=\"item-song\"> " +
-                                    "<a onclick=\"changeFile(" + i + ",'" + player + "')\" style=\"cursor: pointer;\"><span class=\"item-artistName\">" +(files[i].name.length>50?(files[i].name.substring(0, 50)+"..."):files[i].name) + "</span></a>" +
-                                "</td>" +
-                                //"<td class=\"item-songDuration\"><a onclick=\"removeFile(" + i + "," + player + ")\" style=\"cursor: pointer;\"><span class=\"item-artistName\">Remove</span></a></td>" +
-                            "</tr>";
-            $("#musicList_player" + player).append(playlistItemHtml);
-        }
-        player_playlist[player].setPlaylist(playlistItems);
-
-    }
-
-    function changeFile(index, player) {
-        
-        player_playlist[player].select(index);
-        player_playlist[player].play(index);
-        $("#songTitle" + player).html(player_playlist[player].playlist[index].title);
-
-
-    }
-    //function removeFile(index, player) {
-    //    files_player[player].splice(index, 1);
-    //    //var playlistItems = files_player[player];
-    //    //files_player[player] = [];
-    //    player_playlist[player].pause();
-    //    player_playlist[player].remove();
-    //    //createPlaylist(player, playlistItems);
-        
-    //    var files = files_player[player];
-        
-
-    //    $("#musicList_player" + player).empty();
-    //    var playlistItems = [];
-    //    for (var i = 0; i < files.length; i++) {
-    //        //files_player[player].push(files[i]);
-    //        //add files to the player playlist
-
-    //        playlistItems.push({
-    //            title: "<ul><li class='item-song'>" + (files[i].name.length > 50 ? (files[i].name.substring(0, 50) + "...") : files[i].name) + "</li></ul>",
-    //            mp3: URL.createObjectURL(files[i]),
-    //        });
-
-    //        //add visual into the playlist container
-    //        var playlistItemHtml =
-    //                        "<tr class=\"item\">" +
-    //                            "<td class=\"item-nr\">" + i + ".</td>" +
-    //                            "<td class=\"item-song\"> " +
-    //                                "<a onclick=\"changeFile(" + i + ",'" + player + "')\" style=\"cursor: pointer;\"><span class=\"item-artistName\">" + (files[i].name.length > 50 ? (files[i].name.substring(0, 50) + "...") : files[i].name) + "</span></a>" +
-    //                            "</td>" +
-    //                            "<td class=\"item-songDuration\"><a onclick=\"removeFile(" + i + ",'" + player + "')\" style=\"cursor: pointer;\"><span class=\"item-artistName\">Remove</span></a></td>" +
-    //                        "</tr>";
-    //        $("#musicList_player" + player).append(playlistItemHtml);
-    //    }
-    //    //$("#jquery_jplayer_0").jPlayer("clearMedia");
-    //    player_playlist[player].setPlaylist(playlistItems);
-        
-    //    changeFile(0, player);
-    //}
 
     function addEqualiser() {
 

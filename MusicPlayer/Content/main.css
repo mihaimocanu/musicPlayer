@@ -74,7 +74,7 @@ body{ color: #959da6; font-size: 14px; position: relative; background: url(../Im
 .section-players  .playerRight{float:right;  margin-right:1%;  box-sizing:border-box;}
 
 .box-player .widget-container{margin-bottom:10px;}
-.box-player .song_title {height: 33px;}
+.box-player .song_title {height: 33px;text-align: center;line-height: 33px;}
 
 .projName{position: absolute; top: 0%; left: 545px; right: 545px; height: 135px; overflow: hidden; padding: 15px; box-sizing: border-box;}
 .box-mix{ position: absolute; top: 0%; left: 545px; right: 545px; height: 115px; overflow: hidden; padding: 15px; box-sizing: border-box;}
