@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-<style class="cp-pen-styles">
+@*<style class="cp-pen-styles">
     html, body {
         font-size: 12px;
         font-family: "Open Sans";
@@ -32,9 +32,284 @@
         padding: 0;
         margin: 0;
     }
-</style>
+</style>*@
 
 <div class="section-eq clearfix">
+    <div class="componentBox box-eq eqLeft">
+        <div class="controlEq">
+            <div class="input_styled checklist pos1"><div class="rowCheckbox checkbox-large"><input name="invoice1_1" type="checkbox" checked id="invoice1_1" value="invoice"><label for="invoice1_1"></label></div></div>
+            <div class="input_styled checklist pos2"><div class="rowCheckbox checkbox-large"><input name="invoice1_2" type="checkbox" id="invoice1_2" value="invoice"><label for="invoice1_2"></label></div></div>
+            <div class="input_styled checklist pos3"><div class="rowCheckbox checkbox-large"><input name="invoice1_3" type="checkbox" checked id="invoice1_3" value="invoice"><label for="invoice1_3"></label></div></div>
+        </div>
+        <div class="eqComponentList">
+            <div class="widget-knob pos1_1 widget-volume">
+                <span class="eqComponentDescription">EQ Title etc</span>
+                <input type="text" value="77" autocomplete="off" id="volume1_1" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#volume1_1').knobRot({
+                            'classes': ['volume'],
+                            'dragVertical': false,
+                            'frameCount': 49,
+                            'frameWidth': 149,
+                            'frameHeight': 149,
+                            'detent': true,
+                            'detentThreshold': 5,
+                            'minimumValue': 0,
+                            'maximumValue': 100,
+                            'hideInput': true
+                        });
+                    });
+                </script>
+            </div>
+            <div class="widget-knob pos1_2 widget-volume">
+                <span class="eqComponentDescription">EQ Title etc</span>
+                <input type="text" value="77" autocomplete="off" id="volume1_2" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#volume1_2').knobRot({
+                            'classes': ['volume'],
+                            'dragVertical': false,
+                            'frameCount': 49,
+                            'frameWidth': 149,
+                            'frameHeight': 149,
+                            'detent': true,
+                            'detentThreshold': 5,
+                            'minimumValue': 0,
+                            'maximumValue': 100,
+                            'hideInput': true
+                        });
+                    });
+                </script>
+            </div>
+            <div class="widget-knob pos1_3 widget-volume">
+                <span class="eqComponentDescription">EQ Title etc</span>
+                <input type="text" value="77" autocomplete="off" id="volume1_3" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#volume1_3').knobRot({
+                            'classes': ['volume'],
+                            'dragVertical': false,
+                            'frameCount': 49,
+                            'frameWidth': 149,
+                            'frameHeight': 149,
+                            'detent': true,
+                            'detentThreshold': 5,
+                            'minimumValue': 0,
+                            'maximumValue': 100,
+                            'hideInput': true
+                        });
+                    });
+                </script>
+            </div>
+            <div class="widget-knob pos2_1 widget-volume">
+                <span class="eqComponentDescription">EQ Title etc</span>
+                <input type="text" value="77" autocomplete="off" id="volume1_4" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#volume1_4').knobRot({
+                            'classes': ['volume'],
+                            'dragVertical': false,
+                            'frameCount': 49,
+                            'frameWidth': 149,
+                            'frameHeight': 149,
+                            'detent': true,
+                            'detentThreshold': 5,
+                            'minimumValue': 0,
+                            'maximumValue': 100,
+                            'hideInput': true
+                        });
+                    });
+                </script>
+            </div>
+            <div class="widget-knob pos2_2 widget-volume">
+                <span class="eqComponentDescription">EQ Title etc</span>
+                <input type="text" value="77" autocomplete="off" id="volume1_5" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#volume1_5').knobRot({
+                            'classes': ['volume'],
+                            'dragVertical': false,
+                            'frameCount': 49,
+                            'frameWidth': 149,
+                            'frameHeight': 149,
+                            'detent': true,
+                            'detentThreshold': 5,
+                            'minimumValue': 0,
+                            'maximumValue': 100,
+                            'hideInput': true
+                        });
+                    });
+                </script>
+            </div>
+            <div class="widget-knob pos2_3 widget-volume">
+                <span class="eqComponentDescription">EQ Title etc</span>
+                <input type="text" value="77" autocomplete="off" id="volume1_6" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#volume1_6').knobRot({
+                            'classes': ['volume'],
+                            'dragVertical': false,
+                            'frameCount': 49,
+                            'frameWidth': 149,
+                            'frameHeight': 149,
+                            'detent': true,
+                            'detentThreshold': 5,
+                            'minimumValue': 0,
+                            'maximumValue': 100,
+                            'hideInput': true
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="componentBox box-recording">
+        <div class="box-recordingLeft">
+            <h2>
+                Recording</h3>
+                <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1;"><span>RECORD</span></a>
+        </div>
+        <div class="box-recordingRight">
+            <h2>
+                Download</h3>
+                <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1;"><span>SAVE</span></a>
+        </div>
+    </div>
+    <div class="componentBox box-eq eqRight">
+        <div class="controlEq">
+            <div class="input_styled checklist pos1"><div class="rowCheckbox checkbox-large"><input name="invoice2_1" type="checkbox" checked id="invoice2_1" value="invoice"><label for="invoice2_1"></label></div></div>
+            <div class="input_styled checklist pos2"><div class="rowCheckbox checkbox-large"><input name="invoice2_2" type="checkbox" id="invoice2_2" value="invoice"><label for="invoice2_2"></label></div></div>
+            <div class="input_styled checklist pos3"><div class="rowCheckbox checkbox-large"><input name="invoice2_3" type="checkbox" checked id="invoice2_3" value="invoice"><label for="invoice2_3"></label></div></div>
+        </div>
+        <div class="eqComponentList">
+            <div class="widget-knob pos1_1 widget-volume">
+                <span class="eqComponentDescription">EQ Title etc</span>
+                <input type="text" value="77" autocomplete="off" id="volume2_1" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#volume2_1').knobRot({
+                            'classes': ['volume'],
+                            'dragVertical': false,
+                            'frameCount': 49,
+                            'frameWidth': 149,
+                            'frameHeight': 149,
+                            'detent': true,
+                            'detentThreshold': 5,
+                            'minimumValue': 0,
+                            'maximumValue': 100,
+                            'hideInput': true
+                        });
+                    });
+                </script>
+            </div>
+            <div class="widget-knob pos1_2 widget-volume">
+                <span class="eqComponentDescription">EQ Title etc</span>
+                <input type="text" value="77" autocomplete="off" id="volume2_2" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#volume2_2').knobRot({
+                            'classes': ['volume'],
+                            'dragVertical': false,
+                            'frameCount': 49,
+                            'frameWidth': 149,
+                            'frameHeight': 149,
+                            'detent': true,
+                            'detentThreshold': 5,
+                            'minimumValue': 0,
+                            'maximumValue': 100,
+                            'hideInput': true
+                        });
+                    });
+                </script>
+            </div>
+            <div class="widget-knob pos1_3 widget-volume">
+                <span class="eqComponentDescription">EQ Title etc</span>
+                <input type="text" value="77" autocomplete="off" id="volume2_3" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#volume2_3').knobRot({
+                            'classes': ['volume'],
+                            'dragVertical': false,
+                            'frameCount': 49,
+                            'frameWidth': 149,
+                            'frameHeight': 149,
+                            'detent': true,
+                            'detentThreshold': 5,
+                            'minimumValue': 0,
+                            'maximumValue': 100,
+                            'hideInput': true
+                        });
+                    });
+                </script>
+            </div>
+            <div class="widget-knob pos2_1 widget-volume">
+                <span class="eqComponentDescription">EQ Title etc</span>
+                <input type="text" value="77" autocomplete="off" id="volume2_4" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#volume2_4').knobRot({
+                            'classes': ['volume'],
+                            'dragVertical': false,
+                            'frameCount': 49,
+                            'frameWidth': 149,
+                            'frameHeight': 149,
+                            'detent': true,
+                            'detentThreshold': 5,
+                            'minimumValue': 0,
+                            'maximumValue': 100,
+                            'hideInput': true
+                        });
+                    });
+                </script>
+            </div>
+            <div class="widget-knob pos2_2 widget-volume">
+                <span class="eqComponentDescription">EQ Title etc</span>
+                <input type="text" value="77" autocomplete="off" id="volume2_5" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#volume2_5').knobRot({
+                            'classes': ['volume'],
+                            'dragVertical': false,
+                            'frameCount': 49,
+                            'frameWidth': 149,
+                            'frameHeight': 149,
+                            'detent': true,
+                            'detentThreshold': 5,
+                            'minimumValue': 0,
+                            'maximumValue': 100,
+                            'hideInput': true
+                        });
+                    });
+                </script>
+            </div>
+            <div class="widget-knob pos2_3 widget-volume">
+                <span class="eqComponentDescription">EQ Title etc</span>
+                <input type="text" value="77" autocomplete="off" id="volume2_6" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#volume2_6').knobRot({
+                            'classes': ['volume'],
+                            'dragVertical': false,
+                            'frameCount': 49,
+                            'frameWidth': 149,
+                            'frameHeight': 149,
+                            'detent': true,
+                            'detentThreshold': 5,
+                            'minimumValue': 0,
+                            'maximumValue': 100,
+                            'hideInput': true
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@*<div class="section-eq clearfix">
     <div class="componentBox box-recording">
         <div class="box-recordingLeft">
             <h2>
@@ -49,10 +324,32 @@
             <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1;"><span>SAVE</span></a>
         </div>
     </div>
-    <div class="componentBox box-eq eqLeft">
+    <div class="componentBox box-eq eqLeft" style="height:260px">
         <div class="controlEq">
             <div class="input_styled checklist foo-1"><div class="rowCheckbox checkbox-large"><input name="invoice" type="checkbox" checked id="invoice" value="invoice"><label for="invoice"></label></div></div>
         </div>
+        <div class="widget-knob posTL widget-volume">
+            <input type="text" value="77" autocomplete="off" id="volume0" />
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#volume1').knobRot({
+                        'classes': ['volume'],
+                        'dragVertical': false,
+                        'frameCount': 49,
+                        'frameWidth': 149,
+                        'frameHeight': 149,
+                        'detent': true,
+                        'detentThreshold': 5,
+                        'minimumValue': 0,
+                        'maximumValue': 100,
+                        'hideInput': true
+                    }).on('knobdrag', function (e) {
+                        changeGain(this.value, 'lowGain', '0');
+                    });;
+                });
+            </script>
+        </div>
+
         <div class="widget-knob posTL widget-volume">
             <input type="text" value="77" autocomplete="off" id="volume1" />
             <script type="text/javascript">
@@ -68,7 +365,9 @@
                         'minimumValue': 0,
                         'maximumValue': 100,
                         'hideInput': true
-                    });
+                    }).on('knobdrag', function (e) {
+                        changeGain(this.value, 'lowGain', '0');
+                    });;
                 });
             </script>
         </div>
@@ -212,7 +511,7 @@
         </div>
     </div>
 
-</div>
+</div>*@
 
 <div class="section-players clearfix">
     <div class="box-mix" style="display:none;">
@@ -220,7 +519,7 @@
             <input type="range" name="value_range" value="270">
         </div>
     </div>
-    <div class="componentBox box-mix2">
+    @*<div class="componentBox box-mix2">
         <!-- Range slider -->
         <div class="range-slider">
             <div class="middlePoint"></div>
@@ -242,7 +541,12 @@
             });
         </script>
         <!-- Range slider -->
-    </div>
+    </div>*@
+    <div class="componentBox box-mix2">
+        <div class="slider">
+            <input type="range" name="value_range" value="50" oninput="crossFade(this);">
+        </div>
+    </div>	
     <div class="componentBox box-player playerLeft">
         <!-- Widget Audio Player -->
         <div class="widget-container widget-audio">
@@ -577,6 +881,7 @@
     // Input
     //
     function changeGain(string, type, player) {
+        //alert(string);
         var value = parseFloat(string) / 100.0;
         switch (type) {
             case 'lowGain': lGain_player[player].gain.value = value; break;
@@ -677,12 +982,13 @@
     };
 
     function crossFade(element) {
-        var x = parseInt(element.value) / parseInt(element.max);
-        // Use an equal-power crossfading curve:
-        var gain1 = Math.cos(x * 0.5 * Math.PI);
-        var gain2 = Math.cos((1.0 - x) * 0.5 * Math.PI);
-        volumeNodes[0].gain.value = gain1;
-        volumeNodes[1].gain.value = gain2;
+        //var x = parseInt(element.value) / parseInt(element.max);
+        //// Use an equal-power crossfading curve:
+        //var gain1 = Math.cos(x * 0.5 * Math.PI);
+        //var gain2 = Math.cos((1.0 - x) * 0.5 * Math.PI);
+        //volumeNodes[0].gain.value = gain1;
+        //volumeNodes[1].gain.value = gain2;
+        console.log(element.value);
     }
 
 </script>

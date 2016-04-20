@@ -42,28 +42,32 @@ body{ color: #959da6; font-size: 14px; position: relative; background: url(../Im
 .item {line-height:22px;}
 .item:hover{background-color: rgba(0,0,0,0.5); cursor:pointer;}
 
-
+/* EQ */
 .section-eq {position:relative;}
 .section-eq  .eqLeft{float:left; margin-left:1%;  box-sizing:border-box;}
 .section-eq  .eqRight{float:right;  margin-right:1%;  box-sizing:border-box;}
 
-.box-eq{ position:relative; height:135px; width:510px;}
-.box-eq  .widget-knob{ transform: scale(0.5); position:absolute !important; }
-.box-eq .posTL {top:-66px; left:-66px; }
-.box-eq .posTR{top:-66px; left:60px; }
-.box-eq .posBL{top:-66px;left:186px; }
-.box-eq .posBR{top:-66px; left:318px; }
-.controlEq{position:absolute; bottom:-14px; left:50%; transform:translateX(-50%);}
+.box-eq{ position:relative; height:260px; width:510px;}
+.eqComponentList{width:330px; height:200px; position:relative; left: 50%; transform: translateX(-50%);}
+.box-eq  .widget-knob{width:88px; height:88px; transform: scale(0.35); position:absolute !important; }
+.eqComponentDescription{ position: absolute; top: -24px; left: -20px; right: -20px; font-size: 40px; text-align: center;}
+.box-eq .pos1_1 {top:-56px; left: -70px; }
+.box-eq .pos1_2 {top:-56px; left:  39px; }
+.box-eq .pos1_3 {top:-56px; left: 146px; }
+.box-eq .pos2_1 {top: 54px; left: -70px; }
+.box-eq .pos2_2 {top: 54px; left:  39px; }
+.box-eq .pos2_3 {top: 54px; left: 146px; }
+.controlEq{width:330px; height: 34px;  box-sizing: border-box; position:absolute; bottom:5px; left:50%; transform:translateX(-50%);}
+.controlEq .input_styled{position:absolute; top:6px; width: 80px;}
+.controlEq .pos1{ left:14px;}
+.controlEq .pos2{ left:131px;}
+.controlEq .pos3{ left:232px;}
 
-@media only screen and (max-width: 1250px) {
-	.box-eq{ height:240px;}
-	.box-eq .posTL {top:-66px; left:-66px; }
-	.box-eq .posTR{top:-66px; right:-66px; }
-	.box-eq .posBL{bottom:-66px; left:-66px; }
-	.box-eq .posBR{bottom:-66px; right:-66px; }
-}
 
-.componentBox.box-recording{ position: absolute; top: 0px; left: 545px; right: 545px; height: 135px; overflow: hidden; padding: 15px; box-sizing: border-box;}
+/* end EQ */
+
+
+.componentBox.box-recording{ position: absolute; top: 140px; left: 545px; right: 545px; height: 135px; overflow: hidden; padding: 15px; box-sizing: border-box;/*position: absolute; top: 0px; left: 545px; right: 545px; height: 135px; overflow: hidden; padding: 15px; box-sizing: border-box;*/}
 .box-recordingLeft {width:50%; float:left; padding:0px; text-align: center;}
 .box-recordingRight {width:50%; float:right; padding:0px; text-align: center; border-left: 1px solid #3d444b;}
 .box-recordingLeft h2{}
@@ -74,11 +78,10 @@ body{ color: #959da6; font-size: 14px; position: relative; background: url(../Im
 .section-players  .playerRight{float:right;  margin-right:1%;  box-sizing:border-box;}
 
 .box-player .widget-container{margin-bottom:10px;}
-.box-player .song_title {height: 33px;text-align: center;line-height: 33px;}
-
+.box-player .song_title {/*max-height: 150px;*/height: 33px;text-align: center;line-height: 33px;}
 .projName{position: absolute; top: 0%; left: 545px; right: 545px; height: 135px; overflow: hidden; padding: 15px; box-sizing: border-box;}
 .box-mix{ position: absolute; top: 0%; left: 545px; right: 545px; height: 115px; overflow: hidden; padding: 15px; box-sizing: border-box;}
-.componentBox.box-mix2{ position: absolute; top: 95px; left: 545px; right: 545px; height: 115px; overflow: hidden; padding: 15px; box-sizing: border-box;}
+.componentBox.box-mix2{position: absolute; top: 0px; left: 545px; right: 545px; height: 135px; overflow: hidden; padding: 15px; box-sizing: border-box; /*position: absolute; top: 95px; left: 545px; right: 545px; height: 115px; overflow: hidden; padding: 15px; box-sizing: border-box;*/}
 .componentBox.box-mix2 .range-slider{position:relative;}
 .componentBox.box-mix2 .middlePoint{width:2px; height:15px; display:block; background: rgba(0,0,0,0.5); position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%);z-index:999;}
 
@@ -86,3 +89,91 @@ body{ color: #959da6; font-size: 14px; position: relative; background: url(../Im
 /* Define default sizes of components */
 .box-playlist{height:300px; }
 .bodyContainter{padding-top:80px;}
+
+
+
+@media only screen and (max-width: 1380px) {
+	.box-eq { width: 320px;}
+
+	.componentBox.box-recording{height:260px; min-width:135px; left: 360px; right: 360px;}
+	.box-recordingLeft, 
+	.box-recordingRight{float:none; width: 100%; margin-bottom:15px; margin-top: 15px;}
+	.box-recordingLeft { margin-bottom: 77px;}
+	.componentBox.box-recording h2{font-size: 18px; margin-bottom: 3px;}
+	.componentBox.box-recording .btnD{width:100%; max-width:500px;}
+	
+	.box-player{width:320px;}
+	.componentBox.box-mix2{ height:193px; min-width:135px; left: 360px; right: 360px; top:0px;}
+		.componentBox.box-mix2 .slider{ position:relative; top: 50%; transform: translateY(-50%);}
+}
+@media only screen and (max-width: 890px) {
+	.componentBox.box-recording { position: static; width:320px;}
+	.section-eq .eqLeft { float: none; margin-left: 0px;}
+	.section-eq .eqRight { float: none; margin-right: 0px;}
+	
+	.componentBox.box-mix2 { position: static; width:320px; height:auto;}
+
+	.section-players .playerLeft{ float: none; margin-left: 0px; margin-right: 0px;}
+	.section-players .playerRight{ float: none; margin-left: 0px; margin-right: 0px;}
+
+}
+
+@media only screen and (min-width: 321px) and (max-width: 890px) {
+	.componentBox.box-recording { position:relative; left: 50%; transform: translateX(-50%);}
+	.section-eq .eqLeft { left: 50%; transform: translateX(-50%);}
+	.section-eq .eqRight { left: 50%; transform: translateX(-50%);}
+
+	
+	.componentBox.box-mix2 { position:relative; left: 50%; transform: translateX(-50%);}
+	.box-player { left: 50%; transform: translateX(-50%);}	
+}
+
+.componentBox .slider{top: 50%;position: relative;transform: translateY(-50%);}
+.componentBox  input[type=range] {
+    /*removes default webkit styles*/
+    -webkit-appearance: none;
+    
+    /*fix for FF unable to apply focus style bug */
+    /*border: 1px solid white;*/
+    
+    /*required for proper track sizing in FF*/
+    width: 100%;
+    height:20px;
+}
+.componentBox  input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 20px; border: none; border-radius: 3px;background-image: url('../Libraries/dark-velvet/images/price-head-yellow.png');}
+.componentBox  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; border: none; margin-top: -7px; 
+
+width: 36px; height: 46px; background: url(../Images/img/progressbars.png) no-repeat;
+background-size:auto 150px;	
+background-position: -6px -66px;
+
+}
+.componentBox  input[type=range]::-moz-range-track {width: 100%; height: 5px; border: none; border-radius: 3px; background-image: url('../Libraries/dark-velvet/images/price-head-yellow.png');}
+.componentBox  input[type=range]::-moz-range-thumb { border: none; margin-top: -8px; width: 33px; height: 33px; background: url(../Images/img/progressbars.png) 0 -45px no-repeat;}
+    .componentBox input[type=range]::-ms-track {
+        width: 300px;
+        height: 5px;
+        /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+        background: transparent;
+        /*leave room for the larger thumb to overflow with a transparent border */
+        border-color: transparent;
+        border-width: 6px 0;
+        /*remove default tick marks*/
+        color: transparent;
+        width: 100%;
+        height: 5px;
+        border: none;
+        border-radius: 3px;
+        background-image: url('../Libraries/dark-velvet/images/price-head-yellow.png');
+    }
+.componentBox  .componentBox  input[type=range]::-ms-fill-lower {
+    background: #777;
+    border-radius: 10px;
+}
+.componentBox  input[type=range]::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 10px;
+}
+.componentBox  input[type=range]::-ms-thumb { border: none; border: none; margin-top: -8px; width: 33px; height: 33px; background: url(../Images/img/progressbars.png) 0 -45px no-repeat; }
+.componentBox  input[type=range]:focus::-ms-fill-lower { background: #888;}
+.componentBox  input[type=range]:focus::-ms-fill-upper { background: #ccc;}
