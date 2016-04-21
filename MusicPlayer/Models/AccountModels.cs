@@ -16,6 +16,9 @@ namespace MusicPlayer.Models
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<PlaylistInfo> PlaylistsInfo { get; set; }
+        public DbSet<PlaylistData> PlaylistData { get; set; }
+        
     }
 
     [Table("UserProfile")]
@@ -25,6 +28,47 @@ namespace MusicPlayer.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
         public string UserName { get; set; }
+        public string UserFbId { get; set; }
+    }
+
+    [Table("PlaylistInfo")]
+    public class PlaylistInfo
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int PlaylistId { get; set; }
+
+        [Required]
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+
+        [Required]
+        public string PlaylistName { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+
+        public virtual UserProfile User { get; set; }
+    }
+
+    [Table("PlaylistData")]
+    public class PlaylistData
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int ItemId { get; set; }
+
+        [Required]
+        [ForeignKey("Playlist")]
+        public int PlaylistId { get; set; }
+
+        [Required]
+        public string ItemName { get; set; }
+
+        [Required]
+        public string ItemPath { get; set; }
+        public DateTime UpdatedAt { get; set; }
+
+        public virtual PlaylistInfo Playlist { get; set; }
     }
 
     public class RegisterExternalLoginModel
@@ -32,6 +76,9 @@ namespace MusicPlayer.Models
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }
+
+        [Required]
+        public string UserFbId { get; set; }
 
         public string ExternalLoginData { get; set; }
     }

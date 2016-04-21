@@ -78,3 +78,9 @@ D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\bin\zh-Hant\System.Spatial.re
 D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.csprojResolveAssemblyReference.cache
 D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.dll
 D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.pdb
+D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\bin\EntityFramework.SqlServer.dll
+D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\bin\EntityFramework.SqlServer.xml
+D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.Migrations.InitialCreate.resources
+D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.csproj.GenerateResource.Cache
+D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.Migrations.UpdateDB2.resources
+D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.Migrations.AddPlaylistData2.resources
