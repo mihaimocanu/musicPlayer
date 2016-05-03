@@ -1,49 +1,16 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-@*<style class="cp-pen-styles">
-    html, body {
-        font-size: 12px;
-        font-family: "Open Sans";
-        background: #EEE;
-    }
-
-    a {
-        text-decoration: none;
-        color: #999;
-    }
-
-    audio {
-        display: block;
-    }
-
-    .eq {
-        margin: 32px;
-    }
-
-    div.controls label {
-        display: inline-block;
-        text-align: right;
-        width: 80px;
-    }
-
-    div.controls label, div.controls input {
-        vertical-align: middle;
-        padding: 0;
-        margin: 0;
-    }
-</style>*@
-
 <div class="section-eq clearfix">
     <div class="componentBox box-eq eqLeft">
         <div class="controlEq">
-            <div class="input_styled checklist pos1"><div class="rowCheckbox checkbox-large"><input name="invoice1_1" type="checkbox" checked id="invoice1_1" value="invoice"><label for="invoice1_1"></label></div></div>
-            <div class="input_styled checklist pos2"><div class="rowCheckbox checkbox-large"><input name="invoice1_2" type="checkbox" id="invoice1_2" value="invoice"><label for="invoice1_2"></label></div></div>
-            <div class="input_styled checklist pos3"><div class="rowCheckbox checkbox-large"><input name="invoice1_3" type="checkbox" checked id="invoice1_3" value="invoice"><label for="invoice1_3"></label></div></div>
+            <div class="input_styled checklist pos1"><span class="eqComponentSwitchDescription">Low Pass Filter</span><div class="rowCheckbox checkbox-large"><input name="invoice1_1" type="checkbox" checked id="invoice1_1" value="invoice"><label for="invoice1_1"></label></div></div>
+            @*<div class="input_styled checklist pos2"><span class="eqComponentSwitchDescription">Low Pass</span><div class="rowCheckbox checkbox-large"><input name="invoice1_2" type="checkbox" id="invoice1_2" value="invoice"><label for="invoice1_2"></label></div></div>
+    <div class="input_styled checklist pos3"><span class="eqComponentSwitchDescription">Low Pass</span><div class="rowCheckbox checkbox-large"><input name="invoice1_3" type="checkbox" checked id="invoice1_3" value="invoice"><label for="invoice1_3"></label></div></div>*@
         </div>
         <div class="eqComponentList">
             <div class="widget-knob pos1_1 widget-volume">
-                <span class="eqComponentDescription">EQ Title etc</span>
+                <span class="eqComponentDescription">Frequency</span>
                 <input type="text" value="77" autocomplete="off" id="volume1_1" />
                 <script type="text/javascript">
                     $(document).ready(function () {
@@ -63,7 +30,7 @@
                 </script>
             </div>
             <div class="widget-knob pos1_2 widget-volume">
-                <span class="eqComponentDescription">EQ Title etc</span>
+                <span class="eqComponentDescription">Quality</span>
                 <input type="text" value="77" autocomplete="off" id="volume1_2" />
                 <script type="text/javascript">
                     $(document).ready(function () {
@@ -82,8 +49,8 @@
                     });
                 </script>
             </div>
-            <div class="widget-knob pos1_3 widget-volume">
-                <span class="eqComponentDescription">EQ Title etc</span>
+            @*<div class="widget-knob pos1_3 widget-volume">
+                <span class="eqComponentDescription">EQ Title33 etc</span>
                 <input type="text" value="77" autocomplete="off" id="volume1_3" />
                 <script type="text/javascript">
                     $(document).ready(function () {
@@ -101,9 +68,9 @@
                         });
                     });
                 </script>
-            </div>
+            </div>*@
             <div class="widget-knob pos2_1 widget-volume">
-                <span class="eqComponentDescription">EQ Title etc</span>
+                <span class="eqComponentDescription">Low Gain</span>
                 <input type="text" value="77" autocomplete="off" id="volume1_4" />
                 <script type="text/javascript">
                     $(document).ready(function () {
@@ -123,7 +90,7 @@
                 </script>
             </div>
             <div class="widget-knob pos2_2 widget-volume">
-                <span class="eqComponentDescription">EQ Title etc</span>
+                <span class="eqComponentDescription">Mid Gain</span>
                 <input type="text" value="77" autocomplete="off" id="volume1_5" />
                 <script type="text/javascript">
                     $(document).ready(function () {
@@ -143,7 +110,7 @@
                 </script>
             </div>
             <div class="widget-knob pos2_3 widget-volume">
-                <span class="eqComponentDescription">EQ Title etc</span>
+                <span class="eqComponentDescription">High Gain</span>
                 <input type="text" value="77" autocomplete="off" id="volume1_6" />
                 <script type="text/javascript">
                     $(document).ready(function () {
@@ -168,24 +135,24 @@
     <div class="componentBox box-recording">
         <div class="box-recordingLeft">
             <h2>
-                Recording</h3>
+                Recording</h2>
                 <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1;"><span>RECORD</span></a>
         </div>
         <div class="box-recordingRight">
             <h2>
-                Download</h3>
+                Download</h2>
                 <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1;"><span>SAVE</span></a>
         </div>
     </div>
     <div class="componentBox box-eq eqRight">
         <div class="controlEq">
-            <div class="input_styled checklist pos1"><div class="rowCheckbox checkbox-large"><input name="invoice2_1" type="checkbox" checked id="invoice2_1" value="invoice"><label for="invoice2_1"></label></div></div>
-            <div class="input_styled checklist pos2"><div class="rowCheckbox checkbox-large"><input name="invoice2_2" type="checkbox" id="invoice2_2" value="invoice"><label for="invoice2_2"></label></div></div>
-            <div class="input_styled checklist pos3"><div class="rowCheckbox checkbox-large"><input name="invoice2_3" type="checkbox" checked id="invoice2_3" value="invoice"><label for="invoice2_3"></label></div></div>
+            <div class="input_styled checklist pos1"><span class="eqComponentSwitchDescription">Low Pass Filter</span><div class="rowCheckbox checkbox-large"><input name="invoice2_1" type="checkbox" checked id="invoice2_1" value="invoice"><label for="invoice2_1"></label></div></div>
+            @*<div class="input_styled checklist pos2"><span class="eqComponentSwitchDescription">Low Pass</span><div class="rowCheckbox checkbox-large"><input name="invoice2_2" type="checkbox" id="invoice2_2" value="invoice"><label for="invoice2_2"></label></div></div>
+    <div class="input_styled checklist pos3"><span class="eqComponentSwitchDescription">Low Pass</span><div class="rowCheckbox checkbox-large"><input name="invoice2_3" type="checkbox" checked id="invoice2_3" value="invoice"><label for="invoice2_3"></label></div></div>*@
         </div>
         <div class="eqComponentList">
             <div class="widget-knob pos1_1 widget-volume">
-                <span class="eqComponentDescription">EQ Title etc</span>
+                <span class="eqComponentDescription">Frequency</span>
                 <input type="text" value="77" autocomplete="off" id="volume2_1" />
                 <script type="text/javascript">
                     $(document).ready(function () {
@@ -205,7 +172,7 @@
                 </script>
             </div>
             <div class="widget-knob pos1_2 widget-volume">
-                <span class="eqComponentDescription">EQ Title etc</span>
+                <span class="eqComponentDescription">Quality</span>
                 <input type="text" value="77" autocomplete="off" id="volume2_2" />
                 <script type="text/javascript">
                     $(document).ready(function () {
@@ -224,8 +191,8 @@
                     });
                 </script>
             </div>
-            <div class="widget-knob pos1_3 widget-volume">
-                <span class="eqComponentDescription">EQ Title etc</span>
+            @*<div class="widget-knob pos1_3 widget-volume">
+                <span class="eqComponentDescription">EQ Title3 etc</span>
                 <input type="text" value="77" autocomplete="off" id="volume2_3" />
                 <script type="text/javascript">
                     $(document).ready(function () {
@@ -243,9 +210,9 @@
                         });
                     });
                 </script>
-            </div>
+            </div>*@
             <div class="widget-knob pos2_1 widget-volume">
-                <span class="eqComponentDescription">EQ Title etc</span>
+                <span class="eqComponentDescription">Low Gain</span>
                 <input type="text" value="77" autocomplete="off" id="volume2_4" />
                 <script type="text/javascript">
                     $(document).ready(function () {
@@ -265,7 +232,7 @@
                 </script>
             </div>
             <div class="widget-knob pos2_2 widget-volume">
-                <span class="eqComponentDescription">EQ Title etc</span>
+                <span class="eqComponentDescription">Mid Gain</span>
                 <input type="text" value="77" autocomplete="off" id="volume2_5" />
                 <script type="text/javascript">
                     $(document).ready(function () {
@@ -285,7 +252,7 @@
                 </script>
             </div>
             <div class="widget-knob pos2_3 widget-volume">
-                <span class="eqComponentDescription">EQ Title etc</span>
+                <span class="eqComponentDescription">High Gain</span>
                 <input type="text" value="77" autocomplete="off" id="volume2_6" />
                 <script type="text/javascript">
                     $(document).ready(function () {

@@ -51,13 +51,14 @@ body{ color: #959da6; font-size: 14px; position: relative; background: url(../Im
 .eqComponentList{width:330px; height:200px; position:relative; left: 50%; transform: translateX(-50%);}
 .box-eq  .widget-knob{width:88px; height:88px; transform: scale(0.35); position:absolute !important; }
 .eqComponentDescription{ position: absolute; top: -24px; left: -20px; right: -20px; font-size: 40px; text-align: center;}
+.eqComponentSwitchDescription{ position: absolute; top: -17px; left: -20px; right: -20px; text-align: center;}
 .box-eq .pos1_1 {top:-56px; left: -70px; }
 .box-eq .pos1_2 {top:-56px; left:  39px; }
 .box-eq .pos1_3 {top:-56px; left: 146px; }
 .box-eq .pos2_1 {top: 54px; left: -70px; }
 .box-eq .pos2_2 {top: 54px; left:  39px; }
 .box-eq .pos2_3 {top: 54px; left: 146px; }
-.controlEq{width:330px; height: 34px;  box-sizing: border-box; position:absolute; bottom:5px; left:50%; transform:translateX(-50%);}
+.controlEq{width:330px; height: 29px;  box-sizing: border-box; position:absolute; bottom:5px; left:50%; transform:translateX(-50%);}
 .controlEq .input_styled{position:absolute; top:6px; width: 80px;}
 .controlEq .pos1{ left:14px;}
 .controlEq .pos2{ left:131px;}
