@@ -4,14 +4,14 @@
 <div class="section-eq clearfix">
     <div class="componentBox box-eq eqLeft">
         <div class="controlEq">
-            <div class="input_styled checklist pos1"><span class="eqComponentSwitchDescription">Low Pass Filter</span><div class="rowCheckbox checkbox-large"><input name="invoice1_1" type="checkbox" checked id="invoice1_1" value="invoice"><label for="invoice1_1"></label></div></div>
+            <div class="input_styled checklist pos1"><span class="eqComponentSwitchDescription">Low Pass Filter</span><div class="rowCheckbox checkbox-large"><input name="invoice1_1" type="checkbox" id="invoice1_1" value="invoice" onclick="addLowPassFilter(this.checked, '0')"><label for="invoice1_1"></label></div></div>
             @*<div class="input_styled checklist pos2"><span class="eqComponentSwitchDescription">Low Pass</span><div class="rowCheckbox checkbox-large"><input name="invoice1_2" type="checkbox" id="invoice1_2" value="invoice"><label for="invoice1_2"></label></div></div>
-    <div class="input_styled checklist pos3"><span class="eqComponentSwitchDescription">Low Pass</span><div class="rowCheckbox checkbox-large"><input name="invoice1_3" type="checkbox" checked id="invoice1_3" value="invoice"><label for="invoice1_3"></label></div></div>*@
+                <div class="input_styled checklist pos3"><span class="eqComponentSwitchDescription">Low Pass</span><div class="rowCheckbox checkbox-large"><input name="invoice1_3" type="checkbox" checked id="invoice1_3" value="invoice"><label for="invoice1_3"></label></div></div>*@
         </div>
         <div class="eqComponentList">
             <div class="widget-knob pos1_1 widget-volume">
                 <span class="eqComponentDescription">Frequency</span>
-                <input type="text" value="77" autocomplete="off" id="volume1_1" />
+                <input type="text" value="99" autocomplete="off" id="volume1_1" />
                 <script type="text/javascript">
                     $(document).ready(function () {
                         $('#volume1_1').knobRot({
@@ -23,15 +23,17 @@
                             'detent': true,
                             'detentThreshold': 5,
                             'minimumValue': 0,
-                            'maximumValue': 100,
+                            'maximumValue': 99,
                             'hideInput': true
+                        }).on('knobdrag', function (e) {
+                            changeFrequency(this, '0');
                         });
-                    });
+                    })
                 </script>
             </div>
             <div class="widget-knob pos1_2 widget-volume">
                 <span class="eqComponentDescription">Quality</span>
-                <input type="text" value="77" autocomplete="off" id="volume1_2" />
+                <input type="text" value="0" autocomplete="off" id="volume1_2" />
                 <script type="text/javascript">
                     $(document).ready(function () {
                         $('#volume1_2').knobRot({
@@ -45,33 +47,35 @@
                             'minimumValue': 0,
                             'maximumValue': 100,
                             'hideInput': true
+                        }).on('knobdrag', function (e) {
+                            changeQuality(this, '0');
                         });
                     });
                 </script>
             </div>
             @*<div class="widget-knob pos1_3 widget-volume">
-                <span class="eqComponentDescription">EQ Title33 etc</span>
-                <input type="text" value="77" autocomplete="off" id="volume1_3" />
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        $('#volume1_3').knobRot({
-                            'classes': ['volume'],
-                            'dragVertical': false,
-                            'frameCount': 49,
-                            'frameWidth': 149,
-                            'frameHeight': 149,
-                            'detent': true,
-                            'detentThreshold': 5,
-                            'minimumValue': 0,
-                            'maximumValue': 100,
-                            'hideInput': true
+                    <span class="eqComponentDescription">EQ Title33 etc</span>
+                    <input type="text" value="77" autocomplete="off" id="volume1_3" />
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $('#volume1_3').knobRot({
+                                'classes': ['volume'],
+                                'dragVertical': false,
+                                'frameCount': 49,
+                                'frameWidth': 149,
+                                'frameHeight': 149,
+                                'detent': true,
+                                'detentThreshold': 5,
+                                'minimumValue': 0,
+                                'maximumValue': 100,
+                                'hideInput': true
+                            });
                         });
-                    });
-                </script>
-            </div>*@
+                    </script>
+                </div>*@
             <div class="widget-knob pos2_1 widget-volume">
                 <span class="eqComponentDescription">Low Gain</span>
-                <input type="text" value="77" autocomplete="off" id="volume1_4" />
+                <input type="text" value="0" autocomplete="off" id="volume1_4" />
                 <script type="text/javascript">
                     $(document).ready(function () {
                         $('#volume1_4').knobRot({
@@ -85,13 +89,15 @@
                             'minimumValue': 0,
                             'maximumValue': 100,
                             'hideInput': true
+                        }).on('knobdrag', function (e) {
+                            changeGain(this.value, 'lowGain', '0');
                         });
                     });
                 </script>
             </div>
             <div class="widget-knob pos2_2 widget-volume">
                 <span class="eqComponentDescription">Mid Gain</span>
-                <input type="text" value="77" autocomplete="off" id="volume1_5" />
+                <input type="text" value="0" autocomplete="off" id="volume1_5" />
                 <script type="text/javascript">
                     $(document).ready(function () {
                         $('#volume1_5').knobRot({
@@ -105,13 +111,15 @@
                             'minimumValue': 0,
                             'maximumValue': 100,
                             'hideInput': true
+                        }).on('knobdrag', function (e) {
+                            changeGain(this.value, 'midGain', '0');
                         });
                     });
                 </script>
             </div>
             <div class="widget-knob pos2_3 widget-volume">
                 <span class="eqComponentDescription">High Gain</span>
-                <input type="text" value="77" autocomplete="off" id="volume1_6" />
+                <input type="text" value="0" autocomplete="off" id="volume1_6" />
                 <script type="text/javascript">
                     $(document).ready(function () {
                         $('#volume1_6').knobRot({
@@ -125,6 +133,8 @@
                             'minimumValue': 0,
                             'maximumValue': 100,
                             'hideInput': true
+                        }).on('knobdrag', function (e) {
+                            changeGain(this.value, 'highGain', '0');
                         });
                     });
                 </script>
@@ -132,151 +142,6 @@
         </div>
     </div>
 
-    <div class="componentBox box-recording">
-        <div class="box-recordingLeft">
-            <h2>
-                Recording</h2>
-                <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1;"><span>RECORD</span></a>
-        </div>
-        <div class="box-recordingRight">
-            <h2>
-                Download</h2>
-                <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1;"><span>SAVE</span></a>
-        </div>
-    </div>
-    <div class="componentBox box-eq eqRight">
-        <div class="controlEq">
-            <div class="input_styled checklist pos1"><span class="eqComponentSwitchDescription">Low Pass Filter</span><div class="rowCheckbox checkbox-large"><input name="invoice2_1" type="checkbox" checked id="invoice2_1" value="invoice"><label for="invoice2_1"></label></div></div>
-            @*<div class="input_styled checklist pos2"><span class="eqComponentSwitchDescription">Low Pass</span><div class="rowCheckbox checkbox-large"><input name="invoice2_2" type="checkbox" id="invoice2_2" value="invoice"><label for="invoice2_2"></label></div></div>
-    <div class="input_styled checklist pos3"><span class="eqComponentSwitchDescription">Low Pass</span><div class="rowCheckbox checkbox-large"><input name="invoice2_3" type="checkbox" checked id="invoice2_3" value="invoice"><label for="invoice2_3"></label></div></div>*@
-        </div>
-        <div class="eqComponentList">
-            <div class="widget-knob pos1_1 widget-volume">
-                <span class="eqComponentDescription">Frequency</span>
-                <input type="text" value="77" autocomplete="off" id="volume2_1" />
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        $('#volume2_1').knobRot({
-                            'classes': ['volume'],
-                            'dragVertical': false,
-                            'frameCount': 49,
-                            'frameWidth': 149,
-                            'frameHeight': 149,
-                            'detent': true,
-                            'detentThreshold': 5,
-                            'minimumValue': 0,
-                            'maximumValue': 100,
-                            'hideInput': true
-                        });
-                    });
-                </script>
-            </div>
-            <div class="widget-knob pos1_2 widget-volume">
-                <span class="eqComponentDescription">Quality</span>
-                <input type="text" value="77" autocomplete="off" id="volume2_2" />
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        $('#volume2_2').knobRot({
-                            'classes': ['volume'],
-                            'dragVertical': false,
-                            'frameCount': 49,
-                            'frameWidth': 149,
-                            'frameHeight': 149,
-                            'detent': true,
-                            'detentThreshold': 5,
-                            'minimumValue': 0,
-                            'maximumValue': 100,
-                            'hideInput': true
-                        });
-                    });
-                </script>
-            </div>
-            @*<div class="widget-knob pos1_3 widget-volume">
-                <span class="eqComponentDescription">EQ Title3 etc</span>
-                <input type="text" value="77" autocomplete="off" id="volume2_3" />
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        $('#volume2_3').knobRot({
-                            'classes': ['volume'],
-                            'dragVertical': false,
-                            'frameCount': 49,
-                            'frameWidth': 149,
-                            'frameHeight': 149,
-                            'detent': true,
-                            'detentThreshold': 5,
-                            'minimumValue': 0,
-                            'maximumValue': 100,
-                            'hideInput': true
-                        });
-                    });
-                </script>
-            </div>*@
-            <div class="widget-knob pos2_1 widget-volume">
-                <span class="eqComponentDescription">Low Gain</span>
-                <input type="text" value="77" autocomplete="off" id="volume2_4" />
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        $('#volume2_4').knobRot({
-                            'classes': ['volume'],
-                            'dragVertical': false,
-                            'frameCount': 49,
-                            'frameWidth': 149,
-                            'frameHeight': 149,
-                            'detent': true,
-                            'detentThreshold': 5,
-                            'minimumValue': 0,
-                            'maximumValue': 100,
-                            'hideInput': true
-                        });
-                    });
-                </script>
-            </div>
-            <div class="widget-knob pos2_2 widget-volume">
-                <span class="eqComponentDescription">Mid Gain</span>
-                <input type="text" value="77" autocomplete="off" id="volume2_5" />
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        $('#volume2_5').knobRot({
-                            'classes': ['volume'],
-                            'dragVertical': false,
-                            'frameCount': 49,
-                            'frameWidth': 149,
-                            'frameHeight': 149,
-                            'detent': true,
-                            'detentThreshold': 5,
-                            'minimumValue': 0,
-                            'maximumValue': 100,
-                            'hideInput': true
-                        });
-                    });
-                </script>
-            </div>
-            <div class="widget-knob pos2_3 widget-volume">
-                <span class="eqComponentDescription">High Gain</span>
-                <input type="text" value="77" autocomplete="off" id="volume2_6" />
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        $('#volume2_6').knobRot({
-                            'classes': ['volume'],
-                            'dragVertical': false,
-                            'frameCount': 49,
-                            'frameWidth': 149,
-                            'frameHeight': 149,
-                            'detent': true,
-                            'detentThreshold': 5,
-                            'minimumValue': 0,
-                            'maximumValue': 100,
-                            'hideInput': true
-                        });
-                    });
-                </script>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-@*<div class="section-eq clearfix">
     <div class="componentBox box-recording">
         <div class="box-recordingLeft">
             <h2>
@@ -291,194 +156,147 @@
             <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1;"><span>SAVE</span></a>
         </div>
     </div>
-    <div class="componentBox box-eq eqLeft" style="height:260px">
-        <div class="controlEq">
-            <div class="input_styled checklist foo-1"><div class="rowCheckbox checkbox-large"><input name="invoice" type="checkbox" checked id="invoice" value="invoice"><label for="invoice"></label></div></div>
-        </div>
-        <div class="widget-knob posTL widget-volume">
-            <input type="text" value="77" autocomplete="off" id="volume0" />
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('#volume1').knobRot({
-                        'classes': ['volume'],
-                        'dragVertical': false,
-                        'frameCount': 49,
-                        'frameWidth': 149,
-                        'frameHeight': 149,
-                        'detent': true,
-                        'detentThreshold': 5,
-                        'minimumValue': 0,
-                        'maximumValue': 100,
-                        'hideInput': true
-                    }).on('knobdrag', function (e) {
-                        changeGain(this.value, 'lowGain', '0');
-                    });;
-                });
-            </script>
-        </div>
-
-        <div class="widget-knob posTL widget-volume">
-            <input type="text" value="77" autocomplete="off" id="volume1" />
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('#volume1').knobRot({
-                        'classes': ['volume'],
-                        'dragVertical': false,
-                        'frameCount': 49,
-                        'frameWidth': 149,
-                        'frameHeight': 149,
-                        'detent': true,
-                        'detentThreshold': 5,
-                        'minimumValue': 0,
-                        'maximumValue': 100,
-                        'hideInput': true
-                    }).on('knobdrag', function (e) {
-                        changeGain(this.value, 'lowGain', '0');
-                    });;
-                });
-            </script>
-        </div>
-        <div class="widget-knob posTR widget-volume">
-            <input type="text" value="77" autocomplete="off" id="volume2" />
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('#volume2').knobRot({
-                        'classes': ['volume'],
-                        'dragVertical': false,
-                        'frameCount': 49,
-                        'frameWidth': 149,
-                        'frameHeight': 149,
-                        'detent': true,
-                        'detentThreshold': 5,
-                        'minimumValue': 0,
-                        'maximumValue': 100,
-                        'hideInput': true
-                    });
-                });
-            </script>
-        </div>
-        <div class="widget-knob posBL widget-volume">
-            <input type="text" value="77" autocomplete="off" id="volume3" />
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('#volume3').knobRot({
-                        'classes': ['volume'],
-                        'dragVertical': false,
-                        'frameCount': 49,
-                        'frameWidth': 149,
-                        'frameHeight': 149,
-                        'detent': true,
-                        'detentThreshold': 5,
-                        'minimumValue': 0,
-                        'maximumValue': 100,
-                        'hideInput': true
-                    });
-                });
-            </script>
-        </div>
-        <div class="widget-knob posBR widget-volume">
-            <input type="text" value="77" autocomplete="off" id="volume4" />
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('#volume4').knobRot({
-                        'classes': ['volume'],
-                        'dragVertical': false,
-                        'frameCount': 49,
-                        'frameWidth': 149,
-                        'frameHeight': 149,
-                        'detent': true,
-                        'detentThreshold': 5,
-                        'minimumValue': 0,
-                        'maximumValue': 100,
-                        'hideInput': true
-                    });
-                });
-            </script>
-        </div>
-    </div>
     <div class="componentBox box-eq eqRight">
         <div class="controlEq">
-            <div class="input_styled checklist foo-1"><div class="rowCheckbox checkbox-large"><input name="invoice2" type="checkbox" id="invoice2" value="invoice"><label for="invoice2"></label></div></div>
+            <div class="input_styled checklist pos1"><span class="eqComponentSwitchDescription">Low Pass Filter</span><div class="rowCheckbox checkbox-large"><input name="invoice2_1" type="checkbox" id="invoice2_1" value="invoice" onclick="addLowPassFilter(this.checked, '1')"><label for="invoice2_1"></label></div></div>
+            @*<div class="input_styled checklist pos2"><span class="eqComponentSwitchDescription">Low Pass</span><div class="rowCheckbox checkbox-large"><input name="invoice2_2" type="checkbox" id="invoice2_2" value="invoice"><label for="invoice2_2"></label></div></div>
+                <div class="input_styled checklist pos3"><span class="eqComponentSwitchDescription">Low Pass</span><div class="rowCheckbox checkbox-large"><input name="invoice2_3" type="checkbox" checked id="invoice2_3" value="invoice"><label for="invoice2_3"></label></div></div>*@
         </div>
-        <div class="widget-knob posTL widget-volume">
-            <input type="text" value="77" autocomplete="off" id="volume5" />
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('#volume5').knobRot({
-                        'classes': ['volume'],
-                        'dragVertical': false,
-                        'frameCount': 49,
-                        'frameWidth': 149,
-                        'frameHeight': 149,
-                        'detent': true,
-                        'detentThreshold': 5,
-                        'minimumValue': 0,
-                        'maximumValue': 100,
-                        'hideInput': true
+        <div class="eqComponentList">
+            <div class="widget-knob pos1_1 widget-volume">
+                <span class="eqComponentDescription">Frequency</span>
+                <input type="text" value="99" autocomplete="off" id="volume2_1" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#volume2_1').knobRot({
+                            'classes': ['volume'],
+                            'dragVertical': false,
+                            'frameCount': 49,
+                            'frameWidth': 149,
+                            'frameHeight': 149,
+                            'detent': true,
+                            'detentThreshold': 5,
+                            'minimumValue': 0,
+                            'maximumValue': 99,
+                            'hideInput': true
+                        }).on('knobdrag', function (e) {
+                            changeFrequency(this, '1');
+                        });
                     });
-                });
-            </script>
-        </div>
-        <div class="widget-knob posTR widget-volume">
-            <input type="text" value="77" autocomplete="off" id="volume6" />
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('#volume6').knobRot({
-                        'classes': ['volume'],
-                        'dragVertical': false,
-                        'frameCount': 49,
-                        'frameWidth': 149,
-                        'frameHeight': 149,
-                        'detent': true,
-                        'detentThreshold': 5,
-                        'minimumValue': 0,
-                        'maximumValue': 100,
-                        'hideInput': true
+                </script>
+            </div>
+            <div class="widget-knob pos1_2 widget-volume">
+                <span class="eqComponentDescription">Quality</span>
+                <input type="text" value="0" autocomplete="off" id="volume2_2" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#volume2_2').knobRot({
+                            'classes': ['volume'],
+                            'dragVertical': false,
+                            'frameCount': 49,
+                            'frameWidth': 149,
+                            'frameHeight': 149,
+                            'detent': true,
+                            'detentThreshold': 5,
+                            'minimumValue': 0,
+                            'maximumValue': 100,
+                            'hideInput': true
+                        }).on('knobdrag', function (e) {
+                            changeQuality(this, '1');
+                        });
                     });
-                });
-            </script>
-        </div>
-        <div class="widget-knob posBL widget-volume">
-            <input type="text" value="77" autocomplete="off" id="volume7" />
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('#volume7').knobRot({
-                        'classes': ['volume'],
-                        'dragVertical': false,
-                        'frameCount': 49,
-                        'frameWidth': 149,
-                        'frameHeight': 149,
-                        'detent': true,
-                        'detentThreshold': 5,
-                        'minimumValue': 0,
-                        'maximumValue': 100,
-                        'hideInput': true
+                </script>
+            </div>
+            @*<div class="widget-knob pos1_3 widget-volume">
+                    <span class="eqComponentDescription">EQ Title3 etc</span>
+                    <input type="text" value="77" autocomplete="off" id="volume2_3" />
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $('#volume2_3').knobRot({
+                                'classes': ['volume'],
+                                'dragVertical': false,
+                                'frameCount': 49,
+                                'frameWidth': 149,
+                                'frameHeight': 149,
+                                'detent': true,
+                                'detentThreshold': 5,
+                                'minimumValue': 0,
+                                'maximumValue': 100,
+                                'hideInput': true
+                            });
+                        });
+                    </script>
+                </div>*@
+            <div class="widget-knob pos2_1 widget-volume">
+                <span class="eqComponentDescription">Low Gain</span>
+                <input type="text" value="0" autocomplete="off" id="volume2_4" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#volume2_4').knobRot({
+                            'classes': ['volume'],
+                            'dragVertical': false,
+                            'frameCount': 49,
+                            'frameWidth': 149,
+                            'frameHeight': 149,
+                            'detent': true,
+                            'detentThreshold': 5,
+                            'minimumValue': 0,
+                            'maximumValue': 100,
+                            'hideInput': true
+                        }).on('knobdrag', function (e) {
+                            changeGain(this.value, 'lowGain', '1');
+                        });
                     });
-                });
-            </script>
-        </div>
-        <div class="widget-knob posBR widget-volume">
-            <input type="text" value="77" autocomplete="off" id="volume8" />
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('#volume8').knobRot({
-                        'classes': ['volume'],
-                        'dragVertical': false,
-                        'frameCount': 49,
-                        'frameWidth': 149,
-                        'frameHeight': 149,
-                        'detent': true,
-                        'detentThreshold': 5,
-                        'minimumValue': 0,
-                        'maximumValue': 100,
-                        'hideInput': true
+                </script>
+            </div>
+            <div class="widget-knob pos2_2 widget-volume">
+                <span class="eqComponentDescription">Mid Gain</span>
+                <input type="text" value="0" autocomplete="off" id="volume2_5" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#volume2_5').knobRot({
+                            'classes': ['volume'],
+                            'dragVertical': false,
+                            'frameCount': 49,
+                            'frameWidth': 149,
+                            'frameHeight': 149,
+                            'detent': true,
+                            'detentThreshold': 5,
+                            'minimumValue': 0,
+                            'maximumValue': 100,
+                            'hideInput': true
+                        }).on('knobdrag', function (e) {
+                            changeGain(this.value, 'midGain', '1');
+                        });
                     });
-                });
-            </script>
+                </script>
+            </div>
+            <div class="widget-knob pos2_3 widget-volume">
+                <span class="eqComponentDescription">High Gain</span>
+                <input type="text" value="0" autocomplete="off" id="volume2_6" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#volume2_6').knobRot({
+                            'classes': ['volume'],
+                            'dragVertical': false,
+                            'frameCount': 49,
+                            'frameWidth': 149,
+                            'frameHeight': 149,
+                            'detent': true,
+                            'detentThreshold': 5,
+                            'minimumValue': 0,
+                            'maximumValue': 100,
+                            'hideInput': true
+                        }).on('knobdrag', function (e) {
+                            changeGain(this.value, 'highGain', '1');
+                        });
+                    });
+                </script>
+            </div>
         </div>
     </div>
 
-</div>*@
+</div>
 
 <div class="section-players clearfix">
     <div class="box-mix" style="display:none;">
@@ -487,33 +305,33 @@
         </div>
     </div>
     @*<div class="componentBox box-mix2">
-        <!-- Range slider -->
-        <div class="range-slider">
-            <div class="middlePoint"></div>
-            <input id="price_range" type="text" name="price_range" value="270;800">
-        </div>
-        <script type="text/javascript">
-            jQuery(document).ready(function ($) {
-                // Price Range Input
-                $("#price_range").rangeslider({
-                    from: 50,
-                    to: 1000,
-                    limits: false,
-                    scale: ['$50', '$1000'],
-                    heterogeneity: ['50/500'],
-                    step: 10,
-                    smooth: true,
-                    dimension: '$'
+            <!-- Range slider -->
+            <div class="range-slider">
+                <div class="middlePoint"></div>
+                <input id="price_range" type="text" name="price_range" value="270;800">
+            </div>
+            <script type="text/javascript">
+                jQuery(document).ready(function ($) {
+                    // Price Range Input
+                    $("#price_range").rangeslider({
+                        from: 50,
+                        to: 1000,
+                        limits: false,
+                        scale: ['$50', '$1000'],
+                        heterogeneity: ['50/500'],
+                        step: 10,
+                        smooth: true,
+                        dimension: '$'
+                    });
                 });
-            });
-        </script>
-        <!-- Range slider -->
-    </div>*@
+            </script>
+            <!-- Range slider -->
+        </div>*@
     <div class="componentBox box-mix2">
         <div class="slider">
             <input type="range" name="value_range" value="50" oninput="crossFade(this);">
         </div>
-    </div>	
+    </div>
     <div class="componentBox box-player playerLeft">
         <!-- Widget Audio Player -->
         <div class="widget-container widget-audio">
@@ -522,7 +340,7 @@
                 <div id="jquery_jplayer_0" class="jp-jplayer"></div>
                 <div id="jp_container_0" class="jp-audio">
                     <div class="jp-type-playlist">
-                        
+
                         <div class="jp-gui jp-interface">
                             <div class="song_title_wrap">
                                 <div class="song_title" id="songTitle0"></div>
@@ -542,7 +360,7 @@
                                     <li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
                                     <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
                                     @*<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
-                                    <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>*@
+                                        <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>*@
                                     <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
                                     <li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li>
                                     <li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li>
@@ -571,6 +389,10 @@
                 <span>Add song</span>
                 <input id="audio_file_player0" type="file" accept="audio/*" multiple="" hidefocus="true" class="gradient" style="outline: none;">
             </div>
+            <div class="fakeFileBtn btn-chooseFile btnD btnD-acute" style="margin-top: 10px;">
+                <span>Save Playlist</span>
+                <input type="button" hidefocus="true" class="gradient" style="outline: none; cursor:default;" onclick="playlistSavePopup()">
+            </div>
         </div>
         <!-- Widget Audio Player -->
     </div>
@@ -582,7 +404,7 @@
                 <div id="jquery_jplayer_1" class="jp-jplayer"></div>
                 <div id="jp_container_1" class="jp-audio">
                     <div class="jp-type-playlist">
-                        
+
                         <div class="jp-gui jp-interface">
                             <div class="song_title_wrap">
                                 <div class="song_title" id="songTitle1"></div>
@@ -595,38 +417,16 @@
                                 </div>
                                 <ul class="jp-controls">
                                     <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
-                                    <!--
-                                    -->
                                     <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
-                                    <!--
-                                    -->
                                     <li><a href="javascript:;" class="jp-previous disabled" tabindex="1">previous</a></li>
-                                    <!--
-                                    -->
                                     <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
-                                    <!--
-                                    -->
                                     <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
-                                    <!--
-                                    -->
                                     <li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
-                                    <!--
-                                    -->
                                     <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
-                                    <!--
-                                    -->
                                     <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
-                                    <!--
-                                    -->
                                     <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
-                                    <!--
-                                    -->
                                     <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
-                                    <!--
-                                    -->
                                     <li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li>
-                                    <!--
-                                    -->
                                     <li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li>
                                 </ul>
                                 <div class="jp-volume-bar">
@@ -653,35 +453,77 @@
                 <span>Add song</span>
                 <input id="audio_file_player1" type="file" accept="audio/*" multiple="" hidefocus="true" class="gradient" style="outline: none;">
             </div>
+            <div class="fakeFileBtn btn-chooseFile btnD btnD-acute" style="margin-top: 10px;">
+                <span>Save Playlist</span>
+                <input type="button" hidefocus="true" class="gradient" style="outline: none; cursor:default;" onclick="playlistSavePopup()">
+            </div>
+            <!-- Widget Audio Player -->
         </div>
-        <!-- Widget Audio Player -->
+
     </div>
 
-</div>
+    <form id="popup-form" class="white-popup mfp-hide">
+        <div id="popup-content">
+            @*<div>Overwrite existing playlist:
+                    <select id="playlist-select">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="mercedes">Mercedes</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                    <div>
+                        <div class="fakeFileBtn btn-chooseFile btnD btnD-acute" style="margin-top: 10px;">
+                            <span>Update playlist</span>
+                            <input type="button" hidefocus="true" class="gradient" style="outline: none; cursor:default;" onclick="playlistSavePopup()">
+                        </div>
+                    </div>
+                </div>
+                    <div id="save-content">Name:
+                    <input type="text" />
+                    <div>
+                        <div class="fakeFileBtn btn-chooseFile btnD btnD-acute" style="margin-top: 10px;">
+                            <span>Update playlist</span>
+                            <input type="button" hidefocus="true" class="gradient" style="outline: none; cursor:default;" onclick="playlistSavePopup()">
+                        </div>
+                    </div>
+                </div>
 
-<script>
+                <div id="option-button">
+                    <div class="fakeFileBtn btn-chooseFile btnD btnD-acute" style="margin-top: 10px;">
+                        <span>Save New Playlist</span>
+                        <input type="button" hidefocus="true" class="gradient" style="outline: none; cursor:default;" onclick="playlistSavePopup()">
+                    </div>
+                </div>*@
+        </div>
+    </form>
 
-    //general
-    var lGain_player = [];
-    var hGain_player = [];
-    var mGain_player = [];
-    var sum_player = [];
-    var lPass_player = [];
-    var volumeNodes = [];
-    var freqFilter_player = [];
-
-    var context_player = null;
-    var audioRecordNode = null;
-    var mediaElement_player = [];
-    var source_player = [];
-    var sourceNode_player = [];
-    var files_player = [];
-    var player_playlist = [];
+    <script>
 
 
-    var audioRecorder;
 
     $(document).ready(function () {
+
+        //$('.popup-with-form').magnificPopup({
+        //    type: 'inline',
+        //    preloader: false,
+        //    focus: '#name',
+
+        //    // When elemened is focused, some mobile browsers in some cases zoom in
+        //    // It looks not nice, so we disable it:
+        //    callbacks: {
+        //        beforeOpen: function () {
+        //            if ($(window).width() < 700) {
+        //                this.st.focus = false;
+        //            } else {
+        //                this.st.focus = '#name';
+        //            }
+        //        }
+        //    }
+        //});//.magnificPopup('open');
+        //$(document).on('click', '.popup-modal-dismiss', function (e) {
+        //    e.preventDefault();
+        //    $.magnificPopup.close();
+        //});
 
         //define first player Playlist
         player_playlist.push(null);
@@ -730,616 +572,8 @@
         addEqualiser();
     });
 
-    
-
-    //addEqualiser();
-
-    $("#audio_file_player0").on("change", function () { uploadFile("0"); });
-    $("#audio_file_player1").on("change", function () { uploadFile("1"); });
-    function uploadFile(player) {
-        var files;
-        var uploadedFiles=$("#audio_file_player" + player).prop('files');;
-        player_playlist[player].remove();
-
-        var playlistItems = [];
-        for (var i = 0; i < uploadedFiles.length; i++) {
-            playlistItems.push({
-                title: (uploadedFiles[i].name.length > 50 ? (uploadedFiles[i].name.substring(0, 50) + "...") : uploadedFiles[i].name),
-                mp3: URL.createObjectURL(uploadedFiles[i]),
-            });
-        }
-        player_playlist[player].setPlaylist(playlistItems);
-
-        player_playlist[player].select(0);
-        player_playlist[player].play(0);
-        $("#songTitle" + player).html(player_playlist[player].playlist[0].title);
-
-    };
-
-    function addEqualiser() {
-
-        var gainDb = -40.0;
-        var bandSplit = [360, 3600];
-        context_player = new AudioContext();
-
-        for (var i = 0; i < 2; i++) {
-
-            mediaElement_player.push(null);
-            sourceNode_player.push(null);
-            source_player.push(null);
-            lGain_player.push(null);
-            mGain_player.push(null);
-            hGain_player.push(null);
-            sum_player.push(null);
-            volumeNodes.push(null);
-
-
-
-            mediaElement_player[i] = document.getElementById('jp_audio_' + i);
-            source_player[i] = context_player.createMediaElementSource(mediaElement_player[i]);
-
-            initFrequencyQuality(i);
-
-            var hBand_player = context_player.createBiquadFilter();
-            hBand_player.type = "lowshelf";
-            hBand_player.frequency.value = bandSplit[0];
-            hBand_player.gain.value = gainDb;
-
-            var hInvert_player = context_player.createGain();
-            hInvert_player.gain.value = -1.0;
-
-            var mBand_player = context_player.createGain();
-
-            var lBand_player = context_player.createBiquadFilter();
-            lBand_player.type = "highshelf";
-            lBand_player.frequency.value = bandSplit[1];
-            lBand_player.gain.value = gainDb;
-
-            var lInvert_player = context_player.createGain();
-            lInvert_player.gain.value = -1.0;
-
-            sourceNode_player[i].connect(lBand_player);
-            sourceNode_player[i].connect(mBand_player);
-            sourceNode_player[i].connect(hBand_player);
-
-            hBand_player.connect(hInvert_player);
-            lBand_player.connect(lInvert_player);
-
-            hInvert_player.connect(mBand_player);
-            lInvert_player.connect(mBand_player);
-
-
-            lGain_player[i] = context_player.createGain();
-            mGain_player[i] = context_player.createGain();
-            hGain_player[i] = context_player.createGain();
-
-            lBand_player.connect(lGain_player[i]);
-            mBand_player.connect(mGain_player[i]);
-            hBand_player.connect(hGain_player[i]);
-
-            sum_player[i] = context_player.createGain();
-            lGain_player[i].connect(sum_player[i]);
-            mGain_player[i].connect(sum_player[i]);
-            hGain_player[i].connect(sum_player[i]);
-
-            volumeNodes[i] = context_player.createGain();
-            sum_player[i].connect(volumeNodes[i]);
-            volumeNodes[i].connect(context_player.destination);
-
-        }
-
-        //set volume
-        var x = 50 / 100;
-        // Use an equal-power crossfading curve:
-        var gain1 = Math.cos(x * 0.5 * Math.PI);
-        var gain2 = Math.cos((1.0 - x) * 0.5 * Math.PI);
-        volumeNodes[0].gain.value = gain1;
-        volumeNodes[1].gain.value = gain2;
-
-        //create audio Recording node
-
-        audioRecordNode = context_player.createGain();
-        volumeNodes[0].connect(audioRecordNode);
-        volumeNodes[1].connect(audioRecordNode);
-        audioRecorder = new Recorder(audioRecordNode);
-
-    }
-
-    // Input
-    //
-    function changeGain(string, type, player) {
-        //alert(string);
-        var value = parseFloat(string) / 100.0;
-        switch (type) {
-            case 'lowGain': lGain_player[player].gain.value = value; break;
-            case 'midGain': mGain_player[player].gain.value = value; break;
-            case 'highGain': hGain_player[player].gain.value = value; break;
-        }
-    }
-
-    function addLowPassFilter(player) {
-        if ($("#lPassBtn_player" + player).val() == "Connect") {
-            lPass_player[player] = context_player.createBiquadFilter();
-            sum_player[player].connect(lPass_player[player]);
-            lPass_player[player].connect(volumeNodes[player]);
-            sum_player[player].disconnect(volumeNodes[player]);
-
-            //lPass_player[player].connect(context_player[player].destination);
-            //sum_player[player].disconnect(context_player[player].destination);
-
-
-            lPass_player[player].type = "lowpass";
-            lPass_player[player].frequency.value = 640;
-
-            $("#lPassBtn_player" + player).val("Disconnect");
-        }
-        else {
-            sum_player[player].connect(volumeNodes[player])
-            sum_player[player].disconnect(lPass_player[player]);
-
-            $("#lPassBtn_player" + player).val("Connect");
-        }
-    }
-
-    function initFrequencyQuality(player) {
-
-        // Create the filter.
-        freqFilter_player[player] = context_player.createBiquadFilter();
-        //filter.type is defined as string type in the latest API. But this is defined as number type in old API.
-        freqFilter_player[player].type = (typeof freqFilter_player[player].type === 'string') ? 'lowpass' : 0; // LOWPASS
-        freqFilter_player[player].frequency.value = 5000;
-        // Connect source to filter, filter to destination.
-        sourceNode_player[player] = context_player.createGain();
-        source_player[player].connect(freqFilter_player[player]);
-        freqFilter_player[player].connect(sourceNode_player[player]);
-
-    }
-
-    function changeFrequency(element, player) {
-
-        // Clamp the frequency between the minimum value (40 Hz) and half of the
-        // sampling rate.
-        var minValue = 40;
-        var maxValue = context_player.sampleRate / 2;
-        // Logarithm (base 2) to compute how many octaves fall in the range.
-        var numberOfOctaves = Math.log(maxValue / minValue) / Math.LN2;
-        // Compute a multiplier from 0 to 1 based on an exponential scale.
-        var multiplier = Math.pow(2, numberOfOctaves * (element.value - 1.0));
-        // Get back to the frequency value between min and max.
-        freqFilter_player[player].frequency.value = maxValue * multiplier;
-
-    };
-
-    function changeQuality(element, player) {
-        var QUAL_MUL = 30;
-        freqFilter_player[player].Q.value = element.value * QUAL_MUL;
-    };
-
-
-    function record() {
-        //
-        $("#recordBtn").prop("disabled", true);
-        $("#saveLink").css("display", "none");
-        $("#stopBtn").prop("disabled", false);
-
-        audioRecorder.clear();
-        audioRecorder.record();
-    };
-
-    function stopRecording() {
-        $("#recordBtn").prop("disabled", false);
-        $("#saveLink").css("display", "block");
-        $("#stopBtn").prop("disabled", true);
-        audioRecorder.stop();
-        audioRecorder.getBuffers(gotBuffers);
-    };
-    function saveAudio() {
-        audioRecorder.exportWAV(doneEncoding);
-        // could get mono instead by saying
-        // audioRecorder.exportMonoWAV( doneEncoding );
-    };
-    function gotBuffers(buffers) {
-
-        // the ONLY time gotBuffers is called is right after a new recording is completed -
-        // so here's where we should set up the download.
-        audioRecorder.exportWAV(doneEncoding);
-    };
-    function doneEncoding(blob) {
-        Recorder.setupDownload(blob, "myRecording" + ".wav");
-    };
-
-    function crossFade(element) {
-        //var x = parseInt(element.value) / parseInt(element.max);
-        //// Use an equal-power crossfading curve:
-        //var gain1 = Math.cos(x * 0.5 * Math.PI);
-        //var gain2 = Math.cos((1.0 - x) * 0.5 * Math.PI);
-        //volumeNodes[0].gain.value = gain1;
-        //volumeNodes[1].gain.value = gain2;
-        console.log(element.value);
-    }
-
-</script>
-
-@*<header name="Access-Control-Allow-Origin" value="*" />
-<h2>Web Audio Api Equalizer</h2>
-<div>
-    <input type="range" min="0" max="100" value="50" oninput="crossFade(this);">
-</div>
-
-<div id="player0Wrapper" style="float:left;">
-
-    <div class="player">
-        <h3 id="liveSong_player0">Playing file:</h3>
-        <audio id="player0" controls="" crossorigin=""></audio>
-        <div id="playlistContent_player0">
-            <label>Songs:</label>
-            <div id="musicList_player0">
-            </div>
-        </div>
-    </div>
-    <div class="eq">
-
-        <div class="controls">
-            <label>Frequency</label>
-            <input type="range" min="0" max="0.99" step="0.01" value="0.99" oninput="changeFrequency(this, '0');">
-        </div>
-        <div class="controls">
-            <label>Quality</label>
-            <input type="range" min="0" max="1" step="0.01" value="0" oninput="changeQuality(this, '0');">
-        </div>
-        <br />
-
-        <div class="controls">
-            <label>Low Gain</label>
-            <input type="range" value="100" step="1" min="0" max="100" oninput="changeGain(this.value, 'lowGain', '0');">
-        </div>
-        <div class="controls">
-            <label>Mid Gain</label>
-            <input type="range" value="100" step="1" min="0" max="100" oninput="changeGain(this.value, 'midGain', '0');">
-        </div>
-        <div class="controls">
-            <label>High Gain</label>
-            <input type="range" value="100" step="1" min="0" max="100" oninput="changeGain(this.value, 'highGain', '0');">
-        </div>
-        <div class="controls">
-            <label>Low Pass Filter</label>
-            <input type="button" id="lPassBtn_player0" onclick="addLowPassFilter('0')" value="Connect" />
-        </div>
-
-
-
-    </div>
-
-
-    <input id="audio_file_player0" type="file" accept="audio/*" multiple />
-</div>
-
-<div id="player1Wrapper" style="float:right">
-    <div class="player">
-        <h3 id="liveSong_player1">Playing file:</h3>
-        <audio id="player1" controls="" crossorigin=""></audio>
-        <div id="playlistContent_player1">
-            <label>Songs:</label>
-            <div id="musicList_player1">
-            </div>
-        </div>
-    </div>
-    <div class="eq">
-
-        <div class="controls">
-            <label>Frequency</label>
-            <input type="range" min="0" max="0.99" step="0.01" value="0.99" oninput="changeFrequency(this,'1');">
-        </div>
-        <div class="controls">
-            <label>Quality</label>
-            <input type="range" min="0" max="1" step="0.01" value="0" oninput="changeQuality(this, '1');">
-        </div>
-        <br />
-
-        <div class="controls">
-            <label>Low Gain</label>
-            <input type="range" value="100" step="1" min="0" max="100" oninput="changeGain(this.value, 'lowGain','1');">
-        </div>
-        <div class="controls">
-            <label>Mid Gain</label>
-            <input type="range" value="100" step="1" min="0" max="100" oninput="changeGain(this.value, 'midGain', '1');">
-        </div>
-        <div class="controls">
-            <label>High Gain</label>
-            <input type="range" value="100" step="1" min="0" max="100" oninput="changeGain(this.value, 'highGain', '1');">
-        </div>
-        <div class="controls">
-            <label>Low Pass Filter</label>
-            <input type="button" id="lPassBtn_player1" onclick="addLowPassFilter('1')" value="Connect" />
-        </div>
-
-
-
-    </div>
-
-    <input id="audio_file_player1" type="file" accept="audio/*" multiple />
-</div>
-
-<input type="button" onclick="record()" value="Record" id="recordBtn" />
-<input type="button" onclick="stopRecording()" value="Stop" id="stopBtn" disabled />
-<a id="saveLink" href="#" style="display:none">Save</a>*@
-
-
-@*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>*@
-<script src="~/Scripts/recorderJs/recorder.js"></script>
-@*<script src="~/Scripts/auth.js"></script>
-    <script src="~/Scripts/playlist_upload.js"></script>
-    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>*@
-
-@*<script>
-
-        //general
-        var lGain_player = [];
-        var hGain_player = [];
-        var mGain_player = [];
-        var sum_player = [];
-        var lPass_player = [];
-        var volumeNodes = [];
-        var freqFilter_player = [];
-
-        var context_player = null;
-        var audioRecordNode = null;
-        var mediaElement_player = [];
-        var source_player = [];
-        var sourceNode_player = [];
-        var files_player = [];
-
-
-        var audioRecorder;
-
-        addEqualiser();
-
-        $("#audio_file_player0").on("change", function () { uploadFile("0"); });
-        $("#audio_file_player1").on("change", function () { uploadFile("1"); });
-        function uploadFile(player) {
-            var files;
-
-            files_player[player] = $("#audio_file_player" + player).prop('files');
-            files = files_player[player];
-
-            var file = URL.createObjectURL(files[0]);
-            var audio = $("#player"+player);
-            $("#player"+player).attr("src", file);
-
-            audio[0].play();
-            $("#liveSong_player" + player).html("Playing file: " + files[0].name);
-            createPlaylist(player);
-
-        };
-
-        function createPlaylist(player) {
-            var files;
-
-            files = files_player[player];
-
-            var html = "";
-            $("#musicList_player"+player).empty();
-
-            for (var i = 0; i < files.length; i++) {
-                html = "";
-                html += "<div>";
-                html += "<a onclick=\"changeFile(" + i + ",'"+player+"')\" style=\"cursor: pointer;\">" + files[i].name + "</a>";
-                html += "</div>";
-                $("#musicList_player" + player).append(html);
-            }
-        }
-
-        function changeFile(index, player) {
-            var files;
-
-            files = files_player[player];
-            var file = URL.createObjectURL(files[index]);
-            var audio = $("#player"+player);
-            $("#player" + player).attr("src", file);
-
-            audio[0].play(player);
-            $("#liveSong_player" + player).html("Playing file: " + files[index].name);
-        }
-
-        function addEqualiser() {
-
-            var gainDb = -40.0;
-            var bandSplit = [360, 3600];
-            context_player = new AudioContext();
-
-            for (var i = 0; i < 2; i++) {
-
-                mediaElement_player.push(null);
-                sourceNode_player.push(null);
-                source_player.push(null);
-                lGain_player.push(null);
-                mGain_player.push(null);
-                hGain_player.push(null);
-                sum_player.push(null);
-                volumeNodes.push(null);
-
-
-
-                mediaElement_player[i] = document.getElementById('player'+i);
-                source_player[i] = context_player.createMediaElementSource(mediaElement_player[i]);
-
-                initFrequencyQuality(i);
-
-                var hBand_player = context_player.createBiquadFilter();
-                hBand_player.type = "lowshelf";
-                hBand_player.frequency.value = bandSplit[0];
-                hBand_player.gain.value = gainDb;
-
-                var hInvert_player = context_player.createGain();
-                hInvert_player.gain.value = -1.0;
-
-                var mBand_player = context_player.createGain();
-
-                var lBand_player = context_player.createBiquadFilter();
-                lBand_player.type = "highshelf";
-                lBand_player.frequency.value = bandSplit[1];
-                lBand_player.gain.value = gainDb;
-
-                var lInvert_player = context_player.createGain();
-                lInvert_player.gain.value = -1.0;
-
-                sourceNode_player[i].connect(lBand_player);
-                sourceNode_player[i].connect(mBand_player);
-                sourceNode_player[i].connect(hBand_player);
-
-                hBand_player.connect(hInvert_player);
-                lBand_player.connect(lInvert_player);
-
-                hInvert_player.connect(mBand_player);
-                lInvert_player.connect(mBand_player);
-
-
-                lGain_player[i] = context_player.createGain();
-                mGain_player[i] = context_player.createGain();
-                hGain_player[i] = context_player.createGain();
-
-                lBand_player.connect(lGain_player[i]);
-                mBand_player.connect(mGain_player[i]);
-                hBand_player.connect(hGain_player[i]);
-
-                sum_player[i] = context_player.createGain();
-                lGain_player[i].connect(sum_player[i]);
-                mGain_player[i].connect(sum_player[i]);
-                hGain_player[i].connect(sum_player[i]);
-
-                volumeNodes[i] = context_player.createGain();
-                sum_player[i].connect(volumeNodes[i]);
-                volumeNodes[i].connect(context_player.destination);
-
-            }
-
-            //set volume
-            var x = 50 / 100;
-            // Use an equal-power crossfading curve:
-            var gain1 = Math.cos(x * 0.5 * Math.PI);
-            var gain2 = Math.cos((1.0 - x) * 0.5 * Math.PI);
-            volumeNodes[0].gain.value = gain1;
-            volumeNodes[1].gain.value = gain2;
-
-            //create audio Recording node
-
-            audioRecordNode = context_player.createGain();
-            volumeNodes[0].connect(audioRecordNode);
-            volumeNodes[1].connect(audioRecordNode);
-            audioRecorder = new Recorder(audioRecordNode);
-
-        }
-
-        // Input
-        //
-        function changeGain(string, type,player) {
-            var value = parseFloat(string) / 100.0;
-            switch (type) {
-                case 'lowGain': lGain_player[player].gain.value = value; break;
-                case 'midGain': mGain_player[player].gain.value = value; break;
-                case 'highGain': hGain_player[player].gain.value = value; break;
-            }
-        }
-
-        function addLowPassFilter(player) {
-            if ($("#lPassBtn_player" + player).val() == "Connect") {
-                lPass_player[player] = context_player.createBiquadFilter();
-                sum_player[player].connect(lPass_player[player]);
-                lPass_player[player].connect(volumeNodes[player]);
-                sum_player[player].disconnect(volumeNodes[player]);
-
-                //lPass_player[player].connect(context_player[player].destination);
-                //sum_player[player].disconnect(context_player[player].destination);
-
-
-                lPass_player[player].type = "lowpass";
-                lPass_player[player].frequency.value = 640;
-
-                $("#lPassBtn_player"+player).val("Disconnect");
-            }
-            else {
-                sum_player[player].connect(volumeNodes[player])
-                sum_player[player].disconnect(lPass_player[player]);
-
-                $("#lPassBtn_player"+player).val("Connect");
-            }
-        }
-
-        function initFrequencyQuality(player) {
-
-            // Create the filter.
-            freqFilter_player[player] = context_player.createBiquadFilter();
-            //filter.type is defined as string type in the latest API. But this is defined as number type in old API.
-            freqFilter_player[player].type = (typeof freqFilter_player[player].type === 'string') ? 'lowpass' : 0; // LOWPASS
-            freqFilter_player[player].frequency.value = 5000;
-            // Connect source to filter, filter to destination.
-            sourceNode_player[player] = context_player.createGain();
-            source_player[player].connect(freqFilter_player[player]);
-            freqFilter_player[player].connect(sourceNode_player[player]);
-
-        }
-
-        function changeFrequency(element, player) {
-
-            // Clamp the frequency between the minimum value (40 Hz) and half of the
-            // sampling rate.
-            var minValue = 40;
-            var maxValue = context_player.sampleRate / 2;
-            // Logarithm (base 2) to compute how many octaves fall in the range.
-            var numberOfOctaves = Math.log(maxValue / minValue) / Math.LN2;
-            // Compute a multiplier from 0 to 1 based on an exponential scale.
-            var multiplier = Math.pow(2, numberOfOctaves * (element.value - 1.0));
-            // Get back to the frequency value between min and max.
-            freqFilter_player[player].frequency.value = maxValue * multiplier;
-
-        };
-
-        function changeQuality(element,player) {
-            var QUAL_MUL = 30;
-            freqFilter_player[player].Q.value = element.value * QUAL_MUL;
-        };
-
-
-        function record() {
-            //
-            $("#recordBtn").prop("disabled", true);
-            $("#saveLink").css("display", "none");
-            $("#stopBtn").prop("disabled", false);
-
-            audioRecorder.clear();
-            audioRecorder.record();
-        };
-
-        function stopRecording() {
-            $("#recordBtn").prop("disabled", false);
-            $("#saveLink").css("display", "block");
-            $("#stopBtn").prop("disabled", true);
-            audioRecorder.stop();
-            audioRecorder.getBuffers(gotBuffers);
-        };
-        function saveAudio() {
-            audioRecorder.exportWAV(doneEncoding);
-            // could get mono instead by saying
-            // audioRecorder.exportMonoWAV( doneEncoding );
-        };
-        function gotBuffers(buffers) {
-
-            // the ONLY time gotBuffers is called is right after a new recording is completed -
-            // so here's where we should set up the download.
-            audioRecorder.exportWAV(doneEncoding);
-        };
-        function doneEncoding(blob) {
-            Recorder.setupDownload(blob, "myRecording" + ".wav");
-        };
-
-        function crossFade(element)
-        {
-            var x = parseInt(element.value) / parseInt(element.max);
-            // Use an equal-power crossfading curve:
-            var gain1 = Math.cos(x * 0.5 * Math.PI);
-            var gain2 = Math.cos((1.0 - x) * 0.5 * Math.PI);
-            volumeNodes[0].gain.value = gain1;
-            volumeNodes[1].gain.value = gain2;
-        }
-
-</script>*@
+    </script>
+    <script src="~/Scripts/main.js"></script>
+
+    @*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>*@
+    <script src="~/Scripts/recorderJs/recorder.js"></script>

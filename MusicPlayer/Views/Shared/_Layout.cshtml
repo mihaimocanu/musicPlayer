@@ -1,40 +1,48 @@
-﻿<!DOCTYPE html>
+﻿@using MusicPlayer.Models
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="~/Images/img/apple-touch-icon.png">
-        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-        <style>
-            body {
-                padding-top: 50px;
-                padding-bottom: 20px;
-            }
-        </style>
-        <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
-        <link href="~/Content/main.css" rel="stylesheet" />
-        <script src="~/Scripts/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-        <script src="~/Scripts/jquery-1.11.2.min.js"></script>
-        <script src="~/Scripts/bootstrap.min.js"></script>
-        <link href="~/Libraries/dark-velvet/style.css" rel="stylesheet" />
-        <!-- scripts -->
-        <script src="~/Libraries/dark-velvet/js/general.js"></script>
-        <!-- custom input -->
-        <script src="~/Libraries/dark-velvet/js/jquery.customInput.js"></script>
-        <script src="~/Libraries/dark-velvet/js/custom.js"></script>
-        <!-- Volume, Balance -->
-        <script src="~/Libraries/dark-velvet/js/knobRot-0.2.2.js"></script>
-        <!-- Audio Player  -->
-        <link href="~/Libraries/dark-velvet/css/jplayer.css" rel="stylesheet" />
-        <script src="~/Libraries/dark-velvet/js/jquery.jplayer.min.js"></script>
-        <script src="~/Libraries/dark-velvet/js/jplayer.playlist.min.js"></script>
-        <!-- Scroll Bars -->
-        <script src="~/Libraries/dark-velvet/js/jquery.mousewheel.js"></script>
-        <script src="~/Libraries/dark-velvet/js/jquery.jscrollpane.min.js"></script>
-        <script type="text/javascript">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="~/Images/img/apple-touch-icon.png">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            padding-top: 50px;
+            padding-bottom: 20px;
+        }
+    </style>
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/magnific-popup.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <script src="~/Scripts/jquery-1.11.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/lightbox-2.6.min.js"></script>
+    <script src="~/Scripts/jquery.magnific-popup.js"></script>
+    @*<script src="~/Scripts/jquery.magnific-popup.min.js"></script>*@
+
+
+    <link href="~/Libraries/dark-velvet/style.css" rel="stylesheet" />
+    <!-- scripts -->
+    <script src="~/Libraries/dark-velvet/js/general.js"></script>
+    <!-- custom input -->
+    <script src="~/Libraries/dark-velvet/js/jquery.customInput.js"></script>
+    <script src="~/Libraries/dark-velvet/js/custom.js"></script>
+    <!-- Volume, Balance -->
+    <script src="~/Libraries/dark-velvet/js/knobRot-0.2.2.js"></script>
+    <!-- Audio Player  -->
+    <link href="~/Libraries/dark-velvet/css/jplayer.css" rel="stylesheet" />
+    <script src="~/Libraries/dark-velvet/js/jquery.jplayer.min.js"></script>
+    <script src="~/Libraries/dark-velvet/js/jplayer.playlist.min.js"></script>
+    <!-- Scroll Bars -->
+    <script src="~/Libraries/dark-velvet/js/jquery.mousewheel.js"></script>
+    <script src="~/Libraries/dark-velvet/js/jquery.jscrollpane.min.js"></script>
+    <script type="text/javascript">
             jQuery(function () {
                 jQuery('.scrollbar').jScrollPane({
                     verticalDragMaxHeight: 39,
@@ -46,46 +54,65 @@
                     verticalDragMinHeight: 36
                 });
             });
-        </script>
-        <!-- range sliders -->
-        <script src="~/Libraries/dark-velvet/js/jquery.slider.bundle.js"></script>
-        <script src="~/Libraries/dark-velvet/js/jquery.slider.js"></script>
-        <link href="~/Libraries/dark-velvet/css/jslider.css" rel="stylesheet" />
-        <script src="~/Scripts/main.js"></script>
+    </script>
+    <!-- range sliders -->
+    <script src="~/Libraries/dark-velvet/js/jquery.slider.bundle.js"></script>
+    <script src="~/Libraries/dark-velvet/js/jquery.slider.js"></script>
+    <link href="~/Libraries/dark-velvet/css/jslider.css" rel="stylesheet" />
+    <script src="~/Scripts/main.js"></script>
 
+    <link href="~/Images/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @RenderSection("scripts", required: false)
 
+    @*@Styles.Render("~/Content/css")*@
 
-        <link href="~/Images/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        @*@Scripts.Render("~/bundles/jquery")*@
-        @RenderSection("scripts", required: false)
-        
-        
-        
-        
-        @*@Styles.Render("~/Content/css")*@
+</head>
+<body>
 
-    </head>
-    <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Project name</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <div class="navbar-form navbar-right" role="form">
-                        <button class="btn btn-primary">Facebook Login</button>
-                        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
-                    </div>
-                </div><!--/.navbar-collapse -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Project name</a>
             </div>
-        </nav>
-        @*<header>
+            <div id="navbar" class="navbar-collapse collapse">
+                <div class="navbar-form navbar-right" role="form">
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <text>
+                            Hello, @User.Identity.Name!
+                            <a class="popup-with-form" href="javascript:playlistLoadPopup()">Load playlist</a>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                            }
+                        </text>
+                    }
+                    else
+                    {
+
+
+                        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <button class="btn btn-primary" type="submit" name="provider" value="Facebook">Facebook Login</button>
+                        }
+                    }
+
+                    @*@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })*@
+                </div>
+            </div><!--/.navbar-collapse -->
+        </div>
+    </nav>
+    @*<header>
             <div class="content-wrapper">
                 <div class="float-left">
                     <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
@@ -105,10 +132,10 @@
             </div>
         </header>*@
 
-        <div id="body" class="bodyContainter">
-            @RenderBody()
-        </div>
-        @*<div id="body" class="bodyContainter">
+    <div id="body" class="bodyContainter">
+        @RenderBody()
+    </div>
+    @*<div id="body" class="bodyContainter">
             @RenderSection("featured", required: false)
             <section class="content-wrapper main-content clear-fix">
                 @RenderBody()
@@ -116,14 +143,14 @@
         </div>*@
 
 
-        <footer>
-            @*<div class="content-wrapper">
+    <footer>
+        @*<div class="content-wrapper">
                 <div class="float-left">
                     <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
                 </div>
             </div>*@
-        </footer>
+    </footer>
 
-        
-    </body>
+
+</body>
 </html>
