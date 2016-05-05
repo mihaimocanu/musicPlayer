@@ -35,12 +35,24 @@ namespace MusicPlayer.Controllers
         [Authorize]
         public async Task<JsonResult> GetPlaylistList()
         {
-            //var userId = User.Identity.GetUserId();
-            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var userId = User.Identity.GetUserId();
-            var currentUser = manager.FindById(User.Identity.GetUserId());
+            try
+            {
+                //var userId = User.Identity.GetUserId();
+                var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var userId = User.Identity.GetUserId();
+                var currentUser = manager.FindById(User.Identity.GetUserId());
 
-            return this.Json("Success", JsonRequestBehavior.AllowGet);
+                return this.Json(currentUser.PlaylistsInfo.Select(x => new { 
+                    id=x.PlaylistId,
+                    name=x.PlaylistName,
+                    updatedAt=x.UpdatedAt
+                }), JsonRequestBehavior.AllowGet);
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+
+            }
             //var currentUser = manager.FindById(User.Identity.GetUserId());
 
             //List<IdentityUserRole> roles = currentUser.Roles.ToList();
