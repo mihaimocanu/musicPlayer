@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using MusicPlayer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,6 +36,9 @@ namespace MusicPlayer.Controllers
         public async Task<JsonResult> GetPlaylistList()
         {
             //var userId = User.Identity.GetUserId();
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var userId = User.Identity.GetUserId();
+            var currentUser = manager.FindById(User.Identity.GetUserId());
 
             return this.Json("Success", JsonRequestBehavior.AllowGet);
             //var currentUser = manager.FindById(User.Identity.GetUserId());

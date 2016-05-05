@@ -8,7 +8,7 @@ namespace MusicPlayer.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.PlaylistData",
+                "dbo.PlaylistDatas",
                 c => new
                     {
                         ItemId = c.Int(nullable: false, identity: true),
@@ -21,15 +21,15 @@ namespace MusicPlayer.Migrations
                 //.ForeignKey("dbo.PlaylistInfo", t => t.PlaylistId, cascadeDelete: true)
                 .Index(t => t.PlaylistId);
 
-            AddForeignKey("dbo.PlaylistData", "PlaylistId", "dbo.PlaylistInfo", "PlaylistId", true);
+            AddForeignKey("dbo.PlaylistDatas", "PlaylistId", "dbo.PlaylistInfoes", "PlaylistId", true);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.PlaylistData", "PlaylistId", "dbo.PlaylistInfo");
-            DropIndex("dbo.PlaylistData", new[] { "PlaylistId" });
-            DropTable("dbo.PlaylistData");
+            DropForeignKey("dbo.PlaylistDatas", "PlaylistId", "dbo.PlaylistInfoes");
+            DropIndex("dbo.PlaylistDatas", new[] { "PlaylistId" });
+            DropTable("dbo.PlaylistDatas");
         }
     }
 }

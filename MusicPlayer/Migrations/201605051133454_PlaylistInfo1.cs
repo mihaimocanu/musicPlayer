@@ -8,7 +8,7 @@ namespace MusicPlayer.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.PlaylistInfo",
+                "dbo.PlaylistInfoes",
                 c => new
                     {
                         PlaylistId = c.Int(nullable: false, identity: true),
@@ -25,9 +25,9 @@ namespace MusicPlayer.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.PlaylistInfo", "UserId", "dbo.AspNetUsers");
-            DropIndex("dbo.PlaylistInfo", new[] { "UserId" });
-            DropTable("dbo.PlaylistInfo");
+            DropForeignKey("dbo.PlaylistInfoes", "UserId", "dbo.AspNetUsers");
+            DropIndex("dbo.PlaylistInfoes", new[] { "UserId" });
+            DropTable("dbo.PlaylistInfoes");
         }
     }
 }
