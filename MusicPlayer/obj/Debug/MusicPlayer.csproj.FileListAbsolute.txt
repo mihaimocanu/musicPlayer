@@ -116,11 +116,8 @@ D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\bin\Microsoft.Owin.Security.G
 D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\bin\Microsoft.Owin.Security.Twitter.xml
 D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.csprojResolveAssemblyReference.cache
-D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.Migrations.CreateDB.resources
-D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.Migrations.FBId.resources
-D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.Migrations.PlaylistInfo.resources
-D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.Migrations.PlaylistInfo1.resources
-D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.Migrations.PlaylistData.resources
-D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.csproj.GenerateResource.Cache
 D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.dll
 D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.pdb
+D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.Migrations.addDB.resources
+D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.csproj.GenerateResource.Cache
+D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.Migrations.customDB.resources

@@ -168,25 +168,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201605050826313_CreateDB.cs" />
-    <Compile Include="Migrations\201605050826313_CreateDB.Designer.cs">
-      <DependentUpon>201605050826313_CreateDB.cs</DependentUpon>
+    <Compile Include="Helpers\PlaylistItem.cs" />
+    <Compile Include="Migrations\201605061359474_addDB.cs" />
+    <Compile Include="Migrations\201605061359474_addDB.Designer.cs">
+      <DependentUpon>201605061359474_addDB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201605051110466_FBId.cs" />
-    <Compile Include="Migrations\201605051110466_FBId.Designer.cs">
-      <DependentUpon>201605051110466_FBId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605051130151_PlaylistInfo.cs" />
-    <Compile Include="Migrations\201605051130151_PlaylistInfo.Designer.cs">
-      <DependentUpon>201605051130151_PlaylistInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605051133454_PlaylistInfo1.cs" />
-    <Compile Include="Migrations\201605051133454_PlaylistInfo1.Designer.cs">
-      <DependentUpon>201605051133454_PlaylistInfo1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605051154528_PlaylistData.cs" />
-    <Compile Include="Migrations\201605051154528_PlaylistData.Designer.cs">
-      <DependentUpon>201605051154528_PlaylistData.cs</DependentUpon>
+    <Compile Include="Migrations\201605061400551_customDB.cs" />
+    <Compile Include="Migrations\201605061400551_customDB.Designer.cs">
+      <DependentUpon>201605061400551_customDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -476,20 +465,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605050826313_CreateDB.resx">
-      <DependentUpon>201605050826313_CreateDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605061359474_addDB.resx">
+      <DependentUpon>201605061359474_addDB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605051110466_FBId.resx">
-      <DependentUpon>201605051110466_FBId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605051130151_PlaylistInfo.resx">
-      <DependentUpon>201605051130151_PlaylistInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605051133454_PlaylistInfo1.resx">
-      <DependentUpon>201605051133454_PlaylistInfo1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605051154528_PlaylistData.resx">
-      <DependentUpon>201605051154528_PlaylistData.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605061400551_customDB.resx">
+      <DependentUpon>201605061400551_customDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

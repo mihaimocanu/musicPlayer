@@ -3,7 +3,7 @@ namespace MusicPlayer.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CreateDB : DbMigration
+    public partial class addDB : DbMigration
     {
         public override void Up()
         {

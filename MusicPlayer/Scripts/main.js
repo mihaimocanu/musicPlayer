@@ -53,7 +53,7 @@ function playlistLoadPopup()
 
 
 
-function playlistSavePopup(data) {
+function playlistSavePopup(player) {
     //alert("here");
     $.magnificPopup.open({
         items: {
@@ -81,51 +81,76 @@ function playlistSavePopup(data) {
     });
 
     $("#popup-content").empty();
+    if (player_playlist[player].playlist.length == 0) {
+        var htmlContent = "";
+        htmlContent += "<div> There are no items in the playlist</div>";
+        $("#popup-content").append(htmlContent);
+    }
+    else {
 
-    $.ajax({
-        type: "GET",
-        url: "/Home/GetPlaylistList",
-        success: function (result) {
+        $.ajax({
+            type: "GET",
+            url: "/Home/GetPlaylistList",
+            success: function (result) {
 
-            var htmlContent = "";
-            htmlContent += "<div id=\"update-content\">Overwrite existing playlist:";
-            htmlContent += "<select id=\"playlist-select\">";
-            htmlContent += "<option value=\"volvo\">Volvo</option>";
-            htmlContent += "<option value=\"saab\">Saab</option>";
-            htmlContent += "<option value=\"mercedes\">Mercedes</option>";
-            htmlContent += "<option value=\"audi\">Audi</option>";
-            htmlContent += "</select>";
-            htmlContent += "<div>";
-            htmlContent += "<div class=\"fakeFileBtn btn-chooseFile btnD btnD-acute\" style=\"margin-top: 10px;\">";
-            htmlContent += "<span>Update playlist</span>";
-            htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"alert('update')\">";
-            htmlContent += "</div>";
-            htmlContent += "</div>";
-            htmlContent += "</div>";
-            htmlContent += "<div id=\"save-content\" style=\"display:none\">Name:";
-            htmlContent += "<input type=\"text\" id=\"playlistName\" style=\"color: #000000;\" />";
-            htmlContent += "<div>";
-            htmlContent += "<div class=\"fakeFileBtn btn-chooseFile btnD btnD-acute\" style=\"margin-top: 10px;\">";
-            htmlContent += "<span>Save playlist</span>";
-            htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"alert('save new')\">";
-            htmlContent += "</div>";
-            htmlContent += "<div class=\"fakeFileBtn btn-chooseFile btnD btnD-acute\" style=\"margin-top: 10px;\">";
-            htmlContent += "<span>Cancel</span>";
-            htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"goTo('update');\">";
-            htmlContent += "</div>";
-            htmlContent += "</div>";
-            htmlContent += "</div>";
+                var htmlContent = "";
+                htmlContent += "<div id=\"update-content\" ";
+                if (result.length == 0) {
+                    htmlContent += "style=\"display:none\"";
+                }
+                htmlContent += ">Overwrite existing playlist:";
+                htmlContent += "<select id=\"playlist-select\">";
+                htmlContent += "<option value=\"0\">Choose Existing Playlist</option>";
+                for (var i = 0; i < result.length; i++) {
+                    htmlContent += "<option value=\"" + result[i].id + "\">" + result[i].name + "</option>";
+                }
 
-            htmlContent += "<div id=\"option-button\">";
-            htmlContent += "<div class=\"fakeFileBtn btn-chooseFile btnD btnD-acute\" style=\"margin-top: 10px;\">";
-            htmlContent += "<span>Save New Playlist</span>";
-            htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"goTo('save');\">";
-            htmlContent += "</div>";
-            htmlContent += "</div>";
-            
-            $("#popup-content").append(htmlContent);
-        }
-    });
+                htmlContent += "</select>";
+                htmlContent += "<div>";
+                htmlContent += "<div class=\"fakeFileBtn btn-chooseFile btnD btnD-acute\" style=\"margin-top: 10px;\">";
+                htmlContent += "<span>Update playlist</span>";
+                htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"updatePlaylist("+player+")\">";
+                htmlContent += "</div>";
+                htmlContent += "</div>";
+                htmlContent += "</div>";
+                htmlContent += "<div id=\"save-content\" ";
+                if (result.length > 0) {
+                    htmlContent += "style=\"display:none\"";
+                }
+                htmlContent += ">Name:";
+                htmlContent += "<input type=\"text\" id=\"playlistName\" style=\"color: #000000;\" />";
+                htmlContent += "<div>";
+                htmlContent += "<div class=\"fakeFileBtn btn-chooseFile btnD btnD-acute\" style=\"margin-top: 10px;\">";
+                htmlContent += "<span>Save playlist</span>";
+                htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"savePlaylist(" + player + ")\">";
+                htmlContent += "</div>";
+                htmlContent += "<div class=\"fakeFileBtn btn-chooseFile btnD btnD-acute\" style=\"margin-top: 10px;\">";
+                htmlContent += "<span>Cancel</span>";
+                htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"goTo('update');\">";
+                htmlContent += "</div>";
+                htmlContent += "</div>";
+                htmlContent += "</div>";
+
+                htmlContent += "<div id=\"option-button\" ";
+                if (result.length == 0) {
+                    htmlContent += "style=\"display:none\"";
+                }
+                htmlContent += ">";
+                htmlContent += "<div class=\"fakeFileBtn btn-chooseFile btnD btnD-acute\" style=\"margin-top: 10px;\">";
+                htmlContent += "<span>Save New Playlist</span>";
+                htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"goTo('save');\">";
+                htmlContent += "</div>";
+                htmlContent += "</div>";
+
+                $("#popup-content").append(htmlContent);
+            },
+            error: function (error) {
+                $.magnificPopup.close();
+                alert('Error while getting data: ' + error.statusText);
+                console.log(error.responseText);
+            }
+        });
+    }
     
 }
 
@@ -145,56 +170,80 @@ function goTo(place)
     }
 }
 
-function savePlaylist()
+function savePlaylist(player)
 {
-    $.ajax({
-        type: "POST",
-        url: "/Home/SavePlaylist",
-        data: { saveData: userData },
-        success: function (result) {
-            var resultArray = result.split('_');
-            if (resultArray[0] === "Error") {
-                alert(resultArray[1]);
-                $("#display_" + userId).css({ display: "" });
-                $("#edit_" + userId).css({ display: "none" });
-                ResetEdit(userId)
+    if ($.trim($("#playlistName").val()).length === 0) {
+        alert("The playlist must have a name!");
+    }
+    else {
+
+        var playlistItems = [];
+        for (var i = 0; i < player_playlist[player].playlist.length; i++) {
+            var item = {
+                name: player_playlist[player].playlist[i].title,
+                path: player_playlist[player].playlist[i].mp3
             }
-            else {
-                $("#display_" + userId).css({ display: "" });
-                $("#edit_" + userId).css({ display: "none" });
-                ResetDisplay(userId);
-            }
+            playlistItems.push(item);
         }
-    });
+        console.log(playlistItems);
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/SavePlaylist",
+            data: {
+                name: $("#playlistName").val(),
+                itemsList: playlistItems
+            },
+            success: function (result) {
+                console.log(result);
+                $.magnificPopup.close();
+            },
+            error: function (error) {
+                alert('Error while saving the playlist: ' + error.statusText);
+                console.log(error.responseText);
+            }
+        });
+    }
 }
 
-function updatePlaylist() {
-    $.ajax({
-        type: "PUT",
-        url: "/Home/UpdatePlaylist",
-        data: { saveData: userData },
-        success: function (result) {
-            var resultArray = result.split('_');
-            if (resultArray[0] === "Error") {
-                alert(resultArray[1]);
-                $("#display_" + userId).css({ display: "" });
-                $("#edit_" + userId).css({ display: "none" });
-                ResetEdit(userId)
+function updatePlaylist(player) {
+    if ($("#playlist-select").val() == "0") {
+        alert("You must select a playlist first!");
+    }
+    else {
+        var playlistItems = [];
+        for (var i = 0; i < player_playlist[player].playlist.length; i++) {
+            var item = {
+                name: player_playlist[player].playlist[i].title,
+                path: player_playlist[player].playlist[i].mp3
             }
-            else {
-                $("#display_" + userId).css({ display: "" });
-                $("#edit_" + userId).css({ display: "none" });
-                ResetDisplay(userId);
-            }
+            playlistItems.push(item);
         }
-    });
+        console.log(playlistItems);
+        $.ajax({
+            type: "POST",
+            url: "/Home/UpdatePlaylist",
+            data: {
+                id: $("#playlist-select").val(),
+                itemsList: playlistItems
+            },
+            success: function (result) {
+                console.log(result);
+                $.magnificPopup.close();
+            },
+            error: function (error) {
+                alert('Error while saving the playlist: ' + error.statusText);
+                console.log(error.responseText);
+            }
+        });
+    }
 }
 
 $("#audio_file_player0").on("change", function () { uploadFile("0"); });
 $("#audio_file_player1").on("change", function () { uploadFile("1"); });
 function uploadFile(player) {
     var files;
-    var uploadedFiles = $("#audio_file_player" + player).prop('files');;
+    var uploadedFiles = $("#audio_file_player" + player).prop('files');
     player_playlist[player].remove();
 
     var playlistItems = [];

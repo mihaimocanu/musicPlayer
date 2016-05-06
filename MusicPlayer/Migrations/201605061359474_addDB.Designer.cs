@@ -7,13 +7,13 @@ namespace MusicPlayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class PlaylistInfo : IMigrationMetadata
+    public sealed partial class addDB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(PlaylistInfo));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addDB));
         
         string IMigrationMetadata.Id
         {
-            get { return "201605051130151_PlaylistInfo"; }
+            get { return "201605061359474_addDB"; }
         }
         
         string IMigrationMetadata.Source

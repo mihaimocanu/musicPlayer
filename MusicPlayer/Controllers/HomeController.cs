@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using MusicPlayer.Helpers;
 using MusicPlayer.Models;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace MusicPlayer.Controllers
                 var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
                 var userId = User.Identity.GetUserId();
                 var currentUser = manager.FindById(User.Identity.GetUserId());
-
+                
                 return this.Json(currentUser.PlaylistsInfo.Select(x => new { 
                     id=x.PlaylistId,
                     name=x.PlaylistName,
@@ -53,54 +54,101 @@ namespace MusicPlayer.Controllers
                 throw new Exception(e.Message);
 
             }
-            //var currentUser = manager.FindById(User.Identity.GetUserId());
+        }
 
-            //List<IdentityUserRole> roles = currentUser.Roles.ToList();
+        [HttpPost]
+        [Authorize]
+        public async Task<JsonResult> SavePlaylist(string name, List<PlaylistItem> itemsList)
+        {
+            try
+            {
+                var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+                var newPlaylist= new PlaylistInfo();
+                newPlaylist.PlaylistName=name;
+                newPlaylist.CreatedAt=DateTime.Now;
+                newPlaylist.UpdatedAt=DateTime.Now;
+                newPlaylist.PlaylistItems = new List<PlaylistData>();
+                foreach (var item in itemsList)
+                {
+                    var plItem=new PlaylistData();
+                    plItem.ItemName=item.name;
+                    plItem.ItemPath=item.path;
+                    plItem.UpdatedAt=DateTime.Now;
 
-            //bool isAdmin = roles.Where(role => role.RoleId.Equals(ConfigurationManager.AppSettings["Admin.Role.Id"])).Count() > 0 ? true : false;
+                    newPlaylist.PlaylistItems.Add(plItem);
+                }
 
-            //if (!isAdmin)
-            //{
-            //    return this.Json("Error_" + Resource.BackendAdmin_NotLoggedError_Msg);
-            //}
-            //else
-            //{
-            //    try
-            //    {
-            //        ApplicationUser changedUser = await manager.FindByIdAsync(saveData.Id);
-            //        if (changedUser != null)
-            //        {
+                currentUser.PlaylistsInfo.Add(newPlaylist);
 
-            //            changedUser.Email = saveData.Email;
-            //            changedUser.CompanyName = saveData.CompanyName;
-            //            changedUser.Firstname = saveData.Firstname;
-            //            changedUser.Lastname = saveData.Lastname;
-            //            //changedUser.Street=saveData.Street;
-            //            //changedUser.PostCode=saveData.PostCode;
-            //            //changedUser.City=saveData.City;
-            //            changedUser.Country = saveData.Country;
+                IdentityResult resultAdd = await manager.UpdateAsync(currentUser);
+                if (resultAdd.Succeeded)
+                {
+                    return this.Json("Success", JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    throw new Exception("Errors: "+String.Join(";", resultAdd.Errors));
+                }
 
-            //            IdentityResult resultApprove = await manager.UpdateAsync(changedUser);
-            //            if (resultApprove.Succeeded)
-            //            {
-            //                return this.Json("Success");
-            //            }
-            //            else
-            //            {
-            //                return this.Json("Error_" + Resource.BackendAdmin_UpdateError_Msg);
-            //            }
-            //        }
-            //        else
-            //        {
-            //            return this.Json("Error_" + Resource.BackendAdmin_UserNotFound_Msg);
-            //        }
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        return this.Json("Error_" + Resource.BackendAdmin_InternalServerError_Msg);
-            //    }
-            //}
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+
+            }
 
         }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<JsonResult> UpdatePlaylist(int id, List<PlaylistItem> itemsList)
+        {
+            try
+            {
+                var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+                var updatedPlaylist = currentUser.PlaylistsInfo.Where(item =>item.PlaylistId==id).FirstOrDefault();
+                updatedPlaylist.UpdatedAt = DateTime.Now;
+                updatedPlaylist.PlaylistItems.RemoveRange(0, updatedPlaylist.PlaylistItems.Count);
+                IdentityResult resultDelete = await manager.UpdateAsync(currentUser);
+                if (resultDelete.Succeeded)
+                {
+                    updatedPlaylist.PlaylistItems = new List<PlaylistData>();
+                    foreach (var item in itemsList)
+                    {
+                        var plItem = new PlaylistData();
+                        plItem.ItemName = item.name;
+                        plItem.ItemPath = item.path;
+                        plItem.UpdatedAt = DateTime.Now;
+
+                        updatedPlaylist.PlaylistItems.Add(plItem);
+                    }
+
+                    IdentityResult resultAdd = await manager.UpdateAsync(currentUser);
+                    if (resultAdd.Succeeded)
+                    {
+                        return this.Json("Success", JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        throw new Exception("Errors: " + String.Join(";", resultAdd.Errors));
+                    }
+                }
+                else
+                {
+                    throw new Exception("Errors: " + String.Join(";", resultDelete.Errors));
+                }
+                
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+
+            }
+
+        }
+
     }
 }

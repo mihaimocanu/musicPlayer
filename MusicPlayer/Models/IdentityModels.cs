@@ -33,7 +33,7 @@ namespace MusicPlayer.Models
         public int PlaylistId { get; set; }
 
         [Required]
-        [Column(Order=1)]
+        [Column(Order = 1)]
         [ForeignKey("User")]
         public string UserId { get; set; }
 
