@@ -285,6 +285,7 @@ function addEqualiser() {
 
         initFrequencyQuality(i);
 
+        // affects the ammount of bass in a sound - bass knob
         var hBand_player = context_player.createBiquadFilter();
         hBand_player.type = "lowshelf";
         hBand_player.frequency.value = bandSplit[0];
@@ -295,6 +296,7 @@ function addEqualiser() {
 
         var mBand_player = context_player.createGain();
 
+        // affects the ammount of treble in a sound - treble knob
         var lBand_player = context_player.createBiquadFilter();
         lBand_player.type = "highshelf";
         lBand_player.frequency.value = bandSplit[1];
