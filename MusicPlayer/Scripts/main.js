@@ -294,6 +294,7 @@ function addEqualiser() {
         var hInvert_player = context_player.createGain();
         hInvert_player.gain.value = -1.0;
 
+        //Subtract low and high frequencies (add invert) from the source for the mid frequencies
         var mBand_player = context_player.createGain();
 
         // affects the ammount of treble in a sound - treble knob
