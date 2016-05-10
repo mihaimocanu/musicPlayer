@@ -4,6 +4,8 @@ var hGain_player = [];
 var mGain_player = [];
 var sum_player = [];
 var lPass_player = [];
+var hPass_player = [];
+var pPass_player = [];
 var volumeNodes = [];
 var freqFilter_player = [];
 
@@ -263,7 +265,7 @@ function uploadFile(player) {
 
 function addEqualiser() {
 
-    var gainDb = -40.0;
+    var gainDb = -40.0; // atenuation When it takes a positive value it is a real gain, when negative it is an attenuation. It is expressed in dB, has a default value of 0 and can take a value in a nominal range of -40 to 40.
     var bandSplit = [360, 3600];
     context_player = new AudioContext();
 
@@ -284,10 +286,16 @@ function addEqualiser() {
         source_player[i] = context_player.createMediaElementSource(mediaElement_player[i]);
 
         initFrequencyQuality(i);
-
-        // affects the ammount of bass in a sound - bass knob
+        
+        // affects the ammount of treble in a sound - treble knob - atenuates the sounds below the 3600 frequencies
+        var lBand_player = context_player.createBiquadFilter();
+        lBand_player.type = "lowshelf";
+        lBand_player.frequency.value = bandSplit[1];
+        lBand_player.gain.value = gainDb;
+        
+        // affects the ammount of bass in a sound - bass knob - atenuates the sounds higher than 360 frequencies
         var hBand_player = context_player.createBiquadFilter();
-        hBand_player.type = "lowshelf";
+        hBand_player.type = "highshelf";
         hBand_player.frequency.value = bandSplit[0];
         hBand_player.gain.value = gainDb;
 
@@ -297,11 +305,11 @@ function addEqualiser() {
         //Subtract low and high frequencies (add invert) from the source for the mid frequencies
         var mBand_player = context_player.createGain();
 
-        // affects the ammount of treble in a sound - treble knob
-        var lBand_player = context_player.createBiquadFilter();
-        lBand_player.type = "highshelf";
-        lBand_player.frequency.value = bandSplit[1];
-        lBand_player.gain.value = gainDb;
+        //or use picking
+        //mBand_player = context_player.createBiquadFilter();
+        //mBand_player.type = "peaking";
+        //mBand_player.frequency.value = bandSplit[0];
+        //mBand_player.gain.value = gainDb;
 
         var lInvert_player = context_player.createGain();
         lInvert_player.gain.value = -1.0;
@@ -330,6 +338,10 @@ function addEqualiser() {
         mGain_player[i].connect(sum_player[i]);
         hGain_player[i].connect(sum_player[i]);
 
+        lGain_player[i].gain.value = 1;
+        mGain_player[i].gain.value = 1;
+        hGain_player[i].gain.value = 1;
+
         volumeNodes[i] = context_player.createGain();
         sum_player[i].connect(volumeNodes[i]);
         volumeNodes[i].connect(context_player.destination);
@@ -353,11 +365,9 @@ function addEqualiser() {
 
 }
 
-// Input
-//
 function changeGain(string, type, player) {
     //alert(string);
-    var value = parseFloat(string) / 100.0;
+    var value = parseFloat(string) / 25.0;
     switch (type) {
         case 'lowGain': lGain_player[player].gain.value = value; break;
         case 'midGain': mGain_player[player].gain.value = value; break;
@@ -367,25 +377,94 @@ function changeGain(string, type, player) {
 
 function addLowPassFilter(checked, player) {
     if (checked == true) {
+        //UI deactivate other filters
+        if ($("#invoice"+(parseInt(player)+1)+"_2").is(':checked'))
+        {
+            $("#invoice" + (parseInt(player) + 1) + "_2").prop("checked", false);
+            $("label[for='invoice" + (parseInt(player) + 1) + "_2']").removeClass("checked");
+            addHighPassFilter(false, player);
+        }
+        
+        if ($("#invoice" + (parseInt(player) + 1) + "_3").is(':checked')) {
+            $("#invoice" + (parseInt(player) + 1) + "_3").prop("checked", false);
+            $("label[for='invoice" + (parseInt(player) + 1) + "_3']").removeClass("checked");
+            addPeakingFilter(false, player);
+        }
+
+        //add filter
         lPass_player[player] = context_player.createBiquadFilter();
         sum_player[player].connect(lPass_player[player]);
         lPass_player[player].connect(volumeNodes[player]);
         sum_player[player].disconnect(volumeNodes[player]);
 
-        //lPass_player[player].connect(context_player[player].destination);
-        //sum_player[player].disconnect(context_player[player].destination);
-
-
         lPass_player[player].type = "lowpass";
         lPass_player[player].frequency.value = 640;
-
-        //$("#lPassBtn_player" + player).val("Disconnect");
     }
     else {
         sum_player[player].connect(volumeNodes[player])
         sum_player[player].disconnect(lPass_player[player]);
+    }
+}
 
-        //$("#lPassBtn_player" + player).val("Connect");
+function addHighPassFilter(checked, player) {
+    if (checked == true) {
+        //UI deactivate other filters
+        if ($("#invoice" + (parseInt(player) + 1) + "_1").is(':checked')) {
+            $("#invoice" + (parseInt(player) + 1) + "_1").prop("checked", false);
+            $("label[for='invoice" + (parseInt(player) + 1) + "_1']").removeClass("checked");
+            addLowPassFilter(false, player);
+        }
+
+        if ($("#invoice" + (parseInt(player) + 1) + "_3").is(':checked')) {
+            $("#invoice" + (parseInt(player) + 1) + "_3").prop("checked", false);
+            $("label[for='invoice" + (parseInt(player) + 1) + "_3']").removeClass("checked");
+            addPeakingFilter(false, player);
+        }
+
+        //add filter
+        hPass_player[player] = context_player.createBiquadFilter();
+        sum_player[player].connect(hPass_player[player]);
+        hPass_player[player].connect(volumeNodes[player]);
+        sum_player[player].disconnect(volumeNodes[player]);
+
+        hPass_player[player].type = "highpass";
+        hPass_player[player].frequency.value = 640;
+    }
+    else {
+        sum_player[player].connect(volumeNodes[player])
+        sum_player[player].disconnect(hPass_player[player]);
+    }
+}
+
+function addPeakingFilter(checked, player) {
+    if (checked == true) {
+        //UI deactivate other filters
+        if ($("#invoice" + (parseInt(player) + 1) + "_2").is(':checked')) {
+            $("#invoice" + (parseInt(player) + 1) + "_2").prop("checked", false);
+            $("label[for='invoice" + (parseInt(player) + 1) + "_2']").removeClass("checked");
+            addHighPassFilter(false, player);
+        }
+
+        if ($("#invoice" + (parseInt(player) + 1) + "_1").is(':checked')) {
+            $("#invoice" + (parseInt(player) + 1) + "_1").prop("checked", false);
+            $("label[for='invoice" + (parseInt(player) + 1) + "_1']").removeClass("checked");
+            addLowPassFilter(false, player);
+        }
+
+        //add filter
+        pPass_player[player] = context_player.createBiquadFilter();
+        sum_player[player].connect(pPass_player[player]);
+        pPass_player[player].connect(volumeNodes[player]);
+        sum_player[player].disconnect(volumeNodes[player]);
+
+        pPass_player[player].type = "peaking";
+        pPass_player[player].frequency.value = 440;
+        pPass_player[player].Q.value = 2;
+        pPass_player[player].gain.value = 15;
+    }
+    else {
+        sum_player[player].connect(volumeNodes[player])
+        sum_player[player].disconnect(pPass_player[player]);
     }
 }
 
@@ -415,7 +494,6 @@ function changeFrequency(element, player) {
     var multiplier = Math.pow(2, numberOfOctaves * (val - 1.0));
     // Get back to the frequency value between min and max.
     freqFilter_player[player].frequency.value = maxValue * multiplier;
-
 };
 
 function changeQuality(element, player) {
