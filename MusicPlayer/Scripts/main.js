@@ -16,7 +16,12 @@ var source_player = [];
 var sourceNode_player = [];
 var files_player = [];
 var player_playlist = [];
+//var player0_playlistRaw = [];
+//var player2_playlistRaq = [];
 
+var files0ToUpload = [];
+var files1ToUpload = [];
+var currentUploadedFileIndex = 0;
 
 var audioRecorder;
 
@@ -49,8 +54,82 @@ function playlistLoadPopup()
         e.preventDefault();
         $.magnificPopup.close();
     });
+
     $("#popup-content").empty();
-    $("#popup-content").append("<p>Load</p>");
+
+    $.ajax({
+        type: "GET",
+        url: "/Home/GetPlaylistList",
+        success: function (result) {
+
+            
+            if (result.length == 0) {
+                var htmlContent = "";
+                htmlContent += "<div> There are no saved playlists</div>";
+                $("#popup-content").append(htmlContent);
+            }
+            else {
+
+                var htmlContent = "";
+                for (var i = 0; i < result.length; i++) {
+                    htmlContent += "<div class=\"playlist-description\" style=\"padding: 7px; border: solid; border-width: 2px;\">";
+                    htmlContent += "<div class=\"playlist-load-buttons\">";
+                    htmlContent += "Load to:";
+                    htmlContent += "<input type=\"button\" value=\"Playere 1\" onclick=\"loadPlaylist('0','"+result[i].id+"')\" />";
+                    htmlContent += "<input type=\"button\" value=\"Playere 2\" onclick=\"loadPlaylist('1','" + result[i].id + "')\" />";
+                    htmlContent += "</div>";
+                    htmlContent += "Name: "+result[i].name;
+                    htmlContent += "<div class=\"playlist-delete-button\">";
+                    htmlContent += "<input type=\"button\" value=\"Delete\" onclick=\"deletePlaylist('" + result[i].id + "')\" />";
+                    htmlContent += "</div>";
+                    htmlContent += "</div>";
+                }
+
+                $("#popup-content").append(htmlContent);
+            }
+        },
+        error: function (error) {
+            $.magnificPopup.close();
+            alert('Error while getting data: ' + error.statusText);
+            console.log(error.responseText);
+        }
+    });
+}
+
+function loadPlaylist(player, playlistId)
+{
+    $.ajax({
+        type: "GET",
+        url: "/Home/GetPlaylistData",
+        data:{playlistId: playlistId},
+        success: function (result) {
+
+            player_playlist[player].remove();
+
+            var playlistItems = [];
+            for (var i = 0; i < result.length; i++) {
+                playlistItems.push({
+                    title: (result[i].name.length > 50 ? (result[i].name.substring(0, 50) + "...") : result[i].name),
+                    mp3: result[i].path,
+                });
+            }
+            player_playlist[player].setPlaylist(playlistItems);
+
+            player_playlist[player].select(0);
+            player_playlist[player].play(0);
+            $("#songTitle" + player).html(player_playlist[player].playlist[0].title);
+
+        },
+        error: function (error) {
+            $.magnificPopup.close();
+            alert('Error while getting data: ' + error.statusText);
+            console.log(error.responseText);
+        }
+    });
+}
+
+function deletePlaylist(playlistId) {
+
 }
 
 
@@ -179,32 +258,108 @@ function savePlaylist(player)
     }
     else {
 
-        var playlistItems = [];
-        for (var i = 0; i < player_playlist[player].playlist.length; i++) {
-            var item = {
-                name: player_playlist[player].playlist[i].title,
-                path: player_playlist[player].playlist[i].mp3
-            }
-            playlistItems.push(item);
+        //var playlistItems = [];
+        //for (var i = 0; i < player_playlist[player].playlist.length; i++) {
+        //    var item = {
+        //        name: player_playlist[player].playlist[i].title,
+        //        path: player_playlist[player].playlist[i].mp3
+        //    }
+        //    playlistItems.push(item);
+        //}
+        //console.log(playlistItems);
+        var files = $("#audio_file_player" + player).prop('files');
+        if (window.FormData !== undefined) {
+
+            $.ajax({
+                type: "POST",
+                url: "/Home/CreatePlaylist",
+                data: {name: $("#playlistName").val()},
+                success: function (result) {
+                    console.log(result);
+                    //$.magnificPopup.close();
+                    
+                    //for (var x = 0; x < files.length; x++) {
+                    //    var data = new FormData();
+                    //    data.append("file" + x, files[x]);
+                    //    filesToUpload.push(data);
+                    //    //$.ajax({
+                    //    //    type: "POST",
+                    //    //    url: "/Home/UploadPlaylistItem?playlistId=1",
+                    //    //    contentType: false,
+                    //    //    data: data,
+                    //    //    success: function (result) {
+                    //    //        console.log(result);
+                    //    //        //$.magnificPopup.close();
+                    //    //    },
+                    //    //    error: function (error) {
+                    //    //        alert('Error while creating the playlist: ' + error.statusText);
+                    //    //        console.log(error.responseText);
+                    //    //    }
+                    //    //});
+                    //}
+                    uploadRawFile(player, result);
+
+                },
+                error: function (error) {
+                    alert('Error while creating the playlist: ' + error.statusText);
+                    console.log(error.responseText);
+                }
+            });
         }
-        console.log(playlistItems);
+        else
+        {
+            alert("Youre browser doesn't support HTML5 file uploads! Please update your browser!");
+        }
+    }
+}
+
+function uploadRawFile(player,playlistId)
+{
+    
+    var file = null;
+    if (player == "0") {
+        if (currentUploadedFileIndex < files0ToUpload.length) {
+            file = files0ToUpload[currentUploadedFileIndex];
+        }
+    }
+    else
+    {
+        if (currentUploadedFileIndex < files1ToUpload.length) {
+            file = files1ToUpload[currentUploadedFileIndex];
+        }
+    }
+    if (file != null) {
+        var data = new FormData();
+        data.append("file", file);
+        //var files = $("#audio_file_player0").prop('files');
+
+        //var data = new FormData();
+        //data.append("file" + 0, files[0]);
 
         $.ajax({
             type: "POST",
-            url: "/Home/SavePlaylist",
-            data: {
-                name: $("#playlistName").val(),
-                itemsList: playlistItems
-            },
+            url: "/Home/UploadPlaylistItem?playlistId=" + playlistId,
+            contentType: false,
+            processData: false,
+            data: data,
             success: function (result) {
                 console.log(result);
-                $.magnificPopup.close();
+                //go to next song
+                currentUploadedFileIndex += 1;
+                uploadRawFile(player, playlistId);
             },
             error: function (error) {
-                alert('Error while saving the playlist: ' + error.statusText);
+                alert('Error while creating the playlist: ' + error.statusText);
                 console.log(error.responseText);
+                currentUploadedFileIndex = 0;
+                $.magnificPopup.close();
             }
         });
+    }
+    else
+    {
+        currentUploadedFileIndex = 0;
+        $.magnificPopup.close();
     }
 }
 
@@ -362,6 +517,70 @@ function addEqualiser() {
     volumeNodes[0].connect(audioRecordNode);
     volumeNodes[1].connect(audioRecordNode);
     audioRecorder = new Recorder(audioRecordNode);
+
+    $('#audio_file_player0').on('change', function (e) {
+        files0ToUpload = e.target.files;
+        //var myID = 3; //uncomment this to make sure the ajax URL works
+        //if (files.length > 0) {
+        //    if (window.FormData !== undefined) {
+        //        var data = new FormData();
+        //        for (var x = 0; x < files.length; x++) {
+        //            data.append("file" + x, files[x]);
+        //        }
+
+        //        $.ajax({
+        //            type: "POST",
+        //            url: '/Home/UploadPlaylistItem?playlistId=15',
+        //            contentType: false,
+        //            processData: false,
+        //            data: data,
+        //            success: function (result) {
+        //                console.log(result);
+        //            },
+        //            error: function (xhr, status, p3, p4) {
+        //                var err = "Error " + " " + status + " " + p3 + " " + p4;
+        //                if (xhr.responseText && xhr.responseText[0] == "{")
+        //                    err = JSON.parse(xhr.responseText).Message;
+        //                console.log(err);
+        //            }
+        //        });
+        //    } else {
+        //        alert("This browser doesn't support HTML5 file uploads!");
+        //    }
+        //}
+    });
+    $('#audio_file_player1').on('change', function (e) {
+        files1ToUpload = e.target.files;
+        //var myID = 3; //uncomment this to make sure the ajax URL works
+        //if (files.length > 0) {
+        //    if (window.FormData !== undefined) {
+        //        var data = new FormData();
+        //        for (var x = 0; x < files.length; x++) {
+        //            data.append("file" + x, files[x]);
+        //        }
+
+        //        $.ajax({
+        //            type: "POST",
+        //            url: '/Home/UploadPlaylistItem?playlistId=15',
+        //            contentType: false,
+        //            processData: false,
+        //            data: data,
+        //            success: function (result) {
+        //                console.log(result);
+        //            },
+        //            error: function (xhr, status, p3, p4) {
+        //                var err = "Error " + " " + status + " " + p3 + " " + p4;
+        //                if (xhr.responseText && xhr.responseText[0] == "{")
+        //                    err = JSON.parse(xhr.responseText).Message;
+        //                console.log(err);
+        //            }
+        //        });
+        //    } else {
+        //        alert("This browser doesn't support HTML5 file uploads!");
+        //    }
+        //}
+    });
+
 
 }
 

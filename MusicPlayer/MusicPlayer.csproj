@@ -169,13 +169,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\PlaylistItem.cs" />
-    <Compile Include="Migrations\201605061359474_addDB.cs" />
-    <Compile Include="Migrations\201605061359474_addDB.Designer.cs">
-      <DependentUpon>201605061359474_addDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605061400551_customDB.cs" />
-    <Compile Include="Migrations\201605061400551_customDB.Designer.cs">
-      <DependentUpon>201605061400551_customDB.cs</DependentUpon>
+    <Compile Include="Migrations\201605120735035_add.cs" />
+    <Compile Include="Migrations\201605120735035_add.Designer.cs">
+      <DependentUpon>201605120735035_add.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -455,7 +451,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\Music\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -465,11 +461,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605061359474_addDB.resx">
-      <DependentUpon>201605061359474_addDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605061400551_customDB.resx">
-      <DependentUpon>201605061400551_customDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605120735035_add.resx">
+      <DependentUpon>201605120735035_add.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

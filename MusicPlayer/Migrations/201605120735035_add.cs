@@ -3,7 +3,7 @@ namespace MusicPlayer.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class addDB : DbMigration
+    public partial class add : DbMigration
     {
         public override void Up()
         {
@@ -35,6 +35,7 @@ namespace MusicPlayer.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        UserFacebookId = c.String(maxLength: 50),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -75,20 +76,54 @@ namespace MusicPlayer.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
+            CreateTable(
+                "dbo.PlaylistInfoes",
+                c => new
+                    {
+                        PlaylistId = c.Int(nullable: false, identity: true),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        PlaylistName = c.String(nullable: false, maxLength: 100),
+                        CreatedAt = c.DateTime(nullable: false),
+                        UpdatedAt = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.PlaylistId)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.PlaylistDatas",
+                c => new
+                    {
+                        ItemId = c.Int(nullable: false, identity: true),
+                        PlaylistId = c.Int(nullable: false),
+                        ItemName = c.String(nullable: false, maxLength: 200),
+                        ItemPath = c.String(nullable: false),
+                        UpdatedAt = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.ItemId)
+                .ForeignKey("dbo.PlaylistInfoes", t => t.PlaylistId, cascadeDelete: true)
+                .Index(t => t.PlaylistId);
+            
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.PlaylistInfoes", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.PlaylistDatas", "PlaylistId", "dbo.PlaylistInfoes");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropIndex("dbo.PlaylistDatas", new[] { "PlaylistId" });
+            DropIndex("dbo.PlaylistInfoes", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropTable("dbo.PlaylistDatas");
+            DropTable("dbo.PlaylistInfoes");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
