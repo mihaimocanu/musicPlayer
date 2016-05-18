@@ -1,4 +1,6 @@
-﻿//general
+﻿
+//______________________VARIABLES DEFINITON______________________________
+//general
 var lGain_player = [];
 var hGain_player = [];
 var mGain_player = [];
@@ -16,20 +18,24 @@ var source_player = [];
 var sourceNode_player = [];
 var files_player = [];
 var player_playlist = [];
-//var player0_playlistRaw = [];
-//var player2_playlistRaq = [];
+
+var player0playlistId = null;
+var player1playlistId = null;
 
 var files0ToUpload = [];
 var files1ToUpload = [];
+
+var files0ToRemove = [];
+var files1ToRemove = [];
+
 var currentUploadedFileIndex = 0;
 
 var audioRecorder;
+//______________________END VARIABLES DEFINITON_______________________
 
-//addEqualiser();
-
-function playlistLoadPopup()
-{
-    //alert("here");
+//______________________PLAYLIST METHODS______________________________
+//opens popup when "Load playlist" button is pressed and loads the data in it
+function playlistLoadPopup() {
     $.magnificPopup.open({
         items: {
             src: '#popup-form',
@@ -38,8 +44,6 @@ function playlistLoadPopup()
         preloader: false,
         focus: '#name',
 
-        // When elemened is focused, some mobile browsers in some cases zoom in
-        // It looks not nice, so we disable it:
         callbacks: {
             beforeOpen: function () {
                 if ($(window).width() < 700) {
@@ -50,19 +54,20 @@ function playlistLoadPopup()
             }
         }
     });
+    //bind close method for the pop-up
     $(document).on('click', '.popup-modal-dismiss', function (e) {
         e.preventDefault();
         $.magnificPopup.close();
     });
-
     $("#popup-content").empty();
 
+    //populate the pop-up with the playlists list
     $.ajax({
         type: "GET",
         url: "/Home/GetPlaylistList",
         success: function (result) {
 
-            
+
             if (result.length == 0) {
                 var htmlContent = "";
                 htmlContent += "<div> There are no saved playlists</div>";
@@ -75,10 +80,10 @@ function playlistLoadPopup()
                     htmlContent += "<div class=\"playlist-description\" style=\"padding: 7px; border: solid; border-width: 2px;\">";
                     htmlContent += "<div class=\"playlist-load-buttons\">";
                     htmlContent += "Load to:";
-                    htmlContent += "<input type=\"button\" value=\"Playere 1\" onclick=\"loadPlaylist('0','"+result[i].id+"')\" />";
+                    htmlContent += "<input type=\"button\" value=\"Playere 1\" onclick=\"loadPlaylist('0','" + result[i].id + "')\" />";
                     htmlContent += "<input type=\"button\" value=\"Playere 2\" onclick=\"loadPlaylist('1','" + result[i].id + "')\" />";
                     htmlContent += "</div>";
-                    htmlContent += "Name: "+result[i].name;
+                    htmlContent += "Name: " + result[i].name;
                     htmlContent += "<div class=\"playlist-delete-button\">";
                     htmlContent += "<input type=\"button\" value=\"Delete\" onclick=\"deletePlaylist('" + result[i].id + "')\" />";
                     htmlContent += "</div>";
@@ -96,29 +101,21 @@ function playlistLoadPopup()
     });
 }
 
-function loadPlaylist(player, playlistId)
-{
+//get playlist songs 
+function loadPlaylist(player, playlistId) {
     $.ajax({
         type: "GET",
         url: "/Home/GetPlaylistData",
-        data:{playlistId: playlistId},
+        data: { playlistId: playlistId },
         success: function (result) {
-
-            player_playlist[player].remove();
-
-            var playlistItems = [];
-            for (var i = 0; i < result.length; i++) {
-                playlistItems.push({
-                    title: (result[i].name.length > 50 ? (result[i].name.substring(0, 50) + "...") : result[i].name),
-                    mp3: result[i].path,
-                });
+            if (player == "0") {
+                player0playlistId = playlistId;
             }
-            player_playlist[player].setPlaylist(playlistItems);
-
-            player_playlist[player].select(0);
-            player_playlist[player].play(0);
-            $("#songTitle" + player).html(player_playlist[player].playlist[0].title);
-
+            else {
+                player1playlistId = playlistId;
+            }
+            loadPlaylistData(player, result);
+            $.magnificPopup.close();
         },
         error: function (error) {
             $.magnificPopup.close();
@@ -128,14 +125,24 @@ function loadPlaylist(player, playlistId)
     });
 }
 
-function deletePlaylist(playlistId) {
+//actualy loads the playlsit items to the players playlist
+function loadPlaylistData(player, result) {
+    player_playlist[player].remove();
 
+    var playlistItems = [];
+    for (var i = 0; i < result.length; i++) {
+        playlistItems.push({
+            title: (result[i].name.length > 50 ? (result[i].name.substring(0, 50) + "...") : result[i].name),
+            name: result[i].name,
+            mp3: result[i].path,
+            id: result[i].id
+        });
+    }
+    player_playlist[player].setPlaylist(playlistItems);
 }
 
-
-
+//open the popup when saving playlists and populates it
 function playlistSavePopup(player) {
-    //alert("here");
     $.magnificPopup.open({
         items: {
             src: '#popup-form',
@@ -144,8 +151,6 @@ function playlistSavePopup(player) {
         preloader: false,
         focus: '#name',
 
-        // When elemened is focused, some mobile browsers in some cases zoom in
-        // It looks not nice, so we disable it:
         callbacks: {
             beforeOpen: function () {
                 if ($(window).width() < 700) {
@@ -156,6 +161,7 @@ function playlistSavePopup(player) {
             }
         }
     });
+    //bind close method for the pop-up
     $(document).on('click', '.popup-modal-dismiss', function (e) {
         e.preventDefault();
         $.magnificPopup.close();
@@ -168,7 +174,7 @@ function playlistSavePopup(player) {
         $("#popup-content").append(htmlContent);
     }
     else {
-
+        //get the playlists data and create the html needed to store them -> add the html to the needed place
         $.ajax({
             type: "GET",
             url: "/Home/GetPlaylistList",
@@ -190,7 +196,7 @@ function playlistSavePopup(player) {
                 htmlContent += "<div>";
                 htmlContent += "<div class=\"fakeFileBtn btn-chooseFile btnD btnD-acute\" style=\"margin-top: 10px;\">";
                 htmlContent += "<span>Update playlist</span>";
-                htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"updatePlaylist("+player+")\">";
+                htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"updatePlaylist(" + player + ")\">";
                 htmlContent += "</div>";
                 htmlContent += "</div>";
                 htmlContent += "</div>";
@@ -232,11 +238,11 @@ function playlistSavePopup(player) {
             }
         });
     }
-    
+
 }
 
-function goTo(place)
-{
+//navigation between save and update playlist functionality
+function goTo(place) {
     if (place == 'save') {
         $("#update-content").css("display", "none");
         $("#option-button").css("display", "none");
@@ -251,52 +257,46 @@ function goTo(place)
     }
 }
 
-function savePlaylist(player)
-{
+//method that saves a new playlist
+function savePlaylist(player) {
     if ($.trim($("#playlistName").val()).length === 0) {
         alert("The playlist must have a name!");
     }
     else {
-
-        //var playlistItems = [];
-        //for (var i = 0; i < player_playlist[player].playlist.length; i++) {
-        //    var item = {
-        //        name: player_playlist[player].playlist[i].title,
-        //        path: player_playlist[player].playlist[i].mp3
-        //    }
-        //    playlistItems.push(item);
-        //}
-        //console.log(playlistItems);
         var files = $("#audio_file_player" + player).prop('files');
         if (window.FormData !== undefined) {
 
             $.ajax({
                 type: "POST",
                 url: "/Home/CreatePlaylist",
-                data: {name: $("#playlistName").val()},
+                data: { name: $("#playlistName").val() },
                 success: function (result) {
-                    console.log(result);
-                    //$.magnificPopup.close();
-                    
-                    //for (var x = 0; x < files.length; x++) {
-                    //    var data = new FormData();
-                    //    data.append("file" + x, files[x]);
-                    //    filesToUpload.push(data);
-                    //    //$.ajax({
-                    //    //    type: "POST",
-                    //    //    url: "/Home/UploadPlaylistItem?playlistId=1",
-                    //    //    contentType: false,
-                    //    //    data: data,
-                    //    //    success: function (result) {
-                    //    //        console.log(result);
-                    //    //        //$.magnificPopup.close();
-                    //    //    },
-                    //    //    error: function (error) {
-                    //    //        alert('Error while creating the playlist: ' + error.statusText);
-                    //    //        console.log(error.responseText);
-                    //    //    }
-                    //    //});
-                    //}
+                    //console.log(result);
+                    if (player == "0") {
+                        player0playlistId = result;
+                    }
+                    else {
+                        player1playlistId = result;
+                    }
+                    //update existing files
+                    $.each(player_playlist[player].playlist, function (i, item) {
+                        if (item.id >= 0) {
+                            //Copy the old file to the new playlist
+                            $.ajax({
+                                type: "POST",
+                                url: "/Home/CopyPlaylistItem",
+                                data: { playlistId: result, itemId: item.id },
+                                success: function (result) {
+                                },
+                                error: function (error) {
+                                    alert('Error while updating data: ' + error.statusText);
+                                    console.log(error.responseText);
+                                }
+                            });
+                        }
+                    });
+
+                    //upload the new ones
                     uploadRawFile(player, result);
 
                 },
@@ -306,118 +306,105 @@ function savePlaylist(player)
                 }
             });
         }
-        else
-        {
+        else {
             alert("Youre browser doesn't support HTML5 file uploads! Please update your browser!");
         }
     }
 }
 
-function uploadRawFile(player,playlistId)
-{
-    
-    var file = null;
-    if (player == "0") {
-        if (currentUploadedFileIndex < files0ToUpload.length) {
-            file = files0ToUpload[currentUploadedFileIndex];
-        }
-    }
-    else
-    {
-        if (currentUploadedFileIndex < files1ToUpload.length) {
-            file = files1ToUpload[currentUploadedFileIndex];
-        }
-    }
-    if (file != null) {
-        var data = new FormData();
-        data.append("file", file);
-        //var files = $("#audio_file_player0").prop('files');
-
-        //var data = new FormData();
-        //data.append("file" + 0, files[0]);
-
-        $.ajax({
-            type: "POST",
-            url: "/Home/UploadPlaylistItem?playlistId=" + playlistId,
-            contentType: false,
-            processData: false,
-            data: data,
-            success: function (result) {
-                console.log(result);
-                //go to next song
-                currentUploadedFileIndex += 1;
-                uploadRawFile(player, playlistId);
-            },
-            error: function (error) {
-                alert('Error while creating the playlist: ' + error.statusText);
-                console.log(error.responseText);
-                currentUploadedFileIndex = 0;
-                $.magnificPopup.close();
-            }
-        });
-    }
-    else
-    {
-        currentUploadedFileIndex = 0;
-        $.magnificPopup.close();
-    }
-}
-
+//method that updates the playlist
 function updatePlaylist(player) {
     if ($("#playlist-select").val() == "0") {
         alert("You must select a playlist first!");
     }
     else {
-        var playlistItems = [];
-        for (var i = 0; i < player_playlist[player].playlist.length; i++) {
-            var item = {
-                name: player_playlist[player].playlist[i].title,
-                path: player_playlist[player].playlist[i].mp3
-            }
-            playlistItems.push(item);
+        var filesToRemove = null;
+        var filesToUpload = null;
+        var currentPlaylistId = null;
+        if (player == "0") {
+            filesToRemove = files0ToRemove;
+            currentPlaylistId = player0playlistId;
         }
-        console.log(playlistItems);
+        else {
+            filesToRemove = files1ToRemove;
+            currentPlaylistId = player1playlistId;
+        }
+        //remove the deleted files files
         $.ajax({
             type: "POST",
-            url: "/Home/UpdatePlaylist",
+            url: "/Home/UpdatePlaylistFiles",
             data: {
-                id: $("#playlist-select").val(),
-                itemsList: playlistItems
+                newPlaylistId: $("#playlist-select").val(),
+                oldPlaylistId: currentPlaylistId,
+                removedItemsList: filesToRemove
             },
             success: function (result) {
-                console.log(result);
-                $.magnificPopup.close();
+                if (player == "0") {
+                    player0playlistId = $("#playlist-select").val().toString();
+                    files0ToRemove = [];
+                }
+                else {
+                    player1playlistId = $("#playlist-select").val().toString();
+                    files1ToRemove = [];
+                }
             },
             error: function (error) {
-                alert('Error while saving the playlist: ' + error.statusText);
+                alert('Error while removing unneeded items: ' + error.statusText);
                 console.log(error.responseText);
             }
         });
+
+        //upload added files
+        uploadRawFile(player, $("#playlist-select").val());
     }
 }
 
-$("#audio_file_player0").on("change", function () { uploadFile("0"); });
-$("#audio_file_player1").on("change", function () { uploadFile("1"); });
+//method that adds the selected files to the webplayers playlist
 function uploadFile(player) {
     var files;
     var uploadedFiles = $("#audio_file_player" + player).prop('files');
-    player_playlist[player].remove();
 
     var playlistItems = [];
     for (var i = 0; i < uploadedFiles.length; i++) {
-        playlistItems.push({
+        player_playlist[player].add({
             title: (uploadedFiles[i].name.length > 50 ? (uploadedFiles[i].name.substring(0, 50) + "...") : uploadedFiles[i].name),
+            name: uploadedFiles[i].name,
             mp3: URL.createObjectURL(uploadedFiles[i]),
+            id: "-1"
         });
     }
-    player_playlist[player].setPlaylist(playlistItems);
-
-    player_playlist[player].select(0);
-    player_playlist[player].play(0);
-    $("#songTitle" + player).html(player_playlist[player].playlist[0].title);
-
 };
 
+//deletes a playlist
+function deletePlaylist(playlistId) {
+    $.ajax({
+        type: "POST",
+        url: "/Home/DeletePlaylist",
+        data: { playlistId: playlistId },
+        success: function (result) {
+            //if (player == "0") {
+            //    player0playlistId = playlistId;
+            //}
+            //else {
+            //    player1playlistId = playlistId;
+            //}
+            //loadPlaylistData(player, result);
+            $.magnificPopup.close();
+        },
+        error: function (error) {
+            $.magnificPopup.close();
+            alert('Error while deleting data: ' + error.statusText);
+            console.log(error.responseText);
+        }
+    });
+}
+
+
+//______________________END PLAYLIST METHODS__________________________
+
+//______________________SOUND PROCESS_________________________________
+
+//method called to inilialize the audio EQ nodes
 function addEqualiser() {
 
     var gainDb = -40.0; // atenuation When it takes a positive value it is a real gain, when negative it is an attenuation. It is expressed in dB, has a default value of 0 and can take a value in a nominal range of -40 to 40.
@@ -436,18 +423,17 @@ function addEqualiser() {
         volumeNodes.push(null);
 
 
-
         mediaElement_player[i] = document.getElementById('jp_audio_' + i);
         source_player[i] = context_player.createMediaElementSource(mediaElement_player[i]);
 
         initFrequencyQuality(i);
-        
+
         // affects the ammount of treble in a sound - treble knob - atenuates the sounds below the 3600 frequencies
         var lBand_player = context_player.createBiquadFilter();
         lBand_player.type = "lowshelf";
         lBand_player.frequency.value = bandSplit[1];
         lBand_player.gain.value = gainDb;
-        
+
         // affects the ammount of bass in a sound - bass knob - atenuates the sounds higher than 360 frequencies
         var hBand_player = context_player.createBiquadFilter();
         hBand_player.type = "highshelf";
@@ -512,78 +498,13 @@ function addEqualiser() {
     volumeNodes[1].gain.value = gain2;
 
     //create audio Recording node
-
     audioRecordNode = context_player.createGain();
     volumeNodes[0].connect(audioRecordNode);
     volumeNodes[1].connect(audioRecordNode);
     audioRecorder = new Recorder(audioRecordNode);
-
-    $('#audio_file_player0').on('change', function (e) {
-        files0ToUpload = e.target.files;
-        //var myID = 3; //uncomment this to make sure the ajax URL works
-        //if (files.length > 0) {
-        //    if (window.FormData !== undefined) {
-        //        var data = new FormData();
-        //        for (var x = 0; x < files.length; x++) {
-        //            data.append("file" + x, files[x]);
-        //        }
-
-        //        $.ajax({
-        //            type: "POST",
-        //            url: '/Home/UploadPlaylistItem?playlistId=15',
-        //            contentType: false,
-        //            processData: false,
-        //            data: data,
-        //            success: function (result) {
-        //                console.log(result);
-        //            },
-        //            error: function (xhr, status, p3, p4) {
-        //                var err = "Error " + " " + status + " " + p3 + " " + p4;
-        //                if (xhr.responseText && xhr.responseText[0] == "{")
-        //                    err = JSON.parse(xhr.responseText).Message;
-        //                console.log(err);
-        //            }
-        //        });
-        //    } else {
-        //        alert("This browser doesn't support HTML5 file uploads!");
-        //    }
-        //}
-    });
-    $('#audio_file_player1').on('change', function (e) {
-        files1ToUpload = e.target.files;
-        //var myID = 3; //uncomment this to make sure the ajax URL works
-        //if (files.length > 0) {
-        //    if (window.FormData !== undefined) {
-        //        var data = new FormData();
-        //        for (var x = 0; x < files.length; x++) {
-        //            data.append("file" + x, files[x]);
-        //        }
-
-        //        $.ajax({
-        //            type: "POST",
-        //            url: '/Home/UploadPlaylistItem?playlistId=15',
-        //            contentType: false,
-        //            processData: false,
-        //            data: data,
-        //            success: function (result) {
-        //                console.log(result);
-        //            },
-        //            error: function (xhr, status, p3, p4) {
-        //                var err = "Error " + " " + status + " " + p3 + " " + p4;
-        //                if (xhr.responseText && xhr.responseText[0] == "{")
-        //                    err = JSON.parse(xhr.responseText).Message;
-        //                console.log(err);
-        //            }
-        //        });
-        //    } else {
-        //        alert("This browser doesn't support HTML5 file uploads!");
-        //    }
-        //}
-    });
-
-
 }
 
+//method called when one of the values of the gains are changed
 function changeGain(string, type, player) {
     //alert(string);
     var value = parseFloat(string) / 25.0;
@@ -594,16 +515,16 @@ function changeGain(string, type, player) {
     }
 }
 
+//called when add/remove lowPass filter
 function addLowPassFilter(checked, player) {
     if (checked == true) {
         //UI deactivate other filters
-        if ($("#invoice"+(parseInt(player)+1)+"_2").is(':checked'))
-        {
+        if ($("#invoice" + (parseInt(player) + 1) + "_2").is(':checked')) {
             $("#invoice" + (parseInt(player) + 1) + "_2").prop("checked", false);
             $("label[for='invoice" + (parseInt(player) + 1) + "_2']").removeClass("checked");
             addHighPassFilter(false, player);
         }
-        
+
         if ($("#invoice" + (parseInt(player) + 1) + "_3").is(':checked')) {
             $("#invoice" + (parseInt(player) + 1) + "_3").prop("checked", false);
             $("label[for='invoice" + (parseInt(player) + 1) + "_3']").removeClass("checked");
@@ -625,6 +546,7 @@ function addLowPassFilter(checked, player) {
     }
 }
 
+//called when add/remove highPass filter
 function addHighPassFilter(checked, player) {
     if (checked == true) {
         //UI deactivate other filters
@@ -655,6 +577,7 @@ function addHighPassFilter(checked, player) {
     }
 }
 
+//called when add/remove peaking filter
 function addPeakingFilter(checked, player) {
     if (checked == true) {
         //UI deactivate other filters
@@ -687,6 +610,7 @@ function addPeakingFilter(checked, player) {
     }
 }
 
+//called to inilialise frequancy change node
 function initFrequencyQuality(player) {
 
     // Create the filter.
@@ -701,6 +625,7 @@ function initFrequencyQuality(player) {
 
 }
 
+//called when the frequencye value is changed
 function changeFrequency(element, player) {
     var val = element.value / 100;
     // Clamp the frequency between the minimum value (40 Hz) and half of the
@@ -715,35 +640,53 @@ function changeFrequency(element, player) {
     freqFilter_player[player].frequency.value = maxValue * multiplier;
 };
 
+//called when the quality value is changed
 function changeQuality(element, player) {
     var val = element.value / 100;
     var QUAL_MUL = 30;
     freqFilter_player[player].Q.value = val * QUAL_MUL;
 };
 
+//called when the crossfade values are changed
+function crossFade(element) {
+    var x = parseInt(element.value) / parseInt(100);
+    // Use an equal-power crossfading curve:
+    var gain1 = Math.cos(x * 0.5 * Math.PI);
+    var gain2 = Math.cos((1.0 - x) * 0.5 * Math.PI);
+    volumeNodes[0].gain.value = gain1;
+    volumeNodes[1].gain.value = gain2;
+    //console.log(element.value);
+}
+
+//______________________END SOUND PROCESS_____________________________
+
+
+//______________________RECORDING METHODS_____________________________
 
 function record() {
     //
-    $("#recordBtn").prop("disabled", true);
-    $("#saveLink").css("display", "none");
-    $("#stopBtn").prop("disabled", false);
+    $("#recordBtn").css("display", "none");
+    $("#recordingLbl").text("Recording...");
+    $("#stopBtn").css("display", "");
+    $("#saveLink").addClass("btnDisabled");
 
     audioRecorder.clear();
     audioRecorder.record();
 };
 
 function stopRecording() {
-    $("#recordBtn").prop("disabled", false);
-    $("#saveLink").css("display", "block");
-    $("#stopBtn").prop("disabled", true);
+    $("#recordBtn").css("display", "");
+    $("#recordingLbl").text("Record");
+    $("#stopBtn").css("display", "none");
+    $("#saveLink").removeClass("btnDisabled");
     audioRecorder.stop();
     audioRecorder.getBuffers(gotBuffers);
 };
-function saveAudio() {
-    audioRecorder.exportWAV(doneEncoding);
-    // could get mono instead by saying
-    // audioRecorder.exportMonoWAV( doneEncoding );
-};
+//function saveAudio() {
+//    audioRecorder.exportWAV(doneEncoding);
+//    // could get mono instead by saying
+//    // audioRecorder.exportMonoWAV( doneEncoding );
+//};
 function gotBuffers(buffers) {
 
     // the ONLY time gotBuffers is called is right after a new recording is completed -
@@ -754,12 +697,148 @@ function doneEncoding(blob) {
     Recorder.setupDownload(blob, "myRecording" + ".wav");
 };
 
-function crossFade(element) {
-    var x = parseInt(element.value) / parseInt(100);
-    // Use an equal-power crossfading curve:
-    var gain1 = Math.cos(x * 0.5 * Math.PI);
-    var gain2 = Math.cos((1.0 - x) * 0.5 * Math.PI);
-    volumeNodes[0].gain.value = gain1;
-    volumeNodes[1].gain.value = gain2;
-    //console.log(element.value);
+//______________________END RECORDING METHODS_________________________
+
+
+//______________________HELPER METHODS________________________________
+//uploades the new added files
+function uploadRawFile(player, playlistId) {
+    //recursive method, jums from the first file to the last one
+    var file = null;
+    if (player == "0") {
+        if (currentUploadedFileIndex < files0ToUpload.length) {
+            file = files0ToUpload[currentUploadedFileIndex];
+        }
+    }
+    else {
+        if (currentUploadedFileIndex < files1ToUpload.length) {
+            file = files1ToUpload[currentUploadedFileIndex];
+        }
+    }
+    if (file != null) {
+        var data = new FormData();
+        data.append(file.name, file);
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/UploadPlaylistItem?playlistId=" + playlistId,
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+
+                for (var i = 0; i < player_playlist[player].playlist.length; i++) {
+                    if (player_playlist[player].playlist[i].id == "-1" && player_playlist[player].playlist[i].name == file.name) {
+                        player_playlist[player].playlist[i].id = result;
+                    }
+                }
+                //go to next song
+                currentUploadedFileIndex += 1;
+                uploadRawFile(player, playlistId);
+            },
+            error: function (error) {
+                alert('Error while creating the playlist: ' + error.statusText);
+                console.log(error.responseText);
+                currentUploadedFileIndex = 0;
+                $.magnificPopup.close();
+            }
+        });
+    }
+    else {
+        if (player == "0") {
+            files0ToUpload = [];
+        }
+        else {
+            files1ToUpload = [];
+        }
+        currentUploadedFileIndex = 0;
+        $.magnificPopup.close();
+        alert("Changes were saved succesfully");
+    }
 }
+
+//bind method that gets called when there are new files selected to be uplaoded
+$('#audio_file_player0').on("change", function (e) {
+    files0ToUpload = e.target.files;
+    uploadFile("0");
+});
+$('#audio_file_player1').on("change", function (e) {
+    files1ToUpload = e.target.files;
+    uploadFile("1");
+});
+
+//bind method that gets called when there the file selector button is clicked
+$('#audio_file_player0').on("click", function (e) {
+
+    $.ajax({
+        type: "GET",
+        url: "/Home/IsAuthenticated",
+        async: false,
+        success: function (result) {
+            if (result == true && files0ToUpload.length > 0) {
+                alert("The previous added files need to be saved into a playlist first.");
+                e.preventDefault();
+            }
+            //console.log(result);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+});
+$('#audio_file_player1').on("click", function (e) {
+    $.ajax({
+        type: "GET",
+        url: "/Home/IsAuthenticated",
+        async: false,
+        success: function (result) {
+            if (result == true && files1ToUpload.length > 0) {
+                alert("The previous added files need to be saved into a playlist first.");
+                e.preventDefault();
+            }
+            //console.log(result);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+});
+
+// methods that are called when an file si removed(visual) from the playlist 
+$('#jp_container_0 .jp-playlist').on('click', '.jp-playlist-item-remove', function () {
+    // Determine song index if necessary
+    var index = $(this).parents('li').index('.jp-playlist li');
+
+    // Retrieve song information, if necessary
+    var song = player_playlist[0].playlist[index];
+    if (song.id == "-1") {
+        //items added and not already saved remove from files0ToUpload
+        files0ToUpload = $.grep(files0ToUpload, function (e) { return e.name != song.name; });
+    }
+    else {
+        //old items - add to files0ToRemove
+        files0ToRemove.push(song.id);
+    }
+});
+
+$('#jp_container_1 .jp-playlist').on('click', '.jp-playlist-item-remove', function () {
+    // Determine song index if necessary
+    var index = $(this).parents('li').index('.jp-playlist li');
+
+    // Retrieve song information, if necessary
+    var song = player_playlist[1].playlist[index];
+    if (song.id == "-1") {
+        //items added and not already saved remove from files0ToUpload
+        files1ToUpload = $.grep(files1ToUpload, function (e) { return e.name != song.name; });
+    }
+    else {
+        //old items - add to files1ToRemove
+        files1ToRemove.push(song.id);
+    }
+
+});
+
+//______________________END HELPER METHODS____________________________
+
+
+

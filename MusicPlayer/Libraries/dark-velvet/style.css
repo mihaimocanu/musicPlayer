@@ -257,6 +257,13 @@ h6.foo{
     box-shadow: none;
 }
 
+.btnDisabled
+{
+    opacity:0.5 !important;
+    pointer-events: none;
+    cursor: default;
+}
+
 .btnD{
 	display:inline-block;
 	background-image:url(images/buttons.png);

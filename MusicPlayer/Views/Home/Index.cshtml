@@ -146,16 +146,18 @@
 
     <div class="componentBox box-recording">
         <div class="box-recordingLeft">
-            <h2>
-                Recording
+            <h2 id="recordingLbl" > 
+                Record
             </h2>
-            <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1;"><span>RECORD</span></a>
+            <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1;" onclick="record();" id="recordBtn"><span>RECORD</span></a>
+            <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1; display:none" onclick="stopRecording();" id="stopBtn"><span>STOP</span></a>
         </div>
         <div class="box-recordingRight">
             <h2>
                 Download
             </h2>
-            <a href="#" class="btnD btnD-pagination" hidefocus="true" style="outline: none; opacity: 1;"><span>SAVE</span></a>
+            
+            <a href="" class="btnD btnD-pagination btnDisabled" hidefocus="true" id="saveLink" style="outline: none; opacity: 1;" download="recording.mp3"><span>SAVE</span></a>
         </div>
     </div>
     <div class="componentBox box-eq eqRight">
@@ -233,7 +235,7 @@
                 </div>*@
             <div class="widget-knob pos1_1 widget-volume">
                 <span class="eqComponentDescription">Treble</span>
-                <input type="text" value="100" autocomplete="off" id="volume2_4" />
+                <input type="text" value="25" autocomplete="off" id="volume2_4" />
                 <script type="text/javascript">
                     $(document).ready(function () {
                         $('#volume2_4').knobRot({
@@ -255,7 +257,7 @@
             </div>
             <div class="widget-knob pos1_2 widget-volume">
                 <span class="eqComponentDescription">Mid</span>
-                <input type="text" value="100" autocomplete="off" id="volume2_5" />
+                <input type="text" value="25" autocomplete="off" id="volume2_5" />
                 <script type="text/javascript">
                     $(document).ready(function () {
                         $('#volume2_5').knobRot({
@@ -277,7 +279,7 @@
             </div>
             <div class="widget-knob pos1_3 widget-volume">
                 <span class="eqComponentDescription">Bass</span>
-                <input type="text" value="100" autocomplete="off" id="volume2_6" />
+                <input type="text" value="25" autocomplete="off" id="volume2_6" />
                 <script type="text/javascript">
                     $(document).ready(function () {
                         $('#volume2_6').knobRot({
