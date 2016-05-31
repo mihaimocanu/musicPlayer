@@ -173,6 +173,10 @@
     <Compile Include="Migrations\201605120735035_add.Designer.cs">
       <DependentUpon>201605120735035_add.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605311156124_ChangedProviderIdFieldName.cs" />
+    <Compile Include="Migrations\201605311156124_ChangedProviderIdFieldName.Designer.cs">
+      <DependentUpon>201605311156124_ChangedProviderIdFieldName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -464,6 +468,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201605120735035_add.resx">
       <DependentUpon>201605120735035_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605311156124_ChangedProviderIdFieldName.resx">
+      <DependentUpon>201605311156124_ChangedProviderIdFieldName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

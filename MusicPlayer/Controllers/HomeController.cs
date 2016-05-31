@@ -293,15 +293,17 @@ namespace MusicPlayer.Controllers
                         IdentityResult resultAdd = await manager.UpdateAsync(currentUser);
                         if (resultAdd.Succeeded)
                         {
-                            //save the file on the hard-disk
-                            // get a stream
-                            var stream = fileContent.InputStream;
-                            // and optionally write the file to disk
-                            var path = Path.Combine(Server.MapPath("~/dataStore"), filePath + extension);
-                            using (var fileStream = System.IO.File.Create(path))
-                            {
-                                stream.CopyTo(fileStream);
-                            }
+                            //// ToDo - uncomment this for live version
+
+                            //////save the file on the hard-disk
+                            ////// get a stream
+                            ////var stream = fileContent.InputStream;
+                            ////// and optionally write the file to disk
+                            ////var path = Path.Combine(Server.MapPath("~/dataStore"), filePath + extension);
+                            ////using (var fileStream = System.IO.File.Create(path))
+                            ////{
+                            ////    stream.CopyTo(fileStream);
+                            ////}
 
                             return this.Json(plItem.ItemId, JsonRequestBehavior.AllowGet);
                         }

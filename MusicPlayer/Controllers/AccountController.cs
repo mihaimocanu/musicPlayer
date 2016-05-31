@@ -380,7 +380,7 @@ namespace MusicPlayer.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, UserFacebookId = info.Login.ProviderKey };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, UserProviderId = info.Login.ProviderKey };
                 //var user = new ApplicationUser { UserName = model.UserName, Email = model.Email};
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)

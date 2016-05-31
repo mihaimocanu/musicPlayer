@@ -14,7 +14,7 @@ namespace MusicPlayer.Models
     public class ApplicationUser : IdentityUser
     {
         [MaxLength(50)]
-        public string UserFacebookId { get; set; }
+        public string UserProviderId { get; set; }
         public virtual List<PlaylistInfo> PlaylistsInfo { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

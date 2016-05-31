@@ -57,8 +57,6 @@ namespace MusicPlayer
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            
-
             var facebookAuthenticationOptions = new FacebookAuthenticationOptions()
             {
                 AppId = "545492162289488",
@@ -79,11 +77,11 @@ namespace MusicPlayer
             ////   appId: "545492162289488",
             ////   appSecret: "349f7d7ca9b9387fa459ae10f2c9f60e");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "186094979676-hufioob9min8uluffkkpos6ldvipdsej.apps.googleusercontent.com",
+                ClientSecret = "W_2LG53ToCH9qX4c-efAoPNh"
+            });
         }
     }
 }

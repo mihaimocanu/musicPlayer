@@ -120,3 +120,4 @@ D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.csproj.
 D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.dll
 D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.pdb
 D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.csprojResolveAssemblyReference.cache
+D:\mihai\project\study\diz\MusicPlayer\MusicPlayer\obj\Debug\MusicPlayer.Migrations.ChangedProviderIdFieldName.resources

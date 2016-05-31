@@ -329,7 +329,7 @@ function updatePlaylist(player) {
             filesToRemove = files1ToRemove;
             currentPlaylistId = player1playlistId;
         }
-        //remove the deleted files files
+        //copy the remaining items from the previous playlist
         $.ajax({
             type: "POST",
             url: "/Home/UpdatePlaylistFiles",
