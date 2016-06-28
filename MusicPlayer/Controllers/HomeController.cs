@@ -176,11 +176,15 @@ namespace MusicPlayer.Controllers
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var currentUser = manager.FindById(User.Identity.GetUserId());
 
-            var oldPlaylist = currentUser.PlaylistsInfo.Where(item => item.PlaylistId == oldPlaylistId).FirstOrDefault();
+            var oldPlaylist = new PlaylistInfo();
+            if (oldPlaylistId > 0)
+            {
+                oldPlaylist = currentUser.PlaylistsInfo.Where(item => item.PlaylistId == oldPlaylistId).FirstOrDefault();
+            }
 
             var newPlaylist = currentUser.PlaylistsInfo.Where(item => item.PlaylistId == newPlaylistId).FirstOrDefault();
 
-            if (oldPlaylistId != newPlaylistId)
+            if (oldPlaylistId != newPlaylistId && oldPlaylistId>0)
             {
                 //remove new playlists Items
                 foreach (var item in newPlaylist.PlaylistItems)
@@ -215,6 +219,12 @@ namespace MusicPlayer.Controllers
             }
             else
             {
+                if (oldPlaylistId < 0)
+                {
+                    //there wasn't selected any playlist before the update and the user choose to add some songs and save them as an update
+                    removedItemsList = newPlaylist.PlaylistItems.Select(item => item.ItemId).ToList();
+                }
+
                 //just remove the unwanted items
                 foreach (int item in removedItemsList)
                 {

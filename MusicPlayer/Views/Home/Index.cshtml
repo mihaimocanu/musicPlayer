@@ -469,88 +469,102 @@
     </div>
 </div>
 
-    <form id="popup-form" class="white-popup mfp-hide">
-        <div id="popup-content">
+@*<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal1"> Launch demo modal 1 </button>
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal2"> Launch demo modal 2 </button>*@
+<!-- Modal 1-->
+<div class="modal fade" id="modalWindow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="modalWindowContent">
+            <!-- Modal Display playlists -->
+            @*<div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel1">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <tr>
+                        <td class="cel1">
+                            <button type="button" class="btn btn-info">1</button>
+                        </td>
+                        <td class="cel2">
+                            <button type="button" class="btn btn-warning">2</button>
+                        </td>
+                        <td class="cel3">Playlist name 1</td>
+                        <td class="cel4">
+                            <button type="button" class="btn btn-danger"> DELETE </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="cel1">
+                            <button type="button" class="btn btn-info">1</button>
+                        </td>
+                        <td class="cel2">
+                            <button type="button" class="btn btn-warning">2</button>
+                        </td>
+                        <td class="cel3">Playlist name 2 </td>
+                        <td class="cel4">
+                            <button type="button" class="btn btn-danger"> DELETE </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>*@
 
-            <div id="playlistsData">
-                @*<div class="playlist-description" style="padding: 7px; border: solid; border-width: 2px;">
-                    <div class="playlist-load-buttons">
-                        Load to:
-                        <input type="button" value="Playere 1" onclick="loadPlaylist('0','6')" />
-                        <input type="button" value="Playere 2" onclick="loadPlaylist('1','6')" />
-                    </div>
-                    Playlist 1
-                    <div class="playlist-delete-button">
-                        <input type="button" value="Delete" onclick="deletePlaylist('6')" />
-                    </div>
-                </div>
-                <div class="playlist-description" style="padding: 7px; border: solid; border-width: 2px;">
-                    <div class="playlist-load-buttons">
-                        Load to:
-                        <input type="button" value="Playere 1" onclick="loadPlaylist('0','6')" />
-                        <input type="button" value="Playere 2" onclick="loadPlaylist('1','6')" />
-                    </div>
-                    Playlist 1
-                    <div class="playlist-delete-button">
-                        <input type="button" value="Delete" onclick="deletePlaylist('6')" />
-                    </div>
-                </div>
-                <div class="playlist-description" style="padding: 7px; border: solid; border-width: 2px;">
-                    <div class="playlist-load-buttons">
-                        Load to:
-                        <input type="button" value="Playere 1" onclick="loadPlaylist('0','6')" />
-                        <input type="button" value="Playere 2" onclick="loadPlaylist('1','6')" />
-                    </div>
-                    Playlist 1
-                    <div class="playlist-delete-button">
-                        <input type="button" value="Delete" onclick="deletePlaylist('6')" />
-                    </div>
-                </div>
-                <div class="playlist-description" style="padding: 7px; border: solid; border-width: 2px;">
-                    <div class="playlist-load-buttons">
-                        Load to:
-                        <input type="button" value="Playere 1" onclick="loadPlaylist('0','6')" />
-                        <input type="button" value="Playere 2" onclick="loadPlaylist('1','6')" />
-                    </div>
-                    Playlist 1
-                    <div class="playlist-delete-button">
-                        <input type="button" value="Delete" onclick="deletePlaylist('6')" />
-                    </div>
-                </div>*@
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2 -->
+<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="modalWindow2Content">
+            @*<div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel2">Modal title</h4>
             </div>
 
-            @*<div>Overwrite existing playlist:
-                    <select id="playlist-select">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
-                    </select>
-                    <div>
-                        <div class="fakeFileBtn btn-chooseFile btnD btnD-acute" style="margin-top: 10px;">
-                            <span>Update playlist</span>
-                            <input type="button" hidefocus="true" class="gradient" style="outline: none; cursor:default;" onclick="playlistSavePopup()">
-                        </div>
-                    </div>
-                </div>
-                    <div id="save-content">Name:
-                    <input type="text" />
-                    <div>
-                        <div class="fakeFileBtn btn-chooseFile btnD btnD-acute" style="margin-top: 10px;">
-                            <span>Update playlist</span>
-                            <input type="button" hidefocus="true" class="gradient" style="outline: none; cursor:default;" onclick="playlistSavePopup()">
-                        </div>
-                    </div>
+            <div class="modal-body">
+                <div class="modal2Block initBlock">
+                    <button type="button" class="btn btn-success btn-lg btn-block btnActionSave">SAVE</button>
+                    <button type="button" class="btn btn-warning btn-lg btn-block btnActionUpdate">UPDATE</button>
+                    <button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal">CANCEL</button>
                 </div>
 
-                <div id="option-button">
-                    <div class="fakeFileBtn btn-chooseFile btnD btnD-acute" style="margin-top: 10px;">
-                        <span>Save New Playlist</span>
-                        <input type="button" hidefocus="true" class="gradient" style="outline: none; cursor:default;" onclick="playlistSavePopup()">
-                    </div>
-                </div>*@
+                <div class="modal2Block saveBlock">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="newPlaylistName" class="col-sm-4 control-label">Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="newPlaylistName" placeholder="Playlist name">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal2Block updateBlock">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="existingPlaylistName" class="col-sm-4 control-label">Existing playlist</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="existingPlaylistName">
+                                    <option>Playlist name 1</option>
+                                    <option>Playlist name 2</option>
+                                    <option>Playlist name 3</option>
+                                    <option>Playlist name 4</option>
+                                    <option>Playlist name 5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>*@
         </div>
-    </form>
+    </div>
+</div>    
+
 
     <script>
 

@@ -36,30 +36,30 @@ var audioRecorder;
 //______________________PLAYLIST METHODS______________________________
 //opens popup when "Load playlist" button is pressed and loads the data in it
 function playlistLoadPopup() {
-    $.magnificPopup.open({
-        items: {
-            src: '#popup-form',
-        },
-        type: 'inline',
-        preloader: false,
-        focus: '#name',
+    //$.magnificPopup.open({
+    //    items: {
+    //        src: '#popup-form',
+    //    },
+    //    type: 'inline',
+    //    preloader: false,
+    //    focus: '#name',
 
-        callbacks: {
-            beforeOpen: function () {
-                if ($(window).width() < 700) {
-                    this.st.focus = false;
-                } else {
-                    this.st.focus = '#name';
-                }
-            }
-        }
-    });
-    //bind close method for the pop-up
-    $(document).on('click', '.popup-modal-dismiss', function (e) {
-        e.preventDefault();
-        $.magnificPopup.close();
-    });
-    $("#popup-content").empty();
+    //    callbacks: {
+    //        beforeOpen: function () {
+    //            if ($(window).width() < 700) {
+    //                this.st.focus = false;
+    //            } else {
+    //                this.st.focus = '#name';
+    //            }
+    //        }
+    //    }
+    //});
+    ////bind close method for the pop-up
+    //$(document).on('click', '.popup-modal-dismiss', function (e) {
+    //    e.preventDefault();
+    //    $.magnificPopup.close();
+    //});
+    $("#modalWindowContent").empty();
 
     //populate the pop-up with the playlists list
     $.ajax({
@@ -67,34 +67,58 @@ function playlistLoadPopup() {
         url: "/Home/GetPlaylistList",
         success: function (result) {
 
+            var htmlContent = "";
+
+            htmlContent += "<div class=\"modal-header\">";
+            htmlContent += "    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
+            htmlContent += "    <h4 class=\"modal-title\" id=\"myModalLabel1\">Load Playlists</h4>";
+            htmlContent += "</div>";
+            htmlContent += "<div class=\"modal-body\">";
 
             if (result.length == 0) {
-                var htmlContent = "";
-                htmlContent += "<div> There are no saved playlists</div>";
-                $("#popup-content").append(htmlContent);
+                htmlContent += "There are no saved playlists";
             }
             else {
 
-                var htmlContent = "";
+                htmlContent += "<table>";
+                    
+                
                 for (var i = 0; i < result.length; i++) {
-                    htmlContent += "<div class=\"playlist-description\" style=\"padding: 7px; border: solid; border-width: 2px;\">";
-                    htmlContent += "<div class=\"playlist-load-buttons\">";
-                    htmlContent += "Load to:";
-                    htmlContent += "<input type=\"button\" value=\"Playere 1\" onclick=\"loadPlaylist('0','" + result[i].id + "')\" />";
-                    htmlContent += "<input type=\"button\" value=\"Playere 2\" onclick=\"loadPlaylist('1','" + result[i].id + "')\" />";
-                    htmlContent += "</div>";
-                    htmlContent += "Name: " + result[i].name;
-                    htmlContent += "<div class=\"playlist-delete-button\">";
-                    htmlContent += "<input type=\"button\" value=\"Delete\" onclick=\"deletePlaylist('" + result[i].id + "')\" />";
-                    htmlContent += "</div>";
-                    htmlContent += "</div>";
-                }
+                    htmlContent += "<tr>";
+                    htmlContent += "<td class=\"cel1\">";
+                    htmlContent += "<button type=\"button\" class=\"btn btn-info\" onclick=\"loadPlaylist('0','" + result[i].id + "')\" >1</button>";
+                    htmlContent += "</td>";
+                    htmlContent += "<td class=\"cel2\">";
+                    htmlContent += "<button type=\"button\" class=\"btn btn-warning\" onclick=\"loadPlaylist('1','" + result[i].id + "')\" >2</button>";
+                    htmlContent += "</td>";
+                    htmlContent += "<td class=\"cel3\">" + result[i].name + "</td>";
+                    htmlContent += "<td class=\"cel4\">";
+                    htmlContent += "<button type=\"button\" class=\"btn btn-danger\" onclick=\"deletePlaylist('" + result[i].id + "')\" > DELETE </button>";
+                    htmlContent += "</td>";
+                    htmlContent += "</tr>";
+                    
 
-                $("#popup-content").append(htmlContent);
+                    //htmlContent += "<div class=\"playlist-description\" style=\"padding: 7px; border: solid; border-width: 2px;\">";
+                    //htmlContent += "<div class=\"playlist-load-buttons\">";
+                    //htmlContent += "Load to:";
+                    //htmlContent += "<input type=\"button\" value=\"Playere 1\" onclick=\"loadPlaylist('0','" + result[i].id + "')\" />";
+                    //htmlContent += "<input type=\"button\" value=\"Playere 2\" onclick=\"loadPlaylist('1','" + result[i].id + "')\" />";
+                    //htmlContent += "</div>";
+                    //htmlContent += "Name: " + result[i].name;
+                    //htmlContent += "<div class=\"playlist-delete-button\">";
+                    //htmlContent += "<input type=\"button\" value=\"Delete\" onclick=\"deletePlaylist('" + result[i].id + "')\" />";
+                    //htmlContent += "</div>";
+                    //htmlContent += "</div>";
+                }
+                htmlContent += "</table>";
             }
+            $("#modalWindowContent").append(htmlContent);
+            htmlContent += "</div>";
+            $('#modalWindow').modal('show');
         },
         error: function (error) {
-            $.magnificPopup.close();
+            //$.magnificPopup.close();
+            $('#modalWindow').modal('hide');
             alert('Error while getting data: ' + error.statusText);
             console.log(error.responseText);
         }
@@ -115,10 +139,12 @@ function loadPlaylist(player, playlistId) {
                 player1playlistId = playlistId;
             }
             loadPlaylistData(player, result);
-            $.magnificPopup.close();
+            $('#modalWindow').modal('hide');
+            //$.magnificPopup.close();
         },
         error: function (error) {
-            $.magnificPopup.close();
+            $('#modalWindow').modal('hide');
+            //$.magnificPopup.close();
             alert('Error while getting data: ' + error.statusText);
             console.log(error.responseText);
         }
@@ -143,35 +169,50 @@ function loadPlaylistData(player, result) {
 
 //open the popup when saving playlists and populates it
 function playlistSavePopup(player) {
-    $.magnificPopup.open({
-        items: {
-            src: '#popup-form',
-        },
-        type: 'inline',
-        preloader: false,
-        focus: '#name',
+    //$.magnificPopup.open({
+    //    items: {
+    //        src: '#popup-form',
+    //    },
+    //    type: 'inline',
+    //    preloader: false,
+    //    focus: '#name',
 
-        callbacks: {
-            beforeOpen: function () {
-                if ($(window).width() < 700) {
-                    this.st.focus = false;
-                } else {
-                    this.st.focus = '#name';
-                }
-            }
-        }
-    });
-    //bind close method for the pop-up
-    $(document).on('click', '.popup-modal-dismiss', function (e) {
-        e.preventDefault();
-        $.magnificPopup.close();
-    });
+    //    callbacks: {
+    //        beforeOpen: function () {
+    //            if ($(window).width() < 700) {
+    //                this.st.focus = false;
+    //            } else {
+    //                this.st.focus = '#name';
+    //            }
+    //        }
+    //    }
+    //});
+    ////bind close method for the pop-up
+    //$(document).on('click', '.popup-modal-dismiss', function (e) {
+    //    e.preventDefault();
+    //    $.magnificPopup.close();
+    //});
 
-    $("#popup-content").empty();
+    //$('#modal2').modal('show');
+
+    var htmlContent = "";
+    $("#modalWindow2Content").empty();
+
+    htmlContent += "<div class=\"modal-header\">";
+    htmlContent += "    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
+    htmlContent += "    <h4 class=\"modal-title\" id=\"myModalLabel1\">Save Playlists</h4>";
+    htmlContent += "</div>";
+    htmlContent += "<div class=\"modal-body\">";
+
+    //if (result.length == 0) {
+    //    htmlContent += "There are no saved playlists";
+    //}
+
     if (player_playlist[player].playlist.length == 0) {
-        var htmlContent = "";
-        htmlContent += "<div> There are no items in the playlist</div>";
-        $("#popup-content").append(htmlContent);
+        htmlContent += "There are no items in the playlist";
+        htmlContent += "</div>";
+        $("#modalWindow2Content").append(htmlContent);
+        $('#modal2').modal('show');
     }
     else {
         //get the playlists data and create the html needed to store them -> add the html to the needed place
@@ -180,59 +221,134 @@ function playlistSavePopup(player) {
             url: "/Home/GetPlaylistList",
             success: function (result) {
 
-                var htmlContent = "";
-                htmlContent += "<div id=\"update-content\" ";
-                if (result.length == 0) {
-                    htmlContent += "style=\"display:none\"";
-                }
-                htmlContent += ">Overwrite existing playlist:";
-                htmlContent += "<select id=\"playlist-select\">";
+                htmlContent += "<div class=\"modal2Block initBlock\">";
+                htmlContent += "<button type=\"button\" class=\"btn btn-success btn-lg btn-block btnActionSave\">SAVE</button>";
+                htmlContent += "<button type=\"button\" class=\"btn btn-warning btn-lg btn-block btnActionUpdate\">UPDATE</button>";
+                htmlContent += "<button type=\"button\" class=\"btn btn-default btn-lg btn-block\" data-dismiss=\"modal\">CANCEL</button>";
+                htmlContent += "</div>";
+
+                htmlContent += "<div class=\"modal2Block saveBlock\">";
+                htmlContent += "<form class=\"form-horizontal\">";
+                htmlContent += "<div class=\"form-group\">";
+                htmlContent += "<label for=\"newPlaylistName\" class=\"col-sm-4 control-label\">Name</label>";
+                htmlContent += "<div class=\"col-sm-8\">";
+                htmlContent += "<input type=\"text\" class=\"form-control\" id=\"playlistName\" placeholder=\"Playlist name\">";
+                htmlContent += "</div>";
+                htmlContent += "</div>";
+                htmlContent += "<div class=\"modal-footer\">";
+                htmlContent += "<button type=\"button\" class=\"btn btn-default btnCancelSaving\"" +/* data-dismiss=\"modal\"*/ ">Cancel</button>";
+                htmlContent += "<button type=\"button\" class=\"btn btn-primary\" onclick=\"savePlaylist(" + player + ")\" >Save changes</button>";
+                htmlContent += "</div>";
+                htmlContent += "</form>";
+                htmlContent += "</div>";
+                htmlContent += "<div class=\"modal2Block updateBlock\">";
+                htmlContent += "<form class=\"form-horizontal\">";
+                htmlContent += "<div class=\"form-group\">";
+                htmlContent += "<label for=\"existingPlaylistName\" class=\"col-sm-4 control-label\">Existing playlist</label>";
+                htmlContent += "<div class=\"col-sm-8\">";
+                htmlContent += "<select class=\"form-control\" id=\"playlist-select\">";
                 htmlContent += "<option value=\"0\">Choose Existing Playlist</option>";
                 for (var i = 0; i < result.length; i++) {
                     htmlContent += "<option value=\"" + result[i].id + "\">" + result[i].name + "</option>";
                 }
-
+                //htmlContent += "<option>Playlist name 2</option>";
+                //htmlContent += "<option>Playlist name 3</option>";
+                //htmlContent += "<option>Playlist name 4</option>";
+                //htmlContent += "<option>Playlist name 5</option>";
                 htmlContent += "</select>";
-                htmlContent += "<div>";
-                htmlContent += "<div class=\"fakeFileBtn btn-chooseFile btnD btnD-acute\" style=\"margin-top: 10px;\">";
-                htmlContent += "<span>Update playlist</span>";
-                htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"updatePlaylist(" + player + ")\">";
+                
                 htmlContent += "</div>";
                 htmlContent += "</div>";
+                htmlContent += "<div class=\"modal-footer\">";
+                htmlContent += "<button type=\"button\" class=\"btn btn-default btnCancelSaving\"" +/* data-dismiss=\"modal\"*/ ">Cancel</button>";
+                htmlContent += "<button type=\"button\" class=\"btn btn-primary\" onclick=\"updatePlaylist(" + player + ")\">Update playlist</button>";
                 htmlContent += "</div>";
-                htmlContent += "<div id=\"save-content\" ";
-                if (result.length > 0) {
-                    htmlContent += "style=\"display:none\"";
-                }
-                htmlContent += ">Name:";
-                htmlContent += "<input type=\"text\" id=\"playlistName\" style=\"color: #000000;\" />";
-                htmlContent += "<div>";
-                htmlContent += "<div class=\"fakeFileBtn btn-chooseFile btnD btnD-acute\" style=\"margin-top: 10px;\">";
-                htmlContent += "<span>Save playlist</span>";
-                htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"savePlaylist(" + player + ")\">";
-                htmlContent += "</div>";
-                htmlContent += "<div class=\"fakeFileBtn btn-chooseFile btnD btnD-acute\" style=\"margin-top: 10px;\">";
-                htmlContent += "<span>Cancel</span>";
-                htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"goTo('update');\">";
-                htmlContent += "</div>";
-                htmlContent += "</div>";
+                htmlContent += " </form>";
                 htmlContent += "</div>";
 
-                htmlContent += "<div id=\"option-button\" ";
-                if (result.length == 0) {
-                    htmlContent += "style=\"display:none\"";
-                }
-                htmlContent += ">";
-                htmlContent += "<div class=\"fakeFileBtn btn-chooseFile btnD btnD-acute\" style=\"margin-top: 10px;\">";
-                htmlContent += "<span>Save New Playlist</span>";
-                htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"goTo('save');\">";
                 htmlContent += "</div>";
-                htmlContent += "</div>";
+                
+                $("#modalWindow2Content").append(htmlContent);
 
-                $("#popup-content").append(htmlContent);
+                $(".btnActionSave").on("click", function () {
+                    $('.modal2Block').hide();
+                    $('.modal-footer').show();
+                    $('.saveBlock').show();
+                });
+                $(".btnActionUpdate").on("click", function () {
+                    $('.modal2Block').hide();
+                    $('.modal-footer').show();
+                    $('.updateBlock').show();
+                });
+                $(".btnCancelSaving").on("click", function () {
+                    $('.modal2Block').show();
+                    $('.modal-footer').hide();
+                    $('.updateBlock').hide();
+                    $('.saveBlock').hide();
+                });
+                $("#modal").on('hidden.bs.modal', function () {
+                    $(this).data('bs.modal', null);
+                    $('#modal2 .saveBlock,#modal2 .updateBlock, #modal2  .modal-footer').hide();
+                    $('.initBlock').show();
+                });
+
+                $('#modal2').modal('show');
+
+
+                //var htmlContent = "";
+                //htmlContent += "<div id=\"update-content\" ";
+                //if (result.length == 0) {
+                //    htmlContent += "style=\"display:none\"";
+                //}
+                //htmlContent += ">Overwrite existing playlist:";
+                //htmlContent += "<select id=\"playlist-select\">";
+                //htmlContent += "<option value=\"0\">Choose Existing Playlist</option>";
+                //for (var i = 0; i < result.length; i++) {
+                //    htmlContent += "<option value=\"" + result[i].id + "\">" + result[i].name + "</option>";
+                //}
+
+                //htmlContent += "</select>";
+                //htmlContent += "<div>";
+                //htmlContent += "<div class=\"fakeFileBtn btn-chooseFile btnD btnD-acute\" style=\"margin-top: 10px;\">";
+                //htmlContent += "<span>Update playlist</span>";
+                //htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"updatePlaylist(" + player + ")\">";
+                //htmlContent += "</div>";
+                //htmlContent += "</div>";
+                //htmlContent += "</div>";
+                //htmlContent += "<div id=\"save-content\" ";
+                //if (result.length > 0) {
+                //    htmlContent += "style=\"display:none\"";
+                //}
+                //htmlContent += ">Name:";
+                //htmlContent += "<input type=\"text\" id=\"playlistName\" style=\"color: #000000;\" />";
+                //htmlContent += "<div>";
+                //htmlContent += "<div class=\"fakeFileBtn btn-chooseFile btnD btnD-acute\" style=\"margin-top: 10px;\">";
+                //htmlContent += "<span>Save playlist</span>";
+                //htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"savePlaylist(" + player + ")\">";
+                //htmlContent += "</div>";
+                //htmlContent += "<div class=\"fakeFileBtn btn-chooseFile btnD btnD-acute\" style=\"margin-top: 10px;\">";
+                //htmlContent += "<span>Cancel</span>";
+                //htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"goTo('update');\">";
+                //htmlContent += "</div>";
+                //htmlContent += "</div>";
+                //htmlContent += "</div>";
+
+                //htmlContent += "<div id=\"option-button\" ";
+                //if (result.length == 0) {
+                //    htmlContent += "style=\"display:none\"";
+                //}
+                //htmlContent += ">";
+                //htmlContent += "<div class=\"fakeFileBtn btn-chooseFile btnD btnD-acute\" style=\"margin-top: 10px;\">";
+                //htmlContent += "<span>Save New Playlist</span>";
+                //htmlContent += "<input type=\"button\" hidefocus=\"true\" class=\"gradient\" style=\"outline: none; cursor:default;\" onclick=\"goTo('save');\">";
+                //htmlContent += "</div>";
+                //htmlContent += "</div>";
+
+                //$("#popup-content").append(htmlContent);
             },
             error: function (error) {
-                $.magnificPopup.close();
+                //$.magnificPopup.close();
+                $('#modal2').modal('hide');
                 alert('Error while getting data: ' + error.statusText);
                 console.log(error.responseText);
             }
@@ -329,6 +445,10 @@ function updatePlaylist(player) {
             filesToRemove = files1ToRemove;
             currentPlaylistId = player1playlistId;
         }
+        if (currentPlaylistId == null)
+        {
+            currentPlaylistId = -1;
+        }
         //copy the remaining items from the previous playlist
         $.ajax({
             type: "POST",
@@ -389,10 +509,12 @@ function deletePlaylist(playlistId) {
             //    player1playlistId = playlistId;
             //}
             //loadPlaylistData(player, result);
-            $.magnificPopup.close();
+            //$.magnificPopup.close();
+            $('#modalWindow').modal('hide');
         },
         error: function (error) {
-            $.magnificPopup.close();
+            $('#modalWindow').modal('hide');
+            //$.magnificPopup.close();
             alert('Error while deleting data: ' + error.statusText);
             console.log(error.responseText);
         }
@@ -486,10 +608,9 @@ function addEqualiser() {
         volumeNodes[i] = context_player.createGain();
         sum_player[i].connect(volumeNodes[i]);
         volumeNodes[i].connect(context_player.destination);
-
     }
 
-    //set volume
+    //set  volume
     var x = 50 / 100;
     // Use an equal-power crossfading curve:
     var gain1 = Math.cos(x * 0.5 * Math.PI);
@@ -740,7 +861,8 @@ function uploadRawFile(player, playlistId) {
                 alert('Error while creating the playlist: ' + error.statusText);
                 console.log(error.responseText);
                 currentUploadedFileIndex = 0;
-                $.magnificPopup.close();
+                $('#modal2').modal('hide');
+                //$.magnificPopup.close();
             }
         });
     }
@@ -752,7 +874,8 @@ function uploadRawFile(player, playlistId) {
             files1ToUpload = [];
         }
         currentUploadedFileIndex = 0;
-        $.magnificPopup.close();
+        $('#modal2').modal('hide');
+        //$.magnificPopup.close();
         alert("Changes were saved succesfully");
     }
 }
@@ -800,7 +923,7 @@ $('#audio_file_player1').on("click", function (e) {
         },
         error: function (error) {
             console.log(error);
-        }
+         }
     });
 });
 

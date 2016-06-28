@@ -187,3 +187,22 @@ background-position: -6px -66px;
 .componentBox  input[type=range]::-ms-thumb { border: none; border: none; margin-top: -8px; width: 33px; height: 33px; background: url(../Images/img/progressbars.png) 0 -45px no-repeat; }
 .componentBox  input[type=range]:focus::-ms-fill-lower { background: #888;}
 .componentBox  input[type=range]:focus::-ms-fill-upper { background: #ccc;}
+
+
+/* STYLE FOR MODALS */
+.modal .modal-header h4{color:#000000;}
+.modal .modal-body{max-height:400px; overflow:auto; }
+.modal .modal-body table{width:100%; }
+.modal .modal-body table tr{}
+.modal .modal-body table tr td{ padding-bottom: 10px;}
+.modal .modal-body table tr td.cel1{width:45px; }
+.modal .modal-body table tr td.cel1 button{width:35px; text-align:center;}
+.modal .modal-body table tr td.cel2{width:40px; }
+.modal .modal-body table tr td.cel2 button{width:35px; text-align:center;}
+.modal .modal-body table tr td.cel3{padding-left:20px; vertical-align: middle;}
+.modal .modal-body table tr td.cel4{width:75px; text-align:right;}
+
+#modal2 .saveBlock,
+#modal2  .updateBlock,
+#modal2  .modal-footer {display:none;}
+#modal2 input[type="text"]{background:#ffffff; font-size:16px;}
