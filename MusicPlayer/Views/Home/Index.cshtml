@@ -395,10 +395,13 @@
                 <span>Add song</span>
                 <input id="audio_file_player0" type="file" accept="audio/*" multiple="" hidefocus="true" class="gradient" style="outline: none;">
             </div>
+@if (User.Identity.IsAuthenticated)
+{
             <div class="fakeFileBtn btn-chooseFile btnD btnD-acute" style="margin-top: 10px;">
                 <span>Save Playlist</span>
                 <input type="button" hidefocus="true" class="gradient" style="outline: none; cursor:default;" onclick="playlistSavePopup(0)">
             </div>
+}
         </div>
         <!-- Widget Audio Player -->
     </div>
@@ -459,10 +462,13 @@
                 <span>Add song</span>
                 <input id="audio_file_player1" type="file" accept="audio/*" multiple="" hidefocus="true" class="gradient" style="outline: none;">
             </div>
+@if (User.Identity.IsAuthenticated)
+{
             <div class="fakeFileBtn btn-chooseFile btnD btnD-acute" style="margin-top: 10px;">
                 <span>Save Playlist</span>
                 <input type="button" hidefocus="true" class="gradient" style="outline: none; cursor:default;" onclick="playlistSavePopup(1)">
             </div>
+}
             <!-- Widget Audio Player -->
         </div>
 
