@@ -365,8 +365,8 @@
                                     <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
                                     <li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
                                     <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
-                                    @*<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
-                                        <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>*@
+                                    <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+                                        <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
                                     <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
                                     <li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li>
                                     <li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li>
@@ -395,10 +395,13 @@
                 <span>Add song</span>
                 <input id="audio_file_player0" type="file" accept="audio/*" multiple="" hidefocus="true" class="gradient" style="outline: none;">
             </div>
+@if (User.Identity.IsAuthenticated)
+{
             <div class="fakeFileBtn btn-chooseFile btnD btnD-acute" style="margin-top: 10px;">
                 <span>Save Playlist</span>
                 <input type="button" hidefocus="true" class="gradient" style="outline: none; cursor:default;" onclick="playlistSavePopup(0)">
             </div>
+}
         </div>
         <!-- Widget Audio Player -->
     </div>
@@ -459,10 +462,13 @@
                 <span>Add song</span>
                 <input id="audio_file_player1" type="file" accept="audio/*" multiple="" hidefocus="true" class="gradient" style="outline: none;">
             </div>
+@if (User.Identity.IsAuthenticated)
+{
             <div class="fakeFileBtn btn-chooseFile btnD btnD-acute" style="margin-top: 10px;">
                 <span>Save Playlist</span>
                 <input type="button" hidefocus="true" class="gradient" style="outline: none; cursor:default;" onclick="playlistSavePopup(1)">
             </div>
+}
             <!-- Widget Audio Player -->
         </div>
 
